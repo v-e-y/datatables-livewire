@@ -24,7 +24,7 @@
 
     @if(count($this->rules[0]['content']))
         @unless($errors->any())
-            <div class="pt-2 sm:flex w-full justify-content-between">
+            <div class="pt-2 sm:flex w-100 justify-content-between">
                 <div>
                     {{-- <button class="bg-blue-500 px-3 py-2 rounded text-white" wire:click="runQuery">Apply Query</button> --}}
                 </div>

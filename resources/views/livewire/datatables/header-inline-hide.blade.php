@@ -8,7 +8,7 @@
              {{ str_replace('_', ' ', $column['label']) }}
          </span>
      </button>
-     <svg class="position-absolute text-blue-100 fill-current w-full inset-x-0 bottom-0"
+     <svg class="position-absolute text-blue-100 fill-current w-100 inset-x-0 bottom-0"
           viewBox="0 0 314.16 207.25">
          <path stroke-miterlimit="10" d="M313.66 206.75H.5V1.49l157.65 204.9L313.66 1.49v205.26z" />
      </svg>
@@ -17,7 +17,7 @@
 
     @if($column['sortable'])
         <button wire:click="sort('{{ $index }}')"
-                class="w-full h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex justify-content-between items-center focus:outline-none">
+                class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex justify-content-between items-center focus:outline-none">
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-right @elseif($column['headerAlign'] === 'center') text-center @endif"">{{ str_replace('_', ' ', $column['label']) }}</span>
             <span class="inline text-xs text-blue-400">
             @if($sort === $index)
@@ -30,7 +30,7 @@
             </span>
         </button>
     @else
-        <div class="w-full h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex justify-content-between items-center focus:outline-none">
+        <div class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex justify-content-between items-center focus:outline-none">
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-right @elseif($column['headerAlign'] === 'center') text-center @endif"">{{ str_replace('_', ' ', $column['label']) }}</span>
         </div>
     @endif
