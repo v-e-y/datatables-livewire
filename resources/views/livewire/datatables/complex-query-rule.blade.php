@@ -5,9 +5,9 @@
         x-on:dragstart="dragstart($event, '{{ $key }}')"
         x-on:dragend="dragend"
         key="{{ $key }}"
-        class="px-3 py-2 sm:flex space-x-4 items-end hover:bg-opacity-20 hover:bg-white hover:shadow-xl"
+        class="px-3 py-2  space-x-4 items-end hover:bg-opacity-20 hover:bg-white hover:shadow-xl"
     >
-        <div class="sm:flex flex-grow sm:space-x-4">
+        <div class=" flex-grow sm:space-x-4">
             <div class="sm:w-1/3">
                 <label
                     class="block uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Column</label>
@@ -82,13 +82,13 @@
                 </div>
             @endif
         </div>
-        <div class="d-flex justify-content-center sm:justify-end">
+        <div class="d-flex justify-content-center sm:justify-content-end">
             <button wire:click="duplicateRule('{{ $key }}')"
                 class="mb-px w-9 h-9 d-flex align-items-center justify-content-center rounded text-green-600 hover:text-green-400">
                 <x-icons.copy />
             </button>
             <button wire:click="removeRule('{{ $key }}')"
-                class="mb-px w-9 h-9 d-flex align-items-center justify-content-center rounded text-red-600 hover:text-red-400">
+                class="mb-px w-9 h-9 d-flex align-items-center justify-content-center rounded  hover:text-red-400">
                 <x-icons.trash />
             </button>
         </div>

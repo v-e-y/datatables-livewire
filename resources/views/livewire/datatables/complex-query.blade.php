@@ -24,11 +24,11 @@
 
     @if(count($this->rules[0]['content']))
         @unless($errors->any())
-            <div class="pt-2 sm:flex w-100 justify-content-between">
+            <div class="pt-2  w-100 justify-content-between">
                 <div>
                     {{-- <button class="bg-blue-500 px-3 py-2 rounded text-white" wire:click="runQuery">Apply Query</button> --}}
                 </div>
-                <div class="mt-2 sm:mt-0 sm:flex sm:space-x-2">
+                <div class="mt-2 sm:mt-0  sm:space-x-2">
                     @isset($savedQueries)
                         <div class="d-flex align-items-center space-x-2" x-data="{
                             name: null,

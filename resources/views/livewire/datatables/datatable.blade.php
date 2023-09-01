@@ -13,7 +13,7 @@
                             </div>
                             <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10 text-sm border-gray-300 rounded-md shadow-sm " placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
                             <div class="position-absolute inset-y-0 right-0 d-flex align-items-center pr-2">
-                                <button wire:click="$set('search', null)" class="text-gray-300 hover:text-red-600">
+                                <button wire:click="$set('search', null)" class="text-gray-300 hover:">
                                     <x-icons.x-circle class="w-5 h-5 stroke-current" />
                                 </button>
                             </div>
@@ -195,7 +195,7 @@
 
         @unless($this->hidePagination)
             <div class="max-w-screen bg-white @unless($complex) rounded-b-lg @endunless border-4 border-t-0 border-b-0 @if($this->activeFilters) border-blue-500 @else border-transparent @endif">
-                <div class="items-center justify-content-between p-2 sm:flex">
+                <div class="items-center justify-content-between p-2 ">
                     {{-- check if there is any data --}}
                     @if(count($this->results))
                         <div class="d-flex align-items-center my-2 sm:my-0">
@@ -217,7 +217,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-end text-gray-600">
+                        <div class="d-flex justify-content-end text-gray-600">
                             {{__('Results')}} {{ $this->results->firstItem() }} - {{ $this->results->lastItem() }} {{__('of')}}
                             {{ $this->results->total() }}
                         </div>

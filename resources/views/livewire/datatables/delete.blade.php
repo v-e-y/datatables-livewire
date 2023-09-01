@@ -1,10 +1,10 @@
 <div x-data="{ open: {{ isset($open) && $open ? 'true' : 'false' }}, working: false }" x-cloak wire:key="delete-{{ $value }}">
     <span x-on:click="open = true">
-        <button class="p-1 text-red-600 rounded hover:bg-red-600 hover:text-white"><x-icons.trash /></button>
+        <button class="p-1  rounded  "><x-icons.trash /></button>
     </span>
 
     <div x-show="open"
-        class="fixed z-50 bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-content-center">
+        class="fixed z-50 bottom-0 inset-x-0 px-4 pb-4   ">
         <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
@@ -13,11 +13,11 @@
         </div>
 
         <div x-show="open" x-transition:enter="ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 "
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 "
             class="position-relative bg-gray-100 rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-100 sm:p-6">
             <div class="hidden sm:block position-absolute top-0 right-0 pt-4 pr-4">
                 <button @click="open = false" type="button"
