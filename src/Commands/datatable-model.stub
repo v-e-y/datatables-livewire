@@ -3,9 +3,9 @@
 namespace [namespace];
 
 use [use];
-use VEY\DatatablesLivewire\Http\Livewire\LivewireDatatable;
+use VEY\DataTablesLivewire\Http\Livewire\LivewireDataTable;
 
-class [class] extends LivewireDatatable
+class [class] extends LivewireDataTable
 {
     public $model = [model]::class;
 

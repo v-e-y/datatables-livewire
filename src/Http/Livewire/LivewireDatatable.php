@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Http\Livewire;
+namespace VEY\DataTablesLivewire\Http\Livewire;
 
 use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,14 +13,14 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
-use VEY\DatatablesLivewire\Column;
-use VEY\DatatablesLivewire\ColumnSet;
-use VEY\DatatablesLivewire\Exports\DatatableExport;
-use VEY\DatatablesLivewire\Traits\WithCallbacks;
-use VEY\DatatablesLivewire\Traits\WithPresetDateFilters;
-use VEY\DatatablesLivewire\Traits\WithPresetTimeFilters;
+use VEY\DataTablesLivewire\Column;
+use VEY\DataTablesLivewire\ColumnSet;
+use VEY\DataTablesLivewire\Exports\DataTableExport;
+use VEY\DataTablesLivewire\Traits\WithCallbacks;
+use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
+use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
 
-class LivewireDatatable extends Component
+class LivewireDataTable extends Component
 {
     use WithPagination, WithCallbacks, WithPresetDateFilters, WithPresetTimeFilters;
 
@@ -86,7 +86,7 @@ class LivewireDatatable extends Component
 
     protected $query;
     protected $listeners = [
-        'refreshLivewireDatatable',
+        'refreshLivewireDataTable',
         'complexQuery',
         'saveQuery',
         'deleteQuery',
@@ -778,10 +778,10 @@ class LivewireDatatable extends Component
 
     public function updatingPerPage()
     {
-        $this->refreshLivewireDatatable();
+        $this->refreshLivewireDataTable();
     }
 
-    public function refreshLivewireDatatable()
+    public function refreshLivewireDataTable()
     {
         $this->setPage(1);
     }
@@ -1721,11 +1721,11 @@ class LivewireDatatable extends Component
         return view('datatables::datatable')->layoutData(['title' => $this->title]);
     }
 
-    public function export(string $filename = 'DatatableExport.xlsx')
+    public function export(string $filename = 'DataTableExport.xlsx')
     {
         $this->forgetComputed();
 
-        $export = new DatatableExport($this->getExportResultsSet());
+        $export = new DataTableExport($this->getExportResultsSet());
         $export->setFilename($filename);
 
         return $export->download();
@@ -1882,7 +1882,7 @@ class LivewireDatatable extends Component
         $collection = collect($action);
 
         if ($collection->get('isExport')) {
-            $datatableExport = new DatatableExport($this->getExportResultsSet());
+            $datatableExport = new DataTableExport($this->getExportResultsSet());
 
             $datatableExport->setFileName($collection->get('fileName'));
 

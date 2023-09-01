@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire;
+namespace VEY\DataTablesLivewire;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use VEY\DatatablesLivewire\Commands\DatatableMakeCommand;
-use VEY\DatatablesLivewire\Commands\MakeDatatableCommand;
-use VEY\DatatablesLivewire\Http\Livewire\ComplexQuery;
-use VEY\DatatablesLivewire\Http\Livewire\LivewireDatatable;
+use VEY\DataTablesLivewire\Commands\DataTableMakeCommand;
+use VEY\DataTablesLivewire\Commands\MakeDataTableCommand;
+use VEY\DataTablesLivewire\Http\Livewire\ComplexQuery;
+use VEY\DataTablesLivewire\Http\Livewire\LivewireDataTable;
 
-class LivewireDatatablesServiceProvider extends ServiceProvider
+class LivewireDataTablesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Livewire::component('datatable', LivewireDatatable::class);
+        Livewire::component('datatable', LivewireDataTable::class);
         Livewire::component('complex-query', ComplexQuery::class);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/livewire/datatables', 'datatables');
@@ -46,7 +46,7 @@ class LivewireDatatablesServiceProvider extends ServiceProvider
                 __DIR__ . '/../resources/views/icons' => resource_path('views/livewire/datatables/icons'),
             ], 'views');
 
-            $this->commands([MakeDatatableCommand::class, DatatableMakeCommand::class]);
+            $this->commands([MakeDataTableCommand::class, DataTableMakeCommand::class]);
         }
 
         $this->loadBuilderMacros();

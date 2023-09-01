@@ -1,8 +1,8 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Commands;
+namespace VEY\DataTablesLivewire\Commands;
 
-class DatatableMakeCommand extends MakeDatatableCommand
+class DataTableMakeCommand extends MakeDataTableCommand
 {
     protected $signature = 'livewire:datatable {name} {--model=}';
 }

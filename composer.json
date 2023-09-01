@@ -45,12 +45,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VEY\\DatatablesLivewire\\": "src"
+            "VEY\\DataTablesLivewire\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VEY\\DatatablesLivewire\\Tests\\": "tests"
+            "VEY\\DataTablesLivewire\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VEY\\DatatablesLivewire\\DatatablesLivewireServiceProvider"
+                "VEY\\DataTablesLivewire\\DataTablesLivewireServiceProvider"
             ],
             "aliases": {
-                "DatatablesLivewire": "VEY\\DatatablesLivewire\\DatatablesLivewireFacade"
+                "DataTablesLivewire": "VEY\\DataTablesLivewire\\DataTablesLivewireFacade"
             }
         }
     },

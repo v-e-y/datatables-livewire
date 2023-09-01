@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Commands;
+namespace VEY\DataTablesLivewire\Commands;
 
 use Illuminate\Support\Str;
 

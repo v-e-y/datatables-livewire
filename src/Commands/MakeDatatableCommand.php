@@ -1,16 +1,16 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Commands;
+namespace VEY\DataTablesLivewire\Commands;
 
 use Illuminate\Support\Facades\File;
 use Livewire\Commands\FileManipulationCommand;
 use Livewire\LivewireComponentsFinder;
 
-class MakeDatatableCommand extends FileManipulationCommand
+class MakeDataTableCommand extends FileManipulationCommand
 {
     protected $signature = 'make:livewire-datatable {name} {--model=}';
 
-    protected $desciption = 'Create a new Livewire Datatable';
+    protected $desciption = 'Create a new Livewire DataTable';
 
     public function handle()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire;
+namespace VEY\DataTablesLivewire;
 
 class JsonColumn extends Column
 {

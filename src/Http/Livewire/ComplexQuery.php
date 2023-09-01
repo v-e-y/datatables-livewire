@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Http\Livewire;
+namespace VEY\DataTablesLivewire\Http\Livewire;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;

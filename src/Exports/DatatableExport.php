@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Exports;
+namespace VEY\DataTablesLivewire\Exports;
 
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -11,12 +11,12 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class DatatableExport implements FromCollection, WithHeadings, ShouldAutoSize, WithColumnWidths, WithStyles
+class DataTableExport implements FromCollection, WithHeadings, ShouldAutoSize, WithColumnWidths, WithStyles
 {
     use Exportable;
 
     public $collection;
-    public $fileName = 'DatatableExport.xlsx';
+    public $fileName = 'DataTableExport.xlsx';
     public $styles = [];
     public $columnWidths = [];
 

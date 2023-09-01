@@ -1,8 +1,8 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Traits;
+namespace VEY\DataTablesLivewire\Traits;
 
-use VEY\DatatablesLivewire\Action;
+use VEY\DataTablesLivewire\Action;
 
 /**
  * Use this trait to enable the functionality to pin specific records to the

@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire\Traits;
+namespace VEY\DataTablesLivewire\Traits;
 
 trait WithPresetDateFilters
 {

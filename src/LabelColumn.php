@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire;
+namespace VEY\DataTablesLivewire;
 
 /**
  * Use this column to simply display a custom header ("label") and a fixed content ("content").

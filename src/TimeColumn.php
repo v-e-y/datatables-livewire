@@ -1,6 +1,6 @@
 <?php
 
-namespace VEY\DatatablesLivewire;
+namespace VEY\DataTablesLivewire;
 
 use Illuminate\Support\Carbon;
 

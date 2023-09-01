@@ -67,7 +67,7 @@ return [
     |--------------------------------------------------------------------------
     | Model Namespace
     |--------------------------------------------------------------------------
-    | Sets the default namespace to be used when generating a new Datatables
+    | Sets the default namespace to be used when generating a new DataTables
     | component.
     |
     */
