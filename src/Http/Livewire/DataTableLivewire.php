@@ -20,7 +20,7 @@ use VEY\DataTablesLivewire\Traits\WithCallbacks;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
 
-class LivewireDataTable extends Component
+class DataTableLivewire extends Component
 {
     use WithPagination, WithCallbacks, WithPresetDateFilters, WithPresetTimeFilters;
 

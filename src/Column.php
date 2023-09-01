@@ -5,7 +5,7 @@ namespace VEY\DataTablesLivewire;
 use Closure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use VEY\DataTablesLivewire\Http\Livewire\LivewireDataTable;
+use VEY\DataTablesLivewire\Http\Livewire\DataTableLivewire;
 
 class Column
 {
@@ -80,7 +80,7 @@ class Column
         return $column;
     }
 
-    public static function index(LivewireDataTable $datatable, $attribute = 'id')
+    public static function index(DataTableLivewire $datatable, $attribute = 'id')
     {
         $column = new static;
         $column->name = $attribute;
@@ -472,7 +472,7 @@ class Column
     /**
      * You can use group(null) to revoke a column from a group, if necessary.
      *
-     * @see array LivewireDataTable->groupLabels to assign a human readable and translatable label for the group
+     * @see array DataTableLivewire->groupLabels to assign a human readable and translatable label for the group
      */
     public function group($group)
     {

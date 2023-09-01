@@ -13,13 +13,13 @@ use Livewire\Livewire;
 use VEY\DataTablesLivewire\Commands\DataTableMakeCommand;
 use VEY\DataTablesLivewire\Commands\MakeDataTableCommand;
 use VEY\DataTablesLivewire\Http\Livewire\ComplexQuery;
-use VEY\DataTablesLivewire\Http\Livewire\LivewireDataTable;
+use VEY\DataTablesLivewire\Http\Livewire\DataTableLivewire;
 
-class LivewireDataTablesServiceProvider extends ServiceProvider
+class DataTablesLivewireServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Livewire::component('datatable', LivewireDataTable::class);
+        Livewire::component('datatable', DataTableLivewire::class);
         Livewire::component('complex-query', ComplexQuery::class);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/livewire/datatables', 'datatables');
