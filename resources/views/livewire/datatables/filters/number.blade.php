@@ -4,7 +4,7 @@
             x-ref="min"
             type="number"
             wire:input.debounce.500ms="doNumberFilterStart('{{ $index }}', $event.target.value)"
-            class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm focus:ring-blue-200 focus:ring-opacity-50"
+            class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm "
             placeholder="{{ __('MIN') }}"
         />
         <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
@@ -19,7 +19,7 @@
             x-ref="max"
             type="number"
             wire:input.debounce.500ms="doNumberFilterEnd('{{ $index }}', $event.target.value)"
-            class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm focus:ring-blue-200 focus:ring-opacity-50"
+            class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm "
             placeholder="{{ __('MAX') }}"
         />
         <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
