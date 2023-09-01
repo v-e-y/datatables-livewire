@@ -12,7 +12,7 @@
         })
     }
 }" x-init="init()" wire:key="{{ $rowId }}_{{ $column }}">
-    <button class="min-h-[28px] w-100 text-left px-2 py-1 rounded" x-bind:class="{ 'text-green-600': edited }" x-show="!edit"
+    <button class="min-h-[28px] w-100 text-start px-2 py-1 rounded" x-bind:class="{ 'text-green-600': edited }" x-show="!edit"
         x-on:click="edit = true; $nextTick(() => { $refs.input.focus() })">{!! htmlspecialchars($value) !!}</button>
     <span x-cloak x-show="edit">
         <input class="border-blue-400 px-2 py-1 rounded" x-ref="input" value="{!! htmlspecialchars($value) !!}"

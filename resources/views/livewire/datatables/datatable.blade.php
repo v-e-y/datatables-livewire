@@ -107,7 +107,7 @@
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="d-flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
+                                        <div class="d-flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-start text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
                                             <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($visibleSelected) }}
                                             </div>
@@ -161,7 +161,7 @@
                                     @include('datatables::label')
                                 @else
 
-                                    <div class="d-table-cell px-6 py-2 @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
+                                    <div class="d-table-cell px-6 py-2 @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}">
                                         {!! $row->{$column['name']} !!}
                                     </div>
                                 @endif
@@ -174,7 +174,7 @@
                             @foreach($this->columns as $column)
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
-                                        <div class="d-table-cell px-6 py-2 @unless ($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
+                                        <div class="d-table-cell px-6 py-2 @unless ($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}">
                                             {{ $this->summarize($column['name']) }}
                                         </div>
                                     @else
@@ -235,5 +235,5 @@
 
     @includeIf($afterTableSlot)
 
-    <span class="hidden text-sm text-left text-center text-right text-gray-900 bg-gray-100 bg-yellow-100 leading-5 bg-gray-50"></span>
+    <span class="hidden text-sm text-start text-center text-end text-gray-900 bg-gray-100 bg-yellow-100 leading-5 bg-gray-50"></span>
 </div>
