@@ -41,7 +41,7 @@ class LivewireDatatablesServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/livewire-datatables.php' => config_path('livewire-datatables.php'),
+                __DIR__ . '/../config/datatables-livewire.php' => config_path('datatables-livewire.php'),
             ], 'config');
 
             $this->publishes([
@@ -168,7 +168,7 @@ class LivewireDatatablesServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/livewire-datatables.php', 'livewire-datatables');
+        $this->mergeConfigFrom(__DIR__ . '/../config/datatables-livewire.php', 'livewire-datatables');
     }
 
     protected function loadViewsFrom($path, $namespace)
