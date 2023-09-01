@@ -33,14 +33,14 @@
                     class="p-4 space-y-4 bg-blue-500 bg-opacity-10 rounded-lg text-gray-{{ strlen($parentIndex) > 6 ? 1 : 9 }}00 border border-blue-400"
                 >
                     <span class="d-flex justify-content-center space-x-4">
-                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium uppercase  hover:bg-blue-200">ADD RULE</button>
-                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium uppercase  hover:bg-blue-200">ADD GROUP</button>
+                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium text-uppercase  hover:bg-blue-200">ADD RULE</button>
+                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium text-uppercase  hover:bg-blue-200">ADD GROUP</button>
                     </span>
                     <div class="block sm:d-flex align-items-center">
                         <div class="d-flex justify-content-center sm:block">
                             @if(count($rule['content']) > 1)
                                 <div class="mr-8">
-                                    <label class="block uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Logic</label>
+                                    <label class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Logic</label>
                                     <select
                                         wire:model="rules.{{ collect(explode('.', $key))->join(".content.") }}.logic"
                                         class="w-24 text-sm block rounded-md border-gray-300 shadow-sm "
