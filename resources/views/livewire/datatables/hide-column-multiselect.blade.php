@@ -1,7 +1,7 @@
 <div x-data="{ show: false }" class="flex flex-col items-center">
     <div class="flex flex-col items-center relative">
         <button x-on:click="show = !show" class="px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-blue-200 focus:outline-none">
-            <div class="d-flex items-items-center h-5">
+            <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}
             </div>
         </button>
@@ -15,7 +15,7 @@
                                     <div class=" w-full items-center flex">
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>
-                                    <div class="absolute inset-y-0 right-0 pr-2 d-flex items-items-center">
+                                    <div class="absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
                                         <x-icons.check-circle class="h-3 w-3 stroke-current text-gray-700" />
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                                     <div class=" w-full items-center flex">
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>
-                                    <div class="absolute inset-y-0 right-0 pr-2 d-flex items-items-center">
+                                    <div class="absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
                                         <x-icons.x-circle class="h-3 w-3 stroke-current text-gray-700" />
                                     </div>
                                 </div>
