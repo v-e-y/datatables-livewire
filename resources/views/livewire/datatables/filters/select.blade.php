@@ -1,5 +1,5 @@
-<div x-data class="flex flex-col">
-    <div class="flex">
+<div x-data class="d-flex flex-col">
+    <div class="d-flex">
         <select
             x-ref="select"
             name="{{ $name }}"
@@ -22,7 +22,7 @@
         </select>
     </div>
 
-    <div class="flex flex-wrap max-w-48 space-x-1">
+    <div class="d-flex flex-wrap max-w-48 space-x-1">
         @foreach($this->activeSelectFilters[$index] ?? [] as $key => $value)
         <button wire:click="removeSelectFilter('{{ $index }}', '{{ $key }}')" x-on:click="$refs.select.value=''"
             class="m-1 pl-1 d-flex align-items-center uppercase bg-gray-300 text-white hover:bg-red-600 rounded-full text-xs space-x-1">

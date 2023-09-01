@@ -9,7 +9,7 @@
         }
     }" class=""
 >
-    <div class="my-4 d-flex justify-content-between text-xl uppercase font-medium leading-none">
+    <div class="my-4 d-flex justify-content-between text-xl uppercase font-medium">
         <span>Query Builder</span>
         <span>@if($errors->any())
             <div class="text-red-500">You have missing values in your rules</div>
@@ -56,7 +56,7 @@
     @endif
     @if(count($savedQueries ?? []))
         <div>
-            <div class="mt-8 my-4 text-xl uppercase font-medium leading-none">Saved Queries</div>
+            <div class="mt-8 my-4 text-xl uppercase font-medium">Saved Queries</div>
             <div class="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2">
                 @foreach($savedQueries as $saved)
                     <div class="flex" wire:key="{{ $saved['id'] }}">
