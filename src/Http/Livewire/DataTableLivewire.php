@@ -1829,7 +1829,7 @@ class DataTableLivewire extends Component
             if ($loop->even) {
                 return config('livewire-datatables.default_classes.row.even', 'divide-x divide-gray-100 text-sm text-gray-900 bg-gray-100');
             } else {
-                return config('livewire-datatables.default_classes.row.odd', 'divide-x divide-gray-100 text-sm text-gray-900 bg-gray-50');
+                return config('livewire-datatables.default_classes.row.odd', 'divide-x divide-gray-100 text-sm text-gray-900 ');
             }
         }
     }

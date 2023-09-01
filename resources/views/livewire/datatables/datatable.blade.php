@@ -14,7 +14,7 @@
                             <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10 text-sm border-gray-300 rounded-md shadow-sm " placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
                             <div class="position-absolute inset-y-0 right-0 d-flex align-items-center pr-2">
                                 <button wire:click="$set('search', null)" class="text-gray-300 hover:">
-                                    <x-icons.x-circle class="w-5 h-5 stroke-current" />
+                                    <x-icons.x-circle class="w-5 h-5 " />
                                 </button>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                 @if(count($this->massActionsOptions))
                     <div class="d-flex align-items-center justify-content-center space-x-1">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                        <select wire:model="massActionOption" class="px-3 text-xs font-medium  text-uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4" id="datatables_mass_actions">
+                        <select wire:model="massActionOption" class="px-3 text-xs font-medium  text-uppercase bg-white border border-green-400 space-x-2 rounded-md " id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>
                             @foreach($this->massActionsOptions as $group => $items)
                                 @if(!$group)
@@ -89,7 +89,7 @@
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'])
                         <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white text-xs
-                        {{ $column['hidden'] ? 'bg-blue-100 hover:bg-blue-300 text-blue-600' : 'bg-blue-500 hover:bg-blue-800' }}">
+                        {{ $column['hidden'] ? 'bg-blue-100  text-blue-600' : 'bg-blue-500 hover:bg-blue-800' }}">
                             {{ $column['label'] }}
                         </button>
                     @endif
@@ -97,18 +97,26 @@
             </div>
         @endif
 
-        <div wire:loading.class="opacity-50" class="rounded-lg @unless($complex || $this->hidePagination) rounded-b-none @endunless shadow-lg bg-white max-w-screen overflow-x-scroll border-2 @if($this->activeFilters) border-blue-500 @else border-transparent @endif @if($complex) rounded-b-none border-b-0 @endif">
+        <div 
+            wire:loading.class="opacity-50" 
+            class="shadow-lg w-100 overflow-x-scroll"
+        >
             <div>
-                <div class="table min-w-100 align-middle">
+                <div class="table mw-100 align-middle">
                     @unless($this->hideHeader)
-                        <div class="d-table-row divide-x divide-gray-200">
+                        <div class="d-table-row">
                             @foreach($this->columns as $index => $column)
                                 @if($hideable === 'inline')
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="d-flex justify-content-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-start text-gray-500 text-uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
-                                            <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
+                                        <div 
+                                            class="d-flex justify-content-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs text-start text-uppercase align-top border-b border-gray-200"
+                                            wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
+                                        >
+                                            <div 
+                                                class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center"
+                                            >
                                                 {{ count($visibleSelected) }}
                                             </div>
                                         </div>
@@ -234,12 +242,12 @@
     </div>
 
     @if($complex)
-        <div class="bg-gray-50 px-4 py-4 rounded-b-lg rounded-t-none shadow-lg border-2 @if($this->activeFilters) border-blue-500 @else border-transparent @endif @if($complex) border-t-0 @endif">
+        <div class="px-4 py-4 rounded-b-lg rounded-t-none shadow-lg border-2 @if($this->activeFilters) border-blue-500 @else border-transparent @endif @if($complex) border-t-0 @endif">
             <livewire:complex-query :columns="$this->complexColumns" :persistKey="$this->persistKey" :savedQueries="method_exists($this, 'getSavedQueries') ? $this->getSavedQueries() : null" />
         </div>
     @endif
 
     @includeIf($afterTableSlot)
 
-    <span class="hidden text-sm text-start text-center text-end text-gray-900 bg-gray-100 bg-yellow-100 leading-5 bg-gray-50"></span>
+    <span class="hidden text-sm text-start text-center text-end text-gray-900 bg-gray-100 bg-yellow-100 leading-5 "></span>
 </div>

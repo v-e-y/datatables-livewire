@@ -16,7 +16,7 @@
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>
                                     <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
-                                        <x-icons.check-circle class="h-3 w-3 stroke-current text-gray-700" />
+                                        <x-icons.check-circle class="h-3 w-3  text-gray-700" />
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>
                                     <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
-                                        <x-icons.x-circle class="h-3 w-3 stroke-current text-gray-700" />
+                                        <x-icons.x-circle class="h-3 w-3  text-gray-700" />
                                     </div>
                                 </div>
                             </div>

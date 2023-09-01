@@ -1,11 +1,14 @@
 <ul class="pagination pagination-outline">
-    <li 
-        class="page-item previous @if ($paginator->onFirstPage()) disabled @endif m-1"
-        @if ($paginator->onFirstPage())
-            wire:click="previousPage"
-        @endif
-    >
-        <a type="button" class="page-link">
+    <li class="page-item previous m-1">
+        <a 
+            type="button" 
+            class="page-link"
+            @if ($paginator->onFirstPage())
+                wire:click="previousPage"
+            @else
+                disabled
+            @endif
+        >
             <i class="previous"></i>
         </a>
     </li>

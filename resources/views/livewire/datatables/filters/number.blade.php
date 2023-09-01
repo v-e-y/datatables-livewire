@@ -1,5 +1,5 @@
 <div class="d-flex flex-col">
-    <div x-data class="position-relative flex">
+    <div x-data class="position-relative d-flex">
         <input
             x-ref="min"
             type="number"
@@ -9,12 +9,12 @@
         />
         <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
             <button x-on:click="$refs.min.value=''" wire:click="doNumberFilterStart('{{ $index }}', '')" class="-mb-0.5 pr-1 d-flex text-gray-400 hover:" tabindex="-1">
-                <x-icons.x-circle class="h-5 w-5 stroke-current" />
+                <x-icons.x-circle class="h-5 w-5 " />
             </button>
         </div>
     </div>
 
-    <div x-data class="position-relative flex">
+    <div x-data class="position-relative d-flex">
         <input
             x-ref="max"
             type="number"
@@ -24,7 +24,7 @@
         />
         <div class="position-absolute inset-y-0 right-0 pr-2 d-flex align-items-center">
             <button x-on:click="$refs.max.value=''" wire:click="doNumberFilterEnd('{{ $index }}', '')" class="-mb-0.5 pr-1 d-flex text-gray-400 hover:" tabindex="-1">
-                <x-icons.x-circle class="h-5 w-5 stroke-current" />
+                <x-icons.x-circle class="h-5 w-5 " />
             </button>
         </div>
     </div>
