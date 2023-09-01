@@ -40,7 +40,7 @@
                         <div class="flex justify-center sm:block">
                             @if(count($rule['content']) > 1)
                                 <div class="mr-8">
-                                    <label class="block uppercase tracking-wide text-xs font-bold py-1 rounded d-flex justify-content-between">Logic</label>
+                                    <label class="block uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Logic</label>
                                     <select
                                         wire:model="rules.{{ collect(explode('.', $key))->join(".content.") }}.logic"
                                         class="w-24 text-sm block rounded-md border-gray-300 shadow-sm "
