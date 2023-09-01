@@ -1,0 +1,70 @@
+{
+    "name": "mediconesystems/livewire-datatables",
+    "description": "Advanced datatables using Laravel, Livewire, Tailwind CSS and Alpine JS",
+    "keywords": [
+        "php",
+        "laravel",
+        "livewire"
+    ],
+    "homepage": "https://github.com/mediconesystems/livewire-datatables",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mark Salmon",
+            "email": "mark.salmon@mediconesystems.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Shane Burrell",
+            "email": "shane@shaneburrell.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Herbert Maschke",
+            "email": "thyseus@pm.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+        "livewire/livewire": "^2.4.4",
+        "maatwebsite/excel": "^3.1",
+        "reedware/laravel-relation-joins": "^2.4|^3.0|^4.0"
+    },
+    "require-dev": {
+        "laravel/legacy-factories": "^1.0.4",
+        "orchestra/testbench": "^4.0|5.0|6.0|^7.0|^8.0",
+        "phpunit/phpunit": "^8.0|9.0|^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mediconesystems\\LivewireDatatables\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mediconesystems\\LivewireDatatables\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mediconesystems\\LivewireDatatables\\LivewireDatatablesServiceProvider"
+            ],
+            "aliases": {
+                "LivewireDatatables": "Mediconesystems\\LivewireDatatables\\LivewireDatatablesFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
