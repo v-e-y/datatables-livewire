@@ -11,9 +11,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10 text-sm border-gray-300 leading-4 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 focus:outline-none" placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
+                            <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10 text-sm border-gray-300 leading-4 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
                             <div class="position-absolute inset-y-0 right-0 d-flex align-items-center pr-2">
-                                <button wire:click="$set('search', null)" class="text-gray-300 hover:text-red-600 focus:outline-none">
+                                <button wire:click="$set('search', null)" class="text-gray-300 hover:text-red-600">
                                     <x-icons.x-circle class="w-5 h-5 stroke-current" />
                                 </button>
                             </div>
@@ -30,7 +30,7 @@
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
 
                 @if($this->activeFilters)
-                    <button wire:click="clearAllFilters" class="d-flex align-items-center px-3 text-xs font-medium tracking-wider text-red-500 uppercase bg-white border border-red-400 space-x-2 rounded-md leading-4 hover:bg-red-200 focus:outline-none"><span>{{ __('Reset') }}</span>
+                    <button wire:click="clearAllFilters" class="d-flex align-items-center px-3 text-xs font-medium tracking-wider text-red-500 uppercase bg-white border border-red-400 space-x-2 rounded-md leading-4 hover:bg-red-200"><span>{{ __('Reset') }}</span>
                         <x-icons.x-circle class="m-2" />
                     </button>
                 @endif
@@ -38,7 +38,7 @@
                 @if(count($this->massActionsOptions))
                     <div class="d-flex align-items-center justify-center space-x-1">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                        <select wire:model="massActionOption" class="px-3 text-xs font-medium tracking-wider uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4 focus:outline-none" id="datatables_mass_actions">
+                        <select wire:model="massActionOption" class="px-3 text-xs font-medium tracking-wider uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4" id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>
                             @foreach($this->massActionsOptions as $group => $items)
                                 @if(!$group)
@@ -56,7 +56,7 @@
                         </select>
                         <button
                             wire:click="massActionOptionHandler"
-                            class="d-flex align-items-center px-4 py-2 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 rounded-md leading-4 hover:bg-green-200 focus:outline-none" type="submit" title="Submit"
+                            class="d-flex align-items-center px-4 py-2 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 rounded-md leading-4 hover:bg-green-200" type="submit" title="Submit"
                         >Go</button>
                     </div>
                 @endif
@@ -65,7 +65,7 @@
                     <div x-data="{ init() {
                         window.livewire.on('startDownload', link => window.open(link, '_blank'))
                         } }" x-init="init">
-                        <button wire:click="export" class="d-flex align-items-center px-3 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4 hover:bg-green-200 focus:outline-none"><span>{{ __('Export') }}</span>
+                        <button wire:click="export" class="d-flex align-items-center px-3 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4 hover:bg-green-200"><span>{{ __('Export') }}</span>
                             <x-icons.excel class="m-2" /></button>
                     </div>
                 @endif
@@ -76,7 +76,7 @@
 
                 @foreach ($columnGroups as $name => $group)
                     <button wire:click="toggleGroup('{{ $name }}')"
-                            class="px-3 py-2 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 rounded-md leading-4 hover:bg-green-200 focus:outline-none">
+                            class="px-3 py-2 text-xs font-medium tracking-wider text-green-500 uppercase bg-white border border-green-400 rounded-md leading-4 hover:bg-green-200">
                         <span class="d-flex align-items-center h-5">{{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}</span>
                     </button>
                 @endforeach
@@ -88,7 +88,7 @@
             <div class="p-2 grid grid-cols-8 gap-2">
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'])
-                        <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white text-xs focus:outline-none
+                        <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white text-xs
                         {{ $column['hidden'] ? 'bg-blue-100 hover:bg-blue-300 text-blue-600' : 'bg-blue-500 hover:bg-blue-800' }}">
                             {{ $column['label'] }}
                         </button>
@@ -107,7 +107,7 @@
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium tracking-wider text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4 focus:outline-none">
+                                        <div class="flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium tracking-wider text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
                                             <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($visibleSelected) }}
                                             </div>
@@ -199,7 +199,7 @@
                     {{-- check if there is any data --}}
                     @if(count($this->results))
                         <div class="d-flex align-items-center my-2 sm:my-0">
-                            <select name="perPage" class="block w-100 py-2 pl-3 pr-10 mt-1 text-base border-gray-300 form-select leading-6 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model="perPage">
+                            <select name="perPage" class="block w-100 py-2 pl-3 pr-10 mt-1 text-base border-gray-300 form-select leading-6 focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model="perPage">
                                 @foreach(config('livewire-datatables.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
                                     <option value="{{ $per_page_option }}">{{ $per_page_option }}</option>
                                 @endforeach

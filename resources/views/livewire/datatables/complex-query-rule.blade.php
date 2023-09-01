@@ -69,13 +69,13 @@
                                 </select>
                             @elseif($column['type'] === 'date')
                                 <input type="date" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @elseif($column['type'] === 'time')
                                 <input type="time" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @else
                                 <input name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @endif
                         </div>
                     @endif
