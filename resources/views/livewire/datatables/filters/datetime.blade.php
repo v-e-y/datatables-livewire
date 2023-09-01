@@ -1,6 +1,6 @@
 <div x-data class="flex flex-col">
     <div class="w-100 position-relative flex">
-        <input x-ref="start" class="w-100 pr-8 m-1 text-sm leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" type="datetime-local"
+        <input x-ref="start" class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" type="datetime-local"
             wire:change="doDatetimeFilterStart('{{ $index }}', $event.target.value)" style="padding-bottom: 5px"
             value="{{ $this->activeDatetimeFilters[$index]['start'] ?? ''}}"
             />
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="w-100 position-relative d-flex align-items-center">
-        <input x-ref="end" class="w-100 pr-8 m-1 text-sm leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" type="datetime-local"
+        <input x-ref="end" class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" type="datetime-local"
             wire:change="doDatetimeFilterEnd('{{ $index }}', $event.target.value)" style="padding-bottom: 5px"
             value="{{ $this->activeDatetimeFilters[$index]['end'] ?? ''}}"
             />

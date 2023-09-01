@@ -33,8 +33,8 @@
                     class="p-4 space-y-4 bg-blue-500 bg-opacity-10 rounded-lg text-gray-{{ strlen($parentIndex) > 6 ? 1 : 9 }}00 border border-blue-400"
                 >
                     <span class="flex justify-center space-x-4">
-                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase  hover:bg-blue-200">ADD RULE</button>
-                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase  hover:bg-blue-200">ADD GROUP</button>
+                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium uppercase  hover:bg-blue-200">ADD RULE</button>
+                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center space-x-2 px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs font-medium uppercase  hover:bg-blue-200">ADD GROUP</button>
                     </span>
                     <div class="block sm:d-flex align-items-center">
                         <div class="flex justify-center sm:block">
@@ -43,7 +43,7 @@
                                     <label class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-content-between">Logic</label>
                                     <select
                                         wire:model="rules.{{ collect(explode('.', $key))->join(".content.") }}.logic"
-                                        class="w-24 text-sm leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                        class="w-24 text-sm block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                                     >
                                         <option value="and">AND</option>
                                         <option value="or">OR</option>
