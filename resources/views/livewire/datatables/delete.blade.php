@@ -4,7 +4,7 @@
     </span>
 
     <div x-show="open"
-        class="fixed z-50 bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center">
+        class="fixed z-50 bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-content-center">
         <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
@@ -37,14 +37,14 @@
                         <div class="mt-10 text-gray-700">
                             {{ __('Are you sure?')}}
                         </div>
-                        <div class="mt-10 d-flex justify-center">
+                        <div class="mt-10 d-flex justify-content-center">
                             <span class="mr-2">
-                                <button x-on:click="open = false" x-bind:disabled="working" class="w-32 shadow-sm inline-flex justify-center align-items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700-gray-700 focus:shadow-outline-teal active:bg-gray-700 transition ease-in-out duration-150">
+                                <button x-on:click="open = false" x-bind:disabled="working" class="w-32 shadow-sm inline-flex justify-content-center align-items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700-gray-700 focus:shadow-outline-teal active:bg-gray-700 transition ease-in-out duration-150">
                                     {{ __('No')}}
                                 </button>
                             </span>
                             <span x-on:click="working = !working">
-                                <button wire:click="delete('{{ $value }}')" class="w-32 shadow-sm inline-flex justify-center align-items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700-red-700 focus:shadow-outline-teal active:bg-red-700 transition ease-in-out duration-150">
+                                <button wire:click="delete('{{ $value }}')" class="w-32 shadow-sm inline-flex justify-content-center align-items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700-red-700 focus:shadow-outline-teal active:bg-red-700 transition ease-in-out duration-150">
                                     {{ __('Yes')}}
                                 </button>
                             </span>

@@ -1,4 +1,4 @@
-<div class="d-flex justify-center">
+<div class="d-flex justify-content-center">
     <input
         type="checkbox"
         wire:model="selected"

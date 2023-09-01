@@ -36,7 +36,7 @@
                 @endif
 
                 @if(count($this->massActionsOptions))
-                    <div class="d-flex align-items-center justify-center space-x-1">
+                    <div class="d-flex align-items-center justify-content-center space-x-1">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
                         <select wire:model="massActionOption" class="px-3 text-xs font-medium  uppercase bg-white border border-green-400 space-x-2 rounded-md leading-4" id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>
@@ -107,7 +107,7 @@
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="d-flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-start text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
+                                        <div class="d-flex justify-content-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-start text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
                                             <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($visibleSelected) }}
                                             </div>
@@ -212,7 +212,7 @@
                                 <span class="space-x-2">{{ $this->results->links('datatables::tailwind-simple-pagination') }}</span>
                             </div>
 
-                            <div class="justify-center hidden lg:flex">
+                            <div class="justify-content-center hidden lg:flex">
                                 <span>{{ $this->results->links('datatables::tailwind-pagination') }}</span>
                             </div>
                         </div>
