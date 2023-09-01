@@ -23,6 +23,7 @@ class DataTablesLivewireServiceProvider extends ServiceProvider
         Livewire::component('complex-query', ComplexQuery::class);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/livewire/datatables', 'datatables');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/icons', 'icons');
 
         Blade::component('icons::arrow-left', 'icons.arrow-left');
         Blade::component('icons::arrow-right', 'icons.arrow-right');
