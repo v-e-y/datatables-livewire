@@ -101,7 +101,7 @@
             <div>
                 <div class="table min-w-full align-middle">
                     @unless($this->hideHeader)
-                        <div class="table-row divide-x divide-gray-200">
+                        <div class="d-table-row divide-x divide-gray-200">
                             @foreach($this->columns as $index => $column)
                                 @if($hideable === 'inline')
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
@@ -119,7 +119,7 @@
                             @endforeach
                         </div>
                     @endunless
-                    <div class="table-row bg-blue-100 divide-x divide-blue-200">
+                    <div class="d-table-row bg-blue-100 divide-x divide-blue-200">
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
@@ -149,7 +149,7 @@
                         @endforeach
                     </div>
                     @foreach($this->results as $row)
-                        <div class="table-row p-1 {{ $this->rowClasses($row, $loop) }}">
+                        <div class="d-table-row p-1 {{ $this->rowClasses($row, $loop) }}">
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
@@ -170,7 +170,7 @@
                     @endforeach
 
                     @if ($this->hasSummaryRow())
-                        <div class="table-row p-1">
+                        <div class="d-table-row p-1">
                             @foreach($this->columns as $column)
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
