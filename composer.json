@@ -1,15 +1,20 @@
 {
-    "name": "mediconesystems/livewire-datatables",
-    "description": "Advanced datatables using Laravel, Livewire, Tailwind CSS and Alpine JS",
+    "name": "v-e-y/datatables-livewire",
+    "description": "Laravel, Livewire, Bootstrap and Alpine JS",
     "keywords": [
         "php",
         "laravel",
         "livewire"
     ],
-    "homepage": "https://github.com/mediconesystems/livewire-datatables",
+    "homepage": "https://github.com/v-e-y/datatables-livewire",
     "license": "MIT",
     "type": "library",
     "authors": [
+        {
+            "name": "V-E-Y",
+            "email": "v-e-y@outlook.com",
+            "role": "Developer"
+        },
         {
             "name": "Mark Salmon",
             "email": "mark.salmon@mediconesystems.com",
@@ -40,12 +45,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mediconesystems\\LivewireDatatables\\": "src"
+            "V-E-Y\\DatatablesLivewire\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mediconesystems\\LivewireDatatables\\Tests\\": "tests"
+            "V-E-Y\\DatatablesLivewire\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -58,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mediconesystems\\LivewireDatatables\\LivewireDatatablesServiceProvider"
+                "V-E-Y\\DatatablesLivewire\\DatatablesLivewireServiceProvider"
             ],
             "aliases": {
-                "LivewireDatatables": "Mediconesystems\\LivewireDatatables\\LivewireDatatablesFacade"
+                "DatatablesLivewire": "V-E-Y\\DatatablesLivewire\\DatatablesLivewireFacade"
             }
         }
     },
