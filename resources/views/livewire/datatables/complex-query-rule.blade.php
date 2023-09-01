@@ -10,7 +10,7 @@
         <div class="sm:flex flex-grow sm:space-x-4">
             <div class="sm:w-1/3">
                 <label
-                    class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-between">Column</label>
+                    class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-content-between">Column</label>
                 <div class="relative">
                     <select wire:model="rules.{{ $key }}.column" name="selectedColumn"
                         class="w-full my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
@@ -25,7 +25,7 @@
             @if ($options = $this->getOperands($key))
                 <div class="sm:w-1/3">
                     <label
-                        class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-between">Operand</label>
+                        class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-content-between">Operand</label>
                     <div class="relative">
                         <select name="operand" wire:model="rules.{{ $key }}.operand"
                             class="w-full my-1 text-sm text-gray-900 leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
@@ -42,7 +42,7 @@
                 <div class="sm:w-1/3">
                     @if ($column = $this->getRuleColumn($key))
                         <label
-                            class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-between">Value</label>
+                            class="block uppercase tracking-wide text-xs font-bold py-1 rounded flex justify-content-between">Value</label>
                         <div class="relative">
                             @if (is_array($column['filterable']))
                                 <select name="value" wire:model="rules.{{ $key }}.value"

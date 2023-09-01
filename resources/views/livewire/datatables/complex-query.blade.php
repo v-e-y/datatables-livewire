@@ -9,7 +9,7 @@
         }
     }" class=""
 >
-    <div class="my-4 flex justify-between text-xl uppercase tracking-wide font-medium leading-none">
+    <div class="my-4 flex justify-content-between text-xl uppercase tracking-wide font-medium leading-none">
         <span>Query Builder</span>
         <span>@if($errors->any())
             <div class="text-red-500">You have missing values in your rules</div>
@@ -24,7 +24,7 @@
 
     @if(count($this->rules[0]['content']))
         @unless($errors->any())
-            <div class="pt-2 sm:flex w-full justify-between">
+            <div class="pt-2 sm:flex w-full justify-content-between">
                 <div>
                     {{-- <button class="bg-blue-500 px-3 py-2 rounded text-white" wire:click="runQuery">Apply Query</button> --}}
                 </div>
