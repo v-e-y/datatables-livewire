@@ -215,11 +215,11 @@
                     </div>
 
                     <div class="my-4 sm:my-0">
-                        <div class="lg:hidden">
+                        <div class="d-lg-none">
                             <span class="space-x-2">{{ $this->results->links('datatables::tailwind-simple-pagination') }}</span>
                         </div>
 
-                        <div class="justify-content-center hidden lg:flex">
+                        <div class="justify-content-center d-none d-lg-flex">
                             <span>{{ $this->results->links('datatables::tailwind-pagination') }}</span>
                         </div>
                     </div>
