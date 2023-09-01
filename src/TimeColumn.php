@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables;
+namespace VEY\DatatablesLivewire;
 
 use Illuminate\Support\Carbon;
 

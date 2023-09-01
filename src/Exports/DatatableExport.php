@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Exports;
+namespace VEY\DatatablesLivewire\Exports;
 
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;

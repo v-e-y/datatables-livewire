@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Traits;
+namespace VEY\DatatablesLivewire\Traits;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

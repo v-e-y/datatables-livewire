@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables;
+namespace VEY\DatatablesLivewire;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use Mediconesystems\LivewireDatatables\Commands\DatatableMakeCommand;
-use Mediconesystems\LivewireDatatables\Commands\MakeDatatableCommand;
-use Mediconesystems\LivewireDatatables\Http\Livewire\ComplexQuery;
-use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
+use VEY\DatatablesLivewire\Commands\DatatableMakeCommand;
+use VEY\DatatablesLivewire\Commands\MakeDatatableCommand;
+use VEY\DatatablesLivewire\Http\Livewire\ComplexQuery;
+use VEY\DatatablesLivewire\Http\Livewire\LivewireDatatable;
 
 class LivewireDatatablesServiceProvider extends ServiceProvider
 {

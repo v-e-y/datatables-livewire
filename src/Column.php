@@ -1,11 +1,11 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables;
+namespace VEY\DatatablesLivewire;
 
 use Closure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
+use VEY\DatatablesLivewire\Http\Livewire\LivewireDatatable;
 
 class Column
 {

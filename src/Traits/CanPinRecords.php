@@ -1,8 +1,8 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Traits;
+namespace VEY\DatatablesLivewire\Traits;
 
-use Mediconesystems\LivewireDatatables\Action;
+use VEY\DatatablesLivewire\Action;
 
 /**
  * Use this trait to enable the functionality to pin specific records to the

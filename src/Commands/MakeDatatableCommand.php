@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Commands;
+namespace VEY\DatatablesLivewire\Commands;
 
 use Illuminate\Support\Facades\File;
 use Livewire\Commands\FileManipulationCommand;

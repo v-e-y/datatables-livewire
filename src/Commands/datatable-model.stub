@@ -3,7 +3,7 @@
 namespace [namespace];
 
 use [use];
-use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
+use VEY\DatatablesLivewire\Http\Livewire\LivewireDatatable;
 
 class [class] extends LivewireDatatable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Http\Livewire;
+namespace VEY\DatatablesLivewire\Http\Livewire;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;

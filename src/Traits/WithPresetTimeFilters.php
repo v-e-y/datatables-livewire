@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Traits;
+namespace VEY\DatatablesLivewire\Traits;
 
 trait WithPresetTimeFilters
 {

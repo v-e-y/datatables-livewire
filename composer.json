@@ -11,7 +11,7 @@
     "type": "library",
     "authors": [
         {
-            "name": "V-E-Y",
+            "name": "VEY",
             "email": "v-e-y@outlook.com",
             "role": "Developer"
         },
@@ -45,12 +45,12 @@
     },
     "autoload": {
         "psr-4": {
-            "V-E-Y\\DatatablesLivewire\\": "src"
+            "VEY\\DatatablesLivewire\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "V-E-Y\\DatatablesLivewire\\Tests\\": "tests"
+            "VEY\\DatatablesLivewire\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "V-E-Y\\DatatablesLivewire\\DatatablesLivewireServiceProvider"
+                "VEY\\DatatablesLivewire\\DatatablesLivewireServiceProvider"
             ],
             "aliases": {
-                "DatatablesLivewire": "V-E-Y\\DatatablesLivewire\\DatatablesLivewireFacade"
+                "DatatablesLivewire": "VEY\\DatatablesLivewire\\DatatablesLivewireFacade"
             }
         }
     },

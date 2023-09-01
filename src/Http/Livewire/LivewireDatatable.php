@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediconesystems\LivewireDatatables\Http\Livewire;
+namespace VEY\DatatablesLivewire\Http\Livewire;
 
 use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,12 +13,12 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\ColumnSet;
-use Mediconesystems\LivewireDatatables\Exports\DatatableExport;
-use Mediconesystems\LivewireDatatables\Traits\WithCallbacks;
-use Mediconesystems\LivewireDatatables\Traits\WithPresetDateFilters;
-use Mediconesystems\LivewireDatatables\Traits\WithPresetTimeFilters;
+use VEY\DatatablesLivewire\Column;
+use VEY\DatatablesLivewire\ColumnSet;
+use VEY\DatatablesLivewire\Exports\DatatableExport;
+use VEY\DatatablesLivewire\Traits\WithCallbacks;
+use VEY\DatatablesLivewire\Traits\WithPresetDateFilters;
+use VEY\DatatablesLivewire\Traits\WithPresetTimeFilters;
 
 class LivewireDatatable extends Component
 {
