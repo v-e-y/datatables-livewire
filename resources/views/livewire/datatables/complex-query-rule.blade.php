@@ -82,7 +82,7 @@
                 </div>
             @endif
         </div>
-        <div class="flex justify-center sm:justify-end">
+        <div class="d-flex justify-center sm:justify-end">
             <button wire:click="duplicateRule('{{ $key }}')"
                 class="mb-px w-9 h-9 d-flex align-items-center justify-center rounded text-green-600 hover:text-green-400">
                 <x-icons.copy />

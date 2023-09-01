@@ -1,4 +1,4 @@
-<div x-data class="flex flex-col">
+<div x-data class="d-flex flex-col">
     <div class="w-100 position-relative flex">
         <input x-ref="start" class="w-100 pr-8 m-1 text-sm block rounded-md border-gray-300 shadow-sm " type="date"
             wire:change="doDateFilterStart('{{ $index }}', $event.target.value)" style="padding-bottom: 5px" />

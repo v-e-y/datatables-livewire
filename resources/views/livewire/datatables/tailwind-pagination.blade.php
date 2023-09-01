@@ -1,4 +1,4 @@
-<div class="flex overflow-hidden border border-gray-300 divide-x divide-gray-300 rounded pagination">
+<div class="d-flex overflow-hidden border border-gray-300 divide-x divide-gray-300 rounded pagination">
     <!-- Previous Page Link -->
     @if ($paginator->onFirstPage())
     <button class="position-relative d-inline-flex align-items-center px-2 py-2 text-sm font-medium leading-5 text-gray-500 bg-white"

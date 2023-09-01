@@ -26,7 +26,7 @@
                 <span class="text-xl text-blue-400 uppercase">@lang('Filter active')</span>
             @endif
 
-            <div class="flex flex-wrap items-center space-x-1">
+            <div class="d-flex flex-wrap align-items-center space-x-1">
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
 
                 @if($this->activeFilters)
@@ -107,7 +107,7 @@
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
+                                        <div class="d-flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium  text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4">
                                             <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($visibleSelected) }}
                                             </div>
@@ -217,7 +217,7 @@
                             </div>
                         </div>
 
-                        <div class="flex justify-end text-gray-600">
+                        <div class="d-flex justify-end text-gray-600">
                             {{__('Results')}} {{ $this->results->firstItem() }} - {{ $this->results->lastItem() }} {{__('of')}}
                             {{ $this->results->total() }}
                         </div>

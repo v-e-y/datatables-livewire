@@ -1,4 +1,4 @@
-<div x-data class="flex flex-col">
+<div x-data class="d-flex flex-col">
     <select
         x-ref="select"
         name="{{ $name }}"
@@ -11,7 +11,7 @@
         <option value="1">{{ __('Yes') }}</option>
     </select>
 
-    <div class="flex flex-wrap max-w-48 space-x-1">
+    <div class="d-flex flex-wrap max-w-48 space-x-1">
         @isset($this->activeBooleanFilters[$index])
         @if($this->activeBooleanFilters[$index] == 1)
         <button wire:click="removeBooleanFilter('{{ $index }}')"

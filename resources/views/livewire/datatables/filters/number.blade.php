@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+<div class="d-flex flex-col">
     <div x-data class="position-relative flex">
         <input
             x-ref="min"
