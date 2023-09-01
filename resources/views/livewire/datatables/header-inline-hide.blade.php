@@ -13,11 +13,11 @@
          <path stroke-miterlimit="10" d="M313.66 206.75H.5V1.49l157.65 204.9L313.66 1.49v205.26z" />
      </svg>
 </div>
-<div class="@if($column['hidden']) hidden @else position-relative h-12 overflow-hidden align-top flex d-table-cell @endif" @include('datatables::style-width')>
+<div class="@if($column['hidden']) hidden @else position-relative h-12 overflow-hidden align-top d-flex d-table-cell @endif" @include('datatables::style-width')>
 
     @if($column['sortable'])
         <button wire:click="sort('{{ $index }}')"
-                class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs font-medium text-gray-500 uppercase  flex justify-content-between items-center">
+                class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs font-medium text-gray-500 uppercase  d-flex justify-content-between items-center">
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-right @elseif($column['headerAlign'] === 'center') text-center @endif"">{{ str_replace('_', ' ', $column['label']) }}</span>
             <span class="inline text-xs text-blue-400">
             @if($sort === $index)
@@ -30,7 +30,7 @@
             </span>
         </button>
     @else
-        <div class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs font-medium text-gray-500 uppercase  flex justify-content-between items-center">
+        <div class="w-100 h-full px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs font-medium text-gray-500 uppercase  d-flex justify-content-between items-center">
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-right @elseif($column['headerAlign'] === 'center') text-center @endif"">{{ str_replace('_', ' ', $column['label']) }}</span>
         </div>
     @endif

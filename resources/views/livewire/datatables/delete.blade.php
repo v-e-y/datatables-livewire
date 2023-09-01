@@ -37,7 +37,7 @@
                         <div class="mt-10 text-gray-700">
                             {{ __('Are you sure?')}}
                         </div>
-                        <div class="mt-10 flex justify-center">
+                        <div class="mt-10 d-flex justify-center">
                             <span class="mr-2">
                                 <button x-on:click="open = false" x-bind:disabled="working" class="w-32 shadow-sm inline-flex justify-center items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:border-gray-700 focus:shadow-outline-teal active:bg-gray-700 transition ease-in-out duration-150">
                                     {{ __('No')}}

@@ -9,7 +9,7 @@
         }
     }" class=""
 >
-    <div class="my-4 flex justify-content-between text-xl uppercase tracking-wide font-medium leading-none">
+    <div class="my-4 d-flex justify-content-between text-xl uppercase tracking-wide font-medium leading-none">
         <span>Query Builder</span>
         <span>@if($errors->any())
             <div class="text-red-500">You have missing values in your rules</div>
