@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Mediconesystems\LivewireDatatables\Commands\DatatableMakeCommand;
 use Mediconesystems\LivewireDatatables\Commands\MakeDatatableCommand;
-use Mediconesystems\LivewireDatatables\Http\Controllers\FileExportController;
 use Mediconesystems\LivewireDatatables\Http\Livewire\ComplexQuery;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
@@ -25,7 +23,6 @@ class LivewireDatatablesServiceProvider extends ServiceProvider
         Livewire::component('complex-query', ComplexQuery::class);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/livewire/datatables', 'datatables');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/icons', 'icons');
 
         Blade::component('icons::arrow-left', 'icons.arrow-left');
         Blade::component('icons::arrow-right', 'icons.arrow-right');
@@ -51,9 +48,6 @@ class LivewireDatatablesServiceProvider extends ServiceProvider
 
             $this->commands([MakeDatatableCommand::class, DatatableMakeCommand::class]);
         }
-
-        Route::get('/datatables/{filename}', [FileExportController::class, 'handle'])
-            ->middleware(config('livewire.middleware_group', 'web'));
 
         $this->loadBuilderMacros();
         $this->loadEloquentBuilderMacros();
