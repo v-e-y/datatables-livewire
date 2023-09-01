@@ -5,7 +5,7 @@
         x-on:dragstart="dragstart($event, '{{ $key }}')"
         x-on:dragend="dragend"
         key="{{ $key }}"
-        class="px-3 py-2 -my-1 sm:flex space-x-4 items-end hover:bg-opacity-20 hover:bg-white hover:shadow-xl"
+        class="px-3 py-2 sm:flex space-x-4 items-end hover:bg-opacity-20 hover:bg-white hover:shadow-xl"
     >
         <div class="sm:flex flex-grow sm:space-x-4">
             <div class="sm:w-1/3">
