@@ -107,7 +107,7 @@
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div class="flex justify-center table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium tracking-wider text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4 focus:outline-none">
+                                        <div class="flex justify-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs font-medium tracking-wider text-left text-gray-500 uppercase align-top border-b border-gray-200 bg-gray-50 leading-4 focus:outline-none">
                                             <div class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($visibleSelected) }}
                                             </div>
@@ -123,16 +123,16 @@
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
-                                    <div class="table-cell w-5 overflow-hidden align-top bg-blue-100"></div>
+                                    <div class="d-table-cell w-5 overflow-hidden align-top bg-blue-100"></div>
                                 @endif
                             @elseif($column['type'] === 'checkbox')
                                 @include('datatables::filters.checkbox')
                             @elseif($column['type'] === 'label')
-                                <div class="table-cell overflow-hidden align-top">
+                                <div class="d-table-cell overflow-hidden align-top">
                                     {{ $column['label'] ?? '' }}
                                 </div>
                             @else
-                                <div class="table-cell overflow-hidden align-top">
+                                <div class="d-table-cell overflow-hidden align-top">
                                     @isset($column['filterable'])
                                         @if( is_iterable($column['filterable']) )
                                             <div wire:key="{{ $index }}">
@@ -153,7 +153,7 @@
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
-                                        <div class="table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"></div>
+                                        <div class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
                                     @include('datatables::checkbox', ['value' => $row->checkbox_attribute])
@@ -161,7 +161,7 @@
                                     @include('datatables::label')
                                 @else
 
-                                    <div class="table-cell px-6 py-2 @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
+                                    <div class="d-table-cell px-6 py-2 @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
                                         {!! $row->{$column['name']} !!}
                                     </div>
                                 @endif
@@ -174,11 +174,11 @@
                             @foreach($this->columns as $column)
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
-                                        <div class="table-cell px-6 py-2 @unless ($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
+                                        <div class="d-table-cell px-6 py-2 @unless ($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-right @elseif($column['contentAlign'] === 'center') text-center @else text-left @endif {{ $this->cellClasses($row, $column) }}">
                                             {{ $this->summarize($column['name']) }}
                                         </div>
                                     @else
-                                        <div class="table-cell"></div>
+                                        <div class="d-table-cell"></div>
                                     @endif
                                 @endunless
                             @endforeach
