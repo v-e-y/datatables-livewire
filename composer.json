@@ -63,7 +63,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VEY\\DataTablesLivewire\\DataTablesLivewireServiceProvider"
+                "VEY\\DataTablesLivewire\\LivewireDataTablesServiceProvider"
             ],
             "aliases": {
                 "DataTablesLivewire": "VEY\\DataTablesLivewire\\DataTablesLivewireFacade"
