@@ -1,5 +1,5 @@
 <div x-data="{ show: false }" class="flex flex-col items-center">
-    <div class="flex flex-col items-center relative">
+    <div class="flex flex-col items-center position-relative">
         <button x-on:click="show = !show" class="px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-blue-200 focus:outline-none">
             <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}
@@ -11,7 +11,7 @@
                     @if ($column['hideable'] !== false)
                         <div>
                             <div class="@unless($column['hidden']) hidden @endif cursor-pointer w-full border-gray-800 border-b bg-gray-700 text-gray-500 hover:bg-blue-600 hover:text-white" wire:click="toggle({{$index}})">
-                                <div class="relative flex w-full items-center p-2 group">
+                                <div class="position-relative flex w-full items-center p-2 group">
                                     <div class=" w-full items-center flex">
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="@if($column['hidden']) hidden @endif cursor-pointer w-full border-gray-800 border-b bg-gray-700 text-white hover:bg-red-600" wire:click="toggle({{$index}})">
-                                <div class="relative flex w-full items-center p-2 group">
+                                <div class="position-relative flex w-full items-center p-2 group">
                                     <div class=" w-full items-center flex">
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
                                     </div>

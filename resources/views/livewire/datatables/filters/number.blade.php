@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-    <div x-data class="relative flex">
+    <div x-data class="position-relative flex">
         <input
             x-ref="min"
             type="number"
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div x-data class="relative flex">
+    <div x-data class="position-relative flex">
         <input
             x-ref="max"
             type="number"
