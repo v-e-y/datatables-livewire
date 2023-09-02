@@ -16,7 +16,7 @@
         @isset($this->activeBooleanFilters[$index])
             <button 
                 wire:click="removeBooleanFilter('{{ $index }}')"
-                class="btn btn-sm btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger py-1 px-2"
+                class="btn btn-sm btn-danger py-1 px-2"
             >
                 @if($this->activeBooleanFilters[$index] == 1)
                     <span>{{ __('YES') }}</span>

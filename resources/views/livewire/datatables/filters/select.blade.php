@@ -47,7 +47,7 @@
             <button 
                 wire:click="removeSelectFilter('{{ $index }}', '{{ $key }}')" 
                 x-on:click="$refs.select.value=''"
-                class="btn btn-sm btn-danger py-1 px-2"
+                class="btn btn-sm btn-danger py-1 px-2 m-1"
             >
                 <span>{{ $this->getDisplayValue($index, $value) }}</span>
                 <x-icons.x-circle />
