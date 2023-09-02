@@ -1,4 +1,4 @@
-<div x-data class="d-flex flex-col">
+<div x-data class="d-flex flex-column">
     <div class="d-flex">
         <select
             x-ref="select"
