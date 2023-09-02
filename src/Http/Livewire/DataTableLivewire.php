@@ -846,6 +846,26 @@ class DataTableLivewire extends Component
         }
     }
 
+    /**
+     * @param string $field Entity field name
+     * @param integer $id Entity id
+     * @return void
+     */
+    public function toggleBoolean(string $field, int $id): void
+    {
+        /** @var Object|null $entity */
+        $entity = $this->model::find($id);
+
+        if (! $entity) {
+            return;
+        }
+
+        $entity->$field = !$entity->$field;
+        $entity->save();
+
+        $this->callAfterEntityUpdated(entityId: $id, propertyName: $field);
+    }
+
     public function showGroup($group)
     {
         foreach ($this->columns as $key => $column) {
@@ -1922,5 +1942,24 @@ class DataTableLivewire extends Component
     {
         $this->visibleSelected = array_intersect($this->getQuery()->get()->pluck('checkbox_attribute')->toArray(), $this->selected);
         $this->visibleSelected = array_map('strval', $this->visibleSelected);
+    }
+
+    /**
+     * Function will be called when some of the entity was updated
+     * @param int|string $entityId Id of the entity that was updated
+     * @param string|int|null $rowId
+     * @param string|null $propertyName
+     */
+    protected function callAfterEntityUpdated(
+        int|string $entityId, 
+        string|int|null $rowId = null, 
+        string|null $propertyName = null,
+    ) {
+        // Override this method with your own method for updating entity
+
+        // If function afterUpdate exists call it
+        if (method_exists($this, 'afterUpdate')) {
+            $this->afterUpdate($entityId, $rowId, $propertyName);
+        }
     }
 }
