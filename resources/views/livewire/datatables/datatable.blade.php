@@ -186,8 +186,10 @@
                                 @elseif($column['type'] === 'label')
                                     @include('datatables::label')
                                 @else
-
-                                    <div class="d-table-cell px-6 py-2 @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}">
+                                    <div 
+                                        class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
+                                        wire:key="cell_{{ Str::slug($column['name'], '_') }}_{{ $row->id }}_{{ $this->id }}"
+                                    >
                                         {!! $row->{$column['name']} !!}
                                     </div>
                                 @endif
