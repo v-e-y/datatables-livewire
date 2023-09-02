@@ -154,18 +154,24 @@
                             @elseif($column['type'] === 'checkbox')
                                 @include('datatables::filters.checkbox')
                             @elseif($column['type'] === 'label')
-                                <div class="d-table-cell overflow-hidden align-top">
+                                <div 
+                                    class="d-table-cell overflow-hidden align-top"
+                                    wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                >
                                     {{ $column['label'] ?? '' }}
                                 </div>
                             @else
-                                <div class="d-table-cell overflow-hidden align-top">
+                                <div 
+                                    class="d-table-cell overflow-hidden align-top"
+                                    wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                >
                                     @isset($column['filterable'])
                                         @if( is_iterable($column['filterable']) )
-                                            <div wire:key="{{ $index }}">
+                                            <div>
                                                 @include('datatables::filters.select', ['index' => $index, 'name' => $column['label'], 'options' => $column['filterable']])
                                             </div>
                                         @else
-                                            <div wire:key="{{ $index }}">
+                                            <div>
                                                 @include('datatables::filters.' . ($column['filterView'] ?? $column['type']), ['index' => $index, 'name' => $column['label']])
                                             </div>
                                         @endif
@@ -175,7 +181,10 @@
                         @endforeach
                     </div>
                     @foreach($this->results as $row)
-                        <div class="d-table-row p-1 {{ $this->rowClasses($row, $loop) }}">
+                        <div 
+                            class="d-table-row p-1 {{ $this->rowClasses($row, $loop) }}"
+                            wire:key="row_{{ $row->id }}_{{ $loop->index }}_{{ $this->id }}"
+                        >
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
