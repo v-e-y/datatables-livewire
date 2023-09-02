@@ -1636,11 +1636,15 @@ class DataTableLivewire extends Component
                     $values = Str::contains($value, static::SEPARATOR) ? explode(static::SEPARATOR, $value) : [$value, $row];
                     $row->$name = $this->export_callbacks[$name](...$values);
                 } elseif (isset($this->editables[$name])) {
+                    /** @var null|array<mixed> $column */
+                    $column = collect($this->freshColumns)->where('name', $name)->first();
                     $row->$name = view('datatables::editable', [
                         'value' => $value,
                         'key' => $this->builder()->getModel()->getQualifiedKeyName(),
                         'column' => Str::after($name, '.'),
                         'rowId' => $row->{$name . '_edit_id'},
+                        'truncate' => $column['truncate'] ?? false,
+                        'truncateLength' => $column['truncateLength'] ?? null,
                     ]);
                 } elseif (isset($this->callbacks[$name]) && is_string($this->callbacks[$name])) {
                     $row->$name = $this->{$this->callbacks[$name]}($value, $row);
