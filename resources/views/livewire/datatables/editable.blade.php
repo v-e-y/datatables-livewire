@@ -17,12 +17,12 @@
     wire:key="{{ $rowId }}_{{ $column }}"
 >
     <button 
-        class="w-100 btn btn-light btn-sm text-start" 
-        x-bind:class="{ 'text-succes': edited }" 
+        class="w-100 btn btn-light btn-sm text-start  {{ (!$value) ? 'opacity-50' : '' }}"
+        x-bind:class="{ 'text-success': edited }" 
         x-show="!edit"
         x-on:click="edit = true; $nextTick(() => { $refs.input.focus() })"
     >
-        {!! htmlspecialchars($value) !!}
+        {!! htmlspecialchars($value ?? 'Add value') !!}
     </button>
     <span 
         x-cloak 
