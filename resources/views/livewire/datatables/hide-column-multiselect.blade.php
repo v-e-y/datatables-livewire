@@ -10,7 +10,7 @@
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'] !== false)
                         <div>
-                            <div class="@unless($column['hidden']) hidden @endif cursor-pointer w-100 border-gray-800 border-b bg-gray-700 text-gray-500 hover:bg-blue-600 " wire:click="toggle({{$index}})">
+                            <div class="@unless($column['hidden']) hidden @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-gray-500 hover:bg-blue-600 " wire:click="toggle({{$index}})">
                                 <div class="position-relative d-flex w-100 align-items-center p-2 group">
                                     <div class=" w-100 align-items-center d-flex>
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>
@@ -20,7 +20,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="@if($column['hidden']) hidden @endif cursor-pointer w-100 border-gray-800 border-b bg-gray-700 text-white " wire:click="toggle({{$index}})">
+                            <div class="@if($column['hidden']) hidden @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-white " wire:click="toggle({{$index}})">
                                 <div class="position-relative d-flex w-100 align-items-center p-2 group">
                                     <div class=" w-100 align-items-center d-flex>
                                         <div class="mx-2 leading-6">{{ $column['label'] }}</div>

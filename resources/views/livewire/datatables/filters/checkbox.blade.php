@@ -1,6 +1,6 @@
 <div
     @if (isset($column['tooltip']['text'])) title="{{ $column['tooltip']['text'] }}" @endif
-    class="d-flex flex-col align-items-center h-100 px-6 py-5 overflow-hidden text-xs   text-start text-gray-500 text-uppercase align-top bg-blue-100 border-b border-gray-200 space-y-2">
+    class="d-flex flex-col align-items-center h-100 px-6 py-5 overflow-hidden text-xs   text-start text-gray-500 text-uppercase align-top bg-blue-100 border-bottom border-gray-200 space-y-2">
     <div>{{ __('SELECT ALL') }}</div>
     <div>
         <input

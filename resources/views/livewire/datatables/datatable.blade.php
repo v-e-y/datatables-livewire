@@ -99,7 +99,7 @@
 
         <div 
             wire:loading.class="opacity-50" 
-            class="shadow-md w-100 overflow-auto"
+            class="shadow-lg w-100 overflow-auto"
         >
             <div>
                 <div class="table d-table mw-100 align-middle">
@@ -111,7 +111,7 @@
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
                                         <div 
-                                            class="d-flex justify-content-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs text-start text-uppercase align-top border-b border-gray-200"
+                                            class="d-flex justify-content-center d-table-cell w-32 h-12 px-6 py-4 overflow-hidden text-xs text-start text-uppercase align-top border-bottom border-gray-200"
                                             wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
                                         >
                                             <div 
