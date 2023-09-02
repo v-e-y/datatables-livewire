@@ -51,6 +51,12 @@ class DataTablesLivewireServiceProvider extends ServiceProvider
             $this->commands([MakeDataTableCommand::class, DataTableMakeCommand::class]);
         }
 
+        $this->app->make('config')->set('logging.channels.veyDataTables', [
+            'driver' => 'single',
+            'path' => storage_path('logs/veyDataTables.log'),
+            'level' => 'debug',
+        ]);
+
         $this->loadBuilderMacros();
         $this->loadEloquentBuilderMacros();
         $this->loadRelationMacros();
