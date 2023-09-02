@@ -33,8 +33,8 @@
                     class="p-4 space-y-4 bg-blue-500 bg-opacity-10 rounded-lg text-gray-{{ strlen($parentIndex) > 6 ? 1 : 9 }}00 border border-blue-400"
                 >
                     <span class="d-flex justify-content-center space-x-4">
-                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center px-3 py-2 border border-blue-400 text-blue-500  text-uppercase  ">ADD RULE</button>
-                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center px-3 py-2 border border-blue-400 text-blue-500  text-uppercase  ">ADD GROUP</button>
+                        <button wire:click="addRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center px-3 py-2 border border-blue-400 text-primary  text-uppercase  ">ADD RULE</button>
+                        <button wire:click="addGroup('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="d-flex align-items-center px-3 py-2 border border-blue-400 text-primary  text-uppercase  ">ADD GROUP</button>
                     </span>
                     <div class="block sm:d-flex align-items-center">
                         <div class="d-flex justify-content-center sm:block">

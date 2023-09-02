@@ -6,7 +6,7 @@
 >
     <button class="position-relative h-12 w-3">
         <span
-            class="w-32 hidden group-hover:inline-block position-absolute z-10 top-0 left-0 ml-3 bg-blue-300  text-start text-blue-700  transform text-uppercase">
+            class="w-32 hidden group-hover:inline-block position-absolute z-10 top-0 left-0 ml-3 bg-blue-300  text-start text-primary  transform text-uppercase">
             {{ str_replace('_', ' ', $column['label']) }}
         </span>
     </button>
@@ -29,7 +29,7 @@
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-end @elseif($column['headerAlign'] === 'center') text-center @endif"">
                 {{ str_replace('_', ' ', $column['label']) }}
             </span>
-            <span class="inline text-blue-400">
+            <span class="inline text-primary">
                 @if($sort === $index)
                     @if($direction)
                         <x-icons.chevron-up class="h-6 w-6 text-green-600 " />

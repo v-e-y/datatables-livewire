@@ -60,7 +60,7 @@
             <div class="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2">
                 @foreach($savedQueries as $saved)
                     <div class="flex" wire:key="{{ $saved['id'] }}">
-                        <button wire:click="loadRules({{ json_encode($saved['rules']) }})" wire:loading.attr="disabled" class="p-2 flex-grow d-flex align-items-center  px-3 border border-r-0 border-blue-400 rounded-md rounded-r-none bg-white text-blue-500  text-uppercase  ">{{ $saved['name'] }}</button>
+                        <button wire:click="loadRules({{ json_encode($saved['rules']) }})" wire:loading.attr="disabled" class="p-2 flex-grow d-flex align-items-center  px-3 border border-r-0 border-blue-400 rounded-md rounded-r-none bg-white text-primary  text-uppercase  ">{{ $saved['name'] }}</button>
                         <button wire:click="deleteRules({{ $saved['id'] }})" wire:loading.attr="disabled" class="p-2 d-flex align-items-center  px-3 border border-red-400 rounded-md rounded-l-none bg-white text-red-500  text-uppercase  hover:bg-red-200">
                             <x-icons.x-circle wire:loading.remove />
                             <x-icons.cog wire:loading class="h-6 w-6 animate-spin" />

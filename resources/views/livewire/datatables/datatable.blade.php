@@ -23,7 +23,7 @@
             </div>
 
             @if($this->activeFilters)
-                <span class="text-xl text-blue-400 text-uppercase">@lang('Filter active')</span>
+                <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span>
             @endif
 
             <div class="d-flex flex-wrap align-items-center space-x-1">
@@ -89,7 +89,7 @@
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'])
                         <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white
-                        {{ $column['hidden'] ? 'bg-light bg-gradient  text-blue-600' : 'bg-blue-500 hover:bg-blue-800' }}">
+                        {{ $column['hidden'] ? 'bg-light bg-gradient  text-primary' : 'bg-blue-500 hover:bg-blue-800' }}">
                             {{ $column['label'] }}
                         </button>
                     @endif

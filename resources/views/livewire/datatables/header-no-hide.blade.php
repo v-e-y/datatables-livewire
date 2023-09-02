@@ -7,7 +7,7 @@
         @if($column['sortable'])
             <button wire:click="sort('{{ $index }}')" class="w-100 h-100 px-6 py-3 border-bottom border-gray-200 text-start  text-gray-500 text-uppercase  d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif">
                 <span class="inline ">{{ str_replace('_', ' ', $column['label']) }}</span>
-                <span class="inline text-blue-400">
+                <span class="inline text-primary">
                     @if($sort === $index)
                         @if($direction)
                             <x-icons.chevron-up wire:loading.remove class="w-6 h-6 text-green-600 " />
