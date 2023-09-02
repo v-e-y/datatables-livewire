@@ -6,7 +6,7 @@
 >
     <button class="position-relative h-12 w-3">
         <span
-            class="w-32 hidden group-hover:inline-block position-absolute z-10 top-0 left-0 ml-3 bg-blue-300 font-medium text-xs text-start text-blue-700  transform text-uppercase">
+            class="w-32 hidden group-hover:inline-block position-absolute z-10 top-0 left-0 ml-3 bg-blue-300  text-xs text-start text-blue-700  transform text-uppercase">
             {{ str_replace('_', ' ', $column['label']) }}
         </span>
     </button>
@@ -24,7 +24,7 @@
     @if($column['sortable'])
         <button 
             wire:click="sort('{{ $index }}')"
-            class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-xs font-medium text-gray-500 text-uppercase d-flex justify-content-between align-items-center"
+            class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-xs  text-gray-500 text-uppercase d-flex justify-content-between align-items-center"
         >
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-end @elseif($column['headerAlign'] === 'center') text-center @endif"">
                 {{ str_replace('_', ' ', $column['label']) }}
@@ -40,7 +40,7 @@
             </span>
         </button>
     @else
-        <div class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-xs font-medium text-gray-500 text-uppercase  d-flex justify-content-between align-items-center">
+        <div class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-xs  text-gray-500 text-uppercase  d-flex justify-content-between align-items-center">
             <span 
                 class="inline flex-grow @if($column['headerAlign'] === 'right') text-end @elseif($column['headerAlign'] === 'center') text-center @endif""
             >

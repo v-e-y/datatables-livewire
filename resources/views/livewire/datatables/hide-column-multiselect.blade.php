@@ -1,6 +1,6 @@
 <div x-data="{ show: false }" class="d-flex flex-col align-items-center">
     <div class="d-flex flex-col align-items-center position-relative">
-        <button x-on:click="show = !show" class="px-3 py-2 border border-blue-400 text-blue-500 text-xs font-medium text-uppercase  ">
+        <button x-on:click="show = !show" class="px-3 py-2 border border-blue-400 text-blue-500 text-xs  text-uppercase  ">
             <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}
             </div>

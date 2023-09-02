@@ -5,7 +5,7 @@
         wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ $this->id }}"
     >
         @if($column['sortable'])
-            <button wire:click="sort('{{ $index }}')" class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-start text-xs font-medium text-gray-500 text-uppercase  d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif">
+            <button wire:click="sort('{{ $index }}')" class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-start text-xs  text-gray-500 text-uppercase  d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif">
                 <span class="inline ">{{ str_replace('_', ' ', $column['label']) }}</span>
                 <span class="inline text-xs text-blue-400">
                     @if($sort === $index)
@@ -18,7 +18,7 @@
                 </span>
             </button>
         @else
-            <div class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-start text-xs font-medium text-gray-500 text-uppercase  d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif">
+            <div class="w-100 h-100 px-6 py-3 border-b border-gray-200 text-start text-xs  text-gray-500 text-uppercase  d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif">
                 <span class="inline ">{{ str_replace('_', ' ', $column['label']) }}</span>
             </div>
         @endif
