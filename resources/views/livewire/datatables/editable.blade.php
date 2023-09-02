@@ -21,11 +21,22 @@
         x-bind:class="{ 'text-success': edited }" 
         x-show="!edit"
         x-on:click="edit = true; $nextTick(() => { $refs.input.focus() })"
-    >
+        @if ($truncate && $value !== null)
+            data-bs-toggle="tooltip" 
+            data-bs-placement="bottom" 
+            title="{{ htmlspecialchars($value) }}"
+        @endif
+        >
+        @if ($truncate && $value !== null)
+            {{ Str::limit(htmlspecialchars($value), $truncateLength ?? 16) }}
+        @endif
+
+        @if (! $truncate && $value !== null)
+            {!! htmlspecialchars($value) !!}
+        @endif
+
         @if ($value === null)
             <x-icons.pencil />
-        @else
-            {!! htmlspecialchars($value) !!}
         @endif
     </button>
     <span 

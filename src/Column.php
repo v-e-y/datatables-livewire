@@ -40,6 +40,12 @@ class Column
     public $maxWidth;
     public $exportCallback;
 
+    /** @var bool $truncate Is truncated. Added for for editable columns */
+    public bool $truncate = false;
+
+    /** @var int|null $truncateLength Truncate length. */
+    public ?int $truncateLength = null;
+
     /**
      * @var bool should the sum of all summarizable cells in this column be
      *           displayed as a summary at the bottom of the table?
@@ -377,11 +383,18 @@ class Column
         return $this;
     }
 
-    public function editable($editable = true)
+    /**
+     * @param boolean $editable
+     * @param boolean $truncate
+     * @param integer|null $truncateLength
+     * @return void
+     */
+    public function editable($editable = true, bool $truncate = false, ?int $truncateLength = null)
     {
-        $this->exportCallback = function ($value) {
-            return $value;
-        };
+        $this->exportCallback = fn($value) => $value;
+
+        $this->truncate = $truncate;
+        $this->truncateLength = $truncateLength;
 
         return $editable ? $this->setType('editable') : $this;
     }
