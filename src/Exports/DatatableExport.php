@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace VEY\DataTablesLivewire\Exports;
 
 use Maatwebsite\Excel\Concerns\Exportable;
