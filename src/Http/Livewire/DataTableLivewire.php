@@ -1968,11 +1968,13 @@ class DataTableLivewire extends Component
     protected function callAfterEntityUpdated(
         int|string $entityId, 
         string|null $propertyName = null,
+        mixed $value = null
     ) {
         if (method_exists($this, 'dataTablesAfterEntityUpdate')) {
             $this->dataTablesAfterEntityUpdate(new EntityUpdatedDTO(
                 entityId: $entityId,
                 propertyName: $propertyName,
+                value: $value,
             ));
         }
 

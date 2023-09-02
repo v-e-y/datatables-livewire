@@ -17,5 +17,7 @@ trait WithCallbacks
             ->update([$column => $value]);
 
         $this->emit('fieldEdited', $rowId, $column);
+
+        $this->callAfterEntityUpdated(entityId: $rowId, propertyName: $column, value: $value);
     }
 }
