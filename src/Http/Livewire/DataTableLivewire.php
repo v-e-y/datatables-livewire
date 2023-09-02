@@ -70,6 +70,9 @@ class DataTableLivewire extends Component
     public $row = 1;
 
     public $tablePrefix = '';
+    
+    /** @var string|null $connection Prefer database connection */
+    public string|null $connection = null;
 
     public $actions;
     public $massActionOption;
