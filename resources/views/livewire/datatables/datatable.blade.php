@@ -56,7 +56,7 @@
                         </select>
                         <button
                             wire:click="massActionOptionHandler"
-                            class="d-flex align-items-center px-4 py-2   text-green-500 text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200" type="submit" title="Submit"
+                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200" type="submit" title="Submit"
                         >Go</button>
                     </div>
                 @endif
@@ -65,7 +65,7 @@
                     <div x-data="{ init() {
                         window.livewire.on('startDownload', link => window.open(link, '_blank'))
                         } }" x-init="init">
-                        <button wire:click="export" class="d-flex align-items-center px-3   text-green-500 text-uppercase bg-white border border-green-400  rounded-md hover:bg-green-200"><span>{{ __('Export') }}</span>
+                        <button wire:click="export" class="d-flex align-items-center px-3   text-success text-uppercase bg-white border border-green-400  rounded-md hover:bg-green-200"><span>{{ __('Export') }}</span>
                             <x-icons.excel class="m-2" /></button>
                     </div>
                 @endif
@@ -76,7 +76,7 @@
 
                 @foreach ($columnGroups as $name => $group)
                     <button wire:click="toggleGroup('{{ $name }}')"
-                            class="px-3 py-2   text-green-500 text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200">
+                            class="px-3 py-2   text-success text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200">
                         <span class="d-flex align-items-center h-5">{{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}</span>
                     </button>
                 @endforeach
