@@ -10,7 +10,7 @@
         <div class=" flex-grow sm:space-x-4">
             <div class="sm:w-1/3">
                 <label
-                    class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Column</label>
+                    class="block text-uppercase font-bold py-1 rounded d-flex justify-content-between">Column</label>
                 <div class="position-relative">
                     <select wire:model="rules.{{ $key }}.column" name="selectedColumn"
                         class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
@@ -25,7 +25,7 @@
             @if ($options = $this->getOperands($key))
                 <div class="sm:w-1/3">
                     <label
-                        class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Operand</label>
+                        class="block text-uppercase font-bold py-1 rounded d-flex justify-content-between">Operand</label>
                     <div class="position-relative">
                         <select name="operand" wire:model="rules.{{ $key }}.operand"
                             class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
@@ -42,7 +42,7 @@
                 <div class="sm:w-1/3">
                     @if ($column = $this->getRuleColumn($key))
                         <label
-                            class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Value</label>
+                            class="block text-uppercase font-bold py-1 rounded d-flex justify-content-between">Value</label>
                         <div class="position-relative">
                             @if (is_array($column['filterable']))
                                 <select name="value" wire:model="rules.{{ $key }}.value"

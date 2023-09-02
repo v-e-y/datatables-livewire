@@ -38,14 +38,14 @@
                             }
                         }">
                             <input x-model="name" wire:loading.attr="disabled" x-on:keydown.enter="saveQuery" placeholder="save as..." class="flex-grow px-3 py-3 border  text-gray-900 block rounded-md border-gray-300 shadow-sm " />
-                            <button x-bind:disabled="! name" x-show="rules" x-on:click="saveQuery" class="d-flex align-items-center  px-3 py-0.5 border border-green-400 disabled:border-gray-300 text-green-500 disabled:text-gray-300 text-xs  text-uppercase  hover:bg-green-200 disabled:hover:bg-white disabled:pointer-events-none">
+                            <button x-bind:disabled="! name" x-show="rules" x-on:click="saveQuery" class="d-flex align-items-center  px-3 py-0.5 border border-green-400 disabled:border-gray-300 text-green-500 disabled:text-gray-300  text-uppercase  hover:bg-green-200 disabled:hover:bg-white disabled:pointer-events-none">
                                 <span>{{ __('Save') }}</span>
                                 <span wire:loading.remove><x-icons.check-circle class="m-2" /></span>
                                 <span wire:loading><x-icons.cog class="animate-spin m-2" /></span>
                             </button>
                         </div>
                     @endisset
-                    <button x-show="rules" wire:click="resetQuery" class="d-flex align-items-center  px-3 border border-red-400 text-red-500 text-xs  text-uppercase  hover:bg-red-200">
+                    <button x-show="rules" wire:click="resetQuery" class="d-flex align-items-center  px-3 border border-red-400 text-red-500  text-uppercase  hover:bg-red-200">
                         <span>{{ __('Reset') }}</span>
                         <x-icons.x-circle class="m-2" />
                     </button>
@@ -60,8 +60,8 @@
             <div class="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2">
                 @foreach($savedQueries as $saved)
                     <div class="flex" wire:key="{{ $saved['id'] }}">
-                        <button wire:click="loadRules({{ json_encode($saved['rules']) }})" wire:loading.attr="disabled" class="p-2 flex-grow d-flex align-items-center  px-3 border border-r-0 border-blue-400 rounded-md rounded-r-none bg-white text-blue-500 text-xs  text-uppercase  ">{{ $saved['name'] }}</button>
-                        <button wire:click="deleteRules({{ $saved['id'] }})" wire:loading.attr="disabled" class="p-2 d-flex align-items-center  px-3 border border-red-400 rounded-md rounded-l-none bg-white text-red-500 text-xs  text-uppercase  hover:bg-red-200">
+                        <button wire:click="loadRules({{ json_encode($saved['rules']) }})" wire:loading.attr="disabled" class="p-2 flex-grow d-flex align-items-center  px-3 border border-r-0 border-blue-400 rounded-md rounded-r-none bg-white text-blue-500  text-uppercase  ">{{ $saved['name'] }}</button>
+                        <button wire:click="deleteRules({{ $saved['id'] }})" wire:loading.attr="disabled" class="p-2 d-flex align-items-center  px-3 border border-red-400 rounded-md rounded-l-none bg-white text-red-500  text-uppercase  hover:bg-red-200">
                             <x-icons.x-circle wire:loading.remove />
                             <x-icons.cog wire:loading class="h-6 w-6 animate-spin" />
                         </button>
