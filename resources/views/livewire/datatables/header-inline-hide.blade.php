@@ -32,9 +32,9 @@
             <span class="inline text-primary">
                 @if($sort === $index)
                     @if($direction)
-                        <x-icons.chevron-up class="h-6 w-6 text-green-600 " />
+                        <x-icons.chevron-up class="h-6 w-6 " />
                     @else
-                        <x-icons.chevron-down class="h-6 w-6 text-green-600 " />
+                        <x-icons.chevron-down class="h-6 w-6 " />
                     @endif
                 @endif
             </span>

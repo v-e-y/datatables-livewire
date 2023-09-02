@@ -84,7 +84,7 @@
         </div>
         <div class="d-flex justify-content-center sm:justify-content-end">
             <button wire:click="duplicateRule('{{ $key }}')"
-                class="mb-px w-9 h-9 d-flex align-items-center justify-content-center rounded text-green-600 hover:text-green-400">
+                class="mb-px w-9 h-9 d-flex align-items-center justify-content-center rounded hover:text-green-400">
                 <x-icons.copy />
             </button>
             <button wire:click="removeRule('{{ $key }}')"
