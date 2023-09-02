@@ -1,31 +1,30 @@
-<div x-data class="d-flex flex-col">
-    <select
-        x-ref="select"
-        name="{{ $name }}"
-        class="m-1 text-sm block rounded-md border-gray-300 shadow-sm "
-        wire:input="doBooleanFilter('{{ $index }}', $event.target.value)"
-        x-on:input="$refs.select.value=''"
-    >
-        <option value=""></option>
-        <option value="0">{{ __('No') }}</option>
-        <option value="1">{{ __('Yes') }}</option>
-    </select>
-
-    <div class="d-flex flex-wrap max-w-48 space-x-1">
+<div x-data class="row g-1">
+    <div class="col-12 mb-2">
+        <select
+            x-ref="select"
+            name="{{ $name }}"
+            class="form-select form-select-sm w-100"
+            wire:input="doBooleanFilter('{{ $index }}', $event.target.value)"
+            x-on:input="$refs.select.value=''"
+        >
+            <option value=""></option>
+            <option value="0">{{ __('No') }}</option>
+            <option value="1">{{ __('Yes') }}</option>
+        </select>
+    </div>
+    <div class="col-12">
         @isset($this->activeBooleanFilters[$index])
-        @if($this->activeBooleanFilters[$index] == 1)
-        <button wire:click="removeBooleanFilter('{{ $index }}')"
-            class="m-1 pl-1 d-flex align-items-center text-uppercase bg-gray-300 text-white  rounded-full text-xs space-x-1">
-            <span>{{ __('YES') }}</span>
-            <x-icons.x-circle />
-        </button>
-        @elseif(strlen($this->activeBooleanFilters[$index]) > 0)
-        <button wire:click="removeBooleanFilter('{{ $index }}')"
-            class="m-1 pl-1 d-flex align-items-center text-uppercase bg-gray-300 text-white  rounded-full text-xs space-x-1">
-            <span>{{ __('No') }}</span>
-            <x-icons.x-circle />
-        </button>
-        @endif
+            <button 
+                wire:click="removeBooleanFilter('{{ $index }}')"
+                class="btn btn-sm btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger py-1 px-2"
+            >
+                @if($this->activeBooleanFilters[$index] == 1)
+                    <span>{{ __('YES') }}</span>
+                @else
+                    <span>{{ __('NO') }}</span>
+                @endif
+                    <x-icons.x-circle />
+            </button>
         @endisset
     </div>
 </div>
