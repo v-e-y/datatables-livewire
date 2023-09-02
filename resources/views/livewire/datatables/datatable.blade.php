@@ -27,16 +27,18 @@
                 <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span>
             @endif
 
-            <div class="d-flex flex-wrap align-items-center ">
+            <div class="row g-1 justify-content-end">
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
                 @if($this->activeFilters)
-                    <button 
-                        wire:click="clearAllFilters" 
-                        class="btn btn-sm btn-warning py-1 px-2"
-                    >
-                        <span>{{ __('Reset') }}</span>
-                        <x-icons.x-circle />
-                    </button>
+                    <div class="col-auto">
+                        <button 
+                            wire:click="clearAllFilters" 
+                            class="btn btn-sm btn-warning py-1 px-2"
+                        >
+                            <span>{{ __('Reset') }}</span>
+                            <x-icons.x-circle />
+                        </button>
+                    </div>
                 @endif
 
                 @if(count($this->massActionsOptions))
@@ -81,7 +83,9 @@
                 @endif
 
                 @if($hideable === 'select')
-                    @include('datatables::hide-column-multiselect')
+                    <div class="col-auto">
+                        @include('datatables::hide-column-multiselect')
+                    </div>
                 @endif
 
                 @foreach ($columnGroups as $name => $group)
