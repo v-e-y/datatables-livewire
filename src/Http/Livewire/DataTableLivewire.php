@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
+use Log;
 use Livewire\WithPagination;
 use VEY\DataTablesLivewire\Column;
 use VEY\DataTablesLivewire\ColumnSet;
@@ -73,6 +74,9 @@ class DataTableLivewire extends Component
     
     /** @var string|null $connection Prefer database connection */
     public string|null $connection = null;
+
+    /** @var string $logChannelNameForErrors */
+    public string $logChannelNameForErrors = 'veyDataTables';
 
     public $actions;
     public $massActionOption;
@@ -856,14 +860,25 @@ class DataTableLivewire extends Component
         /** @var Object|null $entity */
         $entity = $this->model::find($id);
 
-        if (! $entity) {
+        if (! $entity) return;
+
+        $entity->$field = !$entity->$field;
+        
+        if ($entity->save()) {
+            $this->callAfterEntityUpdated(entityId: $id, propertyName: $field);
             return;
         }
 
-        $entity->$field = !$entity->$field;
-        $entity->save();
-
-        $this->callAfterEntityUpdated(entityId: $id, propertyName: $field);
+        session()->flash('error', 'Error while updating entity');
+        Log::channel($this->logChannelNameForErrors)->error(
+            'Error while updating entity',
+            [
+                'entity' => $this->model,
+                'entity_id' => $id,
+                'field' => $field,
+                'value' => $entity->$field,
+            ]
+        );
     }
 
     public function showGroup($group)
