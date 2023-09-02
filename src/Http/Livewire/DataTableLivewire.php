@@ -1824,12 +1824,12 @@ class DataTableLivewire extends Component
     {
         // Override this method with your own method for adding classes to a row
         if ($this->rowIsSelected($row)) {
-            return config('livewire-datatables.default_classes.row.selected', 'divide-x divide-gray-100 text-sm text-gray-900 bg-yellow-100');
+            return config('livewire-datatables.default_classes.row.selected', 'divide-x');
         } else {
             if ($loop->even) {
-                return config('livewire-datatables.default_classes.row.even', 'divide-x divide-gray-100 text-sm text-gray-900 bg-gray-100');
+                return config('livewire-datatables.default_classes.row.even', 'divide-x');
             } else {
-                return config('livewire-datatables.default_classes.row.odd', 'divide-x divide-gray-100 text-sm text-gray-900 ');
+                return config('livewire-datatables.default_classes.row.odd', 'divide-x');
             }
         }
     }
@@ -1837,7 +1837,7 @@ class DataTableLivewire extends Component
     public function cellClasses($row, $column)
     {
         // Override this method with your own method for adding classes to a cell
-        return config('livewire-datatables.default_classes.cell', 'text-sm text-gray-900');
+        return config('livewire-datatables.default_classes.cell', 'text-sm');
     }
 
     public function getMassActions()

@@ -99,10 +99,10 @@
 
         <div 
             wire:loading.class="opacity-50" 
-            class="shadow-lg w-100 overflow-x-scroll"
+            class="shadow-md w-100 overflow-auto"
         >
             <div>
-                <div class="d-table mw-100 align-middle">
+                <div class="table d-table mw-100 align-middle">
                     @unless($this->hideHeader)
                         <div class="d-table-row">
                             @foreach($this->columns as $index => $column)

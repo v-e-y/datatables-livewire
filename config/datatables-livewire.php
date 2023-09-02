@@ -96,10 +96,10 @@ return [
 
     'default_classes' => [
         'row' => [
-            'even' => 'divide-x divide-gray-100 text-sm text-gray-900 bg-gray-100',
-            'odd' => 'divide-x divide-gray-100 text-sm text-gray-900 ',
-            'selected' => 'divide-x divide-gray-100 text-sm text-gray-900 bg-yellow-100',
+            'even' => 'divide-x ',
+            'odd' => 'divide-x ',
+            'selected' => 'divide-x ',
         ],
-        'cell' => 'text-nowrap text-sm text-gray-900 px-6 py-2',
+        'cell' => 'text-nowrap text-sm px-4 py-2',
     ],
 ];
