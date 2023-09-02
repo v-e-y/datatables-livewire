@@ -1,6 +1,9 @@
 <div x-data="{ show: false }" class="d-flex flex-column align-items-center">
     <div class="d-flex flex-column align-items-center position-relative">
-        <button x-on:click="show = !show" class="px-3 py-2 border border-blue-400 text-primary text-uppercase">
+        <button 
+            x-on:click="show = !show" 
+            class="btn btn-sm btn-outline-info"
+        >
             <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}
             </div>
@@ -58,5 +61,4 @@
     .max-h-select {
         max-height: 300px;
     }
-
 </style>
