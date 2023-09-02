@@ -2,7 +2,7 @@
     <div class="d-flex flex-column align-items-center position-relative">
         <button 
             x-on:click="show = !show" 
-            class="btn btn-sm btn-outline-info"
+            class="btn btn-sm btn-info"
         >
             <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}

@@ -29,10 +29,13 @@
 
             <div class="d-flex flex-wrap align-items-center ">
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
-
                 @if($this->activeFilters)
-                    <button wire:click="clearAllFilters" class="d-flex align-items-center px-3   text-red-500 text-uppercase  border border-red-400  hover:bg-red-200"><span>{{ __('Reset') }}</span>
-                        <x-icons.x-circle class="m-2" />
+                    <button 
+                        wire:click="clearAllFilters" 
+                        class="btn btn-sm btn-warning py-1 px-2"
+                    >
+                        <span>{{ __('Reset') }}</span>
+                        <x-icons.x-circle />
                     </button>
                 @endif
 
