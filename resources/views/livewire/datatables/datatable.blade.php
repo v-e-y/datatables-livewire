@@ -27,7 +27,7 @@
                 <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span>
             @endif
 
-            <div class="row g-1 justify-content-end">
+            <div class="row g-1 justify-content-end align-items-center">
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
                 @if($this->activeFilters)
                     <div class="col-auto">
@@ -266,4 +266,13 @@
     @includeIf($afterTableSlot)
 
     <span class="hidden  text-start text-center text-end text-gray-900 bg-gray-100 bg-yellow-100 leading-5 "></span>
+
+    @push('scripts')
+        <script>
+            Livewire.on('tooltipHydrate', () => {
+                $('[data-bs-toggle="tooltip"]').tooltip('dispose');
+                $('[data-bs-toggle="tooltip"]').tooltip();
+            });
+        </script>
+    @endpush
 </div>
