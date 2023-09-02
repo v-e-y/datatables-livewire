@@ -1955,11 +1955,14 @@ class DataTableLivewire extends Component
         string|int|null $rowId = null, 
         string|null $propertyName = null,
     ) {
-        // Override this method with your own method for updating entity
-
-        // If function afterUpdate exists call it
-        if (method_exists($this, 'afterUpdate')) {
-            $this->afterUpdate($entityId, $rowId, $propertyName);
+        if (method_exists($this, 'dataTablesAfterEntityUpdate')) {
+            $this->dataTablesAfterEntityUpdate([
+                'entityId' => $entityId,
+                'rowId' => $rowId,
+                'propertyName' => $propertyName,
+            ]);
         }
+
+        return;
     }
 }
