@@ -17,6 +17,7 @@ use Livewire\WithPagination;
 use VEY\DataTablesLivewire\Column;
 use VEY\DataTablesLivewire\ColumnSet;
 use VEY\DataTablesLivewire\Exports\DataTableExport;
+use VEY\DataTablesLivewire\Http\DTO\EntityUpdatedDTO;
 use VEY\DataTablesLivewire\Traits\WithCallbacks;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
@@ -1962,20 +1963,17 @@ class DataTableLivewire extends Component
     /**
      * Function will be called when some of the entity was updated
      * @param int|string $entityId Id of the entity that was updated
-     * @param string|int|null $rowId
      * @param string|null $propertyName
      */
     protected function callAfterEntityUpdated(
         int|string $entityId, 
-        string|int|null $rowId = null, 
         string|null $propertyName = null,
     ) {
         if (method_exists($this, 'dataTablesAfterEntityUpdate')) {
-            $this->dataTablesAfterEntityUpdate([
-                'entityId' => $entityId,
-                'rowId' => $rowId,
-                'propertyName' => $propertyName,
-            ]);
+            $this->dataTablesAfterEntityUpdate(new EntityUpdatedDTO(
+                entityId: $entityId,
+                propertyName: $propertyName,
+            ));
         }
 
         return;
