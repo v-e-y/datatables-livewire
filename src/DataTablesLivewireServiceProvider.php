@@ -36,6 +36,7 @@ class DataTablesLivewireServiceProvider extends ServiceProvider
         Blade::component('icons::excel', 'icons.excel');
         Blade::component('icons::x-circle', 'icons.x-circle');
         Blade::component('icons::check-circle', 'icons.check-circle');
+        Blade::component('icons::pencil', 'icons.pencil');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
