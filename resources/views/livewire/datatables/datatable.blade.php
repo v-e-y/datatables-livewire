@@ -1,4 +1,4 @@
-<div>
+<div id="data_table_livewire">
     @includeIf($beforeTableSlot)
     <div class="position-relative">
         <div class="d-flex align-items-center justify-content-between mb-10">
@@ -91,7 +91,7 @@
                 @foreach ($columnGroups as $name => $group)
                     <button
                         wire:click="toggleGroup('{{ $name }}')"
-                        class="px-3 py-2   text-success text-uppercase  border"
+                        class="px-3 py-2 text-success text-uppercase  border"
                     >
                         <span class="d-flex align-items-center h-5">
                             {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
@@ -182,7 +182,7 @@
                     </div>
                     @foreach($this->results as $row)
                         <div 
-                            class="d-table-row p-1 {{ $this->rowClasses($row, $loop) }}"
+                            class="d-table-row {{ $this->rowClasses($row, $loop) }}"
                             wire:key="row_{{ $row->id }}_{{ $loop->index }}_{{ $this->id }}"
                         >
                             @foreach($this->columns as $column)
