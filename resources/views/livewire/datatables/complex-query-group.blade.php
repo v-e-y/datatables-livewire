@@ -10,11 +10,11 @@
                     source: () => document.querySelector('[dragging]'),
                     dragstart: (e, key) => {
                         e.target.setAttribute('dragging', key)
-                        e.target.classList.add('bg-opacity-20', 'bg-white')
+                        e.target.classList.add('bg-opacity-20', '')
                     },
                     dragend: (e) => {
                         e.target.removeAttribute('dragging')
-                        e.target.classList.remove('bg-opacity-20', 'bg-white')
+                        e.target.classList.remove('bg-opacity-20', '')
                     },
                     dragenter(e) {
                         if (e.target.closest('[drag-target]') !== this.source().closest('[drag-target]')) {
