@@ -19,7 +19,7 @@
                     @if ($column['hideable'] !== false)
                         <div>
                             <div 
-                                class="@unless($column['hidden']) d-none @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-gray-500 hover:bg-blue-600" 
+                                class="@unless($column['hidden']) d-none @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-gray-500" 
                                 wire:click="toggle({{$index}})"
                             >
                                 <div class="position-relative d-flex w-100 align-items-center p-2">
@@ -27,7 +27,7 @@
                                         <div class="mx-2">{{ $column['label'] }}</div>
                                     </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y pe-2 d-flex align-items-center">
-                                        <x-icons.check-circle class="h-3 w-3 text-gray-700" />
+                                        <x-icons.check-circle />
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                         <div class="mx-2">{{ $column['label'] }}</div>
                                     </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y pe-2 d-flex align-items-center">
-                                        <x-icons.x-circle class="h-3 w-3 text-gray-700" />
+                                        <x-icons.x-circle />
                                     </div>
                                 </div>
                             </div>
