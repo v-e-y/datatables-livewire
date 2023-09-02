@@ -13,7 +13,7 @@
                     class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Column</label>
                 <div class="position-relative">
                     <select wire:model="rules.{{ $key }}.column" name="selectedColumn"
-                        class="w-100 my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm ">
+                        class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
                         <option value=""></option>
                         @foreach ($columns as $i => $column)
                             <option value="{{ $i }}">{{ Str::ucfirst($column['label']) }}</option>
@@ -28,7 +28,7 @@
                         class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Operand</label>
                     <div class="position-relative">
                         <select name="operand" wire:model="rules.{{ $key }}.operand"
-                            class="w-100 my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm ">
+                            class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
                             <option selected></option>
                             @foreach ($options as $operand)
                                 <option value="{{ $operand }}">{{ $operand }}</option>
@@ -46,7 +46,7 @@
                         <div class="position-relative">
                             @if (is_array($column['filterable']))
                                 <select name="value" wire:model="rules.{{ $key }}.value"
-                                    class="w-100 my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm ">
+                                    class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
                                     <option selected></option>
                                     @foreach ($column['filterable'] as $value => $label)
                                         @if (is_object($label))
@@ -62,20 +62,20 @@
                                 </select>
                             @elseif($column['type'] === 'boolean')
                                 <select name="value" wire:model="rules.{{ $key }}.value"
-                                    class="w-100 my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm ">
+                                    class="w-100 my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm ">
                                     <option selected></option>
                                     <option value="true">True</option>
                                     <option value="false">False</option>
                                 </select>
                             @elseif($column['type'] === 'date')
                                 <input type="date" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm " />
+                                    class="w-100 px-3 py-2 border my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm " />
                             @elseif($column['type'] === 'time')
                                 <input type="time" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm " />
+                                    class="w-100 px-3 py-2 border my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm " />
                             @else
                                 <input name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="w-100 px-3 py-2 border my-1 text-sm text-gray-900 block rounded-md border-gray-300 shadow-sm " />
+                                    class="w-100 px-3 py-2 border my-1  text-gray-900 block rounded-md border-gray-300 shadow-sm " />
                             @endif
                         </div>
                     @endif

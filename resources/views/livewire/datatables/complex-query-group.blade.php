@@ -43,7 +43,7 @@
                                     <label class="block text-uppercase text-xs font-bold py-1 rounded d-flex justify-content-between">Logic</label>
                                     <select
                                         wire:model="rules.{{ collect(explode('.', $key))->join(".content.") }}.logic"
-                                        class="w-24 text-sm block rounded-md border-gray-300 shadow-sm "
+                                        class="w-24  block rounded-md border-gray-300 shadow-sm "
                                     >
                                         <option value="and">AND</option>
                                         <option value="or">OR</option>
