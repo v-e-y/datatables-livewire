@@ -1,23 +1,24 @@
 <div>
     @includeIf($beforeTableSlot)
-    <div class="position-relative">
+    <div class="position-relative mb-5">
         <div class="d-flex align-items-center justify-content-between mb-1">
             <div class="d-flex align-items-center h-10">
                 @if($this->searchableColumns()->count())
-                    <div class="d-flex">
-                        <div class="position-relative flex-grow focus-within:z-10">
-                            <div class="position-absolute inset-y-0 left-0 d-flex align-items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-400" viewBox="0 0 20 20" stroke="currentColor" fill="none">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-                            <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10  border-gray-300 shadow-sm " placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
-                            <div class="position-absolute inset-y-0 right-0 d-flex align-items-center pr-2">
-                                <button wire:click="$set('search', null)" class="text-gray-300 hover:">
-                                    <x-icons.x-circle class="w-5 h-5 " />
-                                </button>
-                            </div>
-                        </div>
+                    <div class="input-group input-group-sm">
+                        <input 
+                            wire:model.debounce.500ms="search" 
+                            class="w-100 form-control form-control-sm" 
+                            placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
+                            type="text" 
+                        />
+                        @if ($this->search)
+                            <button 
+                                wire:click="$set('search', null)" 
+                                class="btn btn-sm btn-link text-danger"
+                            >
+                                <x-icons.x-circle class="w-5 h-5 " />
+                            </button>
+                        @endif
                     </div>
                 @endif
             </div>
