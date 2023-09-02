@@ -38,7 +38,7 @@
                 @if(count($this->massActionsOptions))
                     <div class="d-flex align-items-center justify-content-center space-x-1">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                        <select wire:model="massActionOption" class="px-3 text-uppercase  border border-green-400  " id="datatables_mass_actions">
+                        <select wire:model="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>
                             @foreach($this->massActionsOptions as $group => $items)
                                 @if(!$group)
@@ -56,17 +56,23 @@
                         </select>
                         <button
                             wire:click="massActionOptionHandler"
-                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase border border-green-400 " type="submit" title="Submit"
+                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase border" type="submit" title="Submit"
                         >Go</button>
                     </div>
                 @endif
 
                 @if($exportable)
-                    <div x-data="{ init() {
-                        window.livewire.on('startDownload', link => window.open(link, '_blank'))
-                        } }" x-init="init">
-                        <button wire:click="export" class="d-flex align-items-center px-3 text-success text-uppercase border border-green-400  "><span>{{ __('Export') }}</span>
-                            <x-icons.excel class="m-2" /></button>
+                    <div 
+                        x-data="{ init() {window.livewire.on('startDownload', link => window.open(link, '_blank'))} }" 
+                        x-init="init"
+                    >
+                        <button 
+                            wire:click="export" 
+                            class="d-flex align-items-center px-3 text-success text-uppercase border"
+                        >
+                            <span>{{ __('Export') }}</span>
+                            <x-icons.excel class="m-2" />
+                        </button>
                     </div>
                 @endif
 
@@ -75,9 +81,13 @@
                 @endif
 
                 @foreach ($columnGroups as $name => $group)
-                    <button wire:click="toggleGroup('{{ $name }}')"
-                            class="px-3 py-2   text-success text-uppercase  border border-green-400 ">
-                        <span class="d-flex align-items-center h-5">{{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}</span>
+                    <button
+                        wire:click="toggleGroup('{{ $name }}')"
+                        class="px-3 py-2   text-success text-uppercase  border"
+                    >
+                        <span class="d-flex align-items-center h-5">
+                            {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
+                        </span>
                     </button>
                 @endforeach
                 @includeIf($buttonsSlot)
