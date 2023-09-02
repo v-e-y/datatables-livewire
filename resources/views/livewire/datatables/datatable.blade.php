@@ -11,7 +11,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10  border-gray-300 rounded-md shadow-sm " placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
+                            <input wire:model.debounce.500ms="search" class="block w-100 py-3 pl-10  border-gray-300 shadow-sm " placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" type="text" />
                             <div class="position-absolute inset-y-0 right-0 d-flex align-items-center pr-2">
                                 <button wire:click="$set('search', null)" class="text-gray-300 hover:">
                                     <x-icons.x-circle class="w-5 h-5 " />
@@ -30,7 +30,7 @@
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
 
                 @if($this->activeFilters)
-                    <button wire:click="clearAllFilters" class="d-flex align-items-center px-3   text-red-500 text-uppercase bg-white border border-red-400  rounded-md hover:bg-red-200"><span>{{ __('Reset') }}</span>
+                    <button wire:click="clearAllFilters" class="d-flex align-items-center px-3   text-red-500 text-uppercase bg-white border border-red-400  hover:bg-red-200"><span>{{ __('Reset') }}</span>
                         <x-icons.x-circle class="m-2" />
                     </button>
                 @endif
@@ -38,7 +38,7 @@
                 @if(count($this->massActionsOptions))
                     <div class="d-flex align-items-center justify-content-center space-x-1">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                        <select wire:model="massActionOption" class="px-3   text-uppercase bg-white border border-green-400  rounded-md " id="datatables_mass_actions">
+                        <select wire:model="massActionOption" class="px-3   text-uppercase bg-white border border-green-400  " id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>
                             @foreach($this->massActionsOptions as $group => $items)
                                 @if(!$group)
@@ -56,7 +56,7 @@
                         </select>
                         <button
                             wire:click="massActionOptionHandler"
-                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200" type="submit" title="Submit"
+                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase border border-green-400 " type="submit" title="Submit"
                         >Go</button>
                     </div>
                 @endif
@@ -65,7 +65,7 @@
                     <div x-data="{ init() {
                         window.livewire.on('startDownload', link => window.open(link, '_blank'))
                         } }" x-init="init">
-                        <button wire:click="export" class="d-flex align-items-center px-3   text-success text-uppercase bg-white border border-green-400  rounded-md hover:bg-green-200"><span>{{ __('Export') }}</span>
+                        <button wire:click="export" class="d-flex align-items-center px-3 text-success text-uppercase border border-green-400  "><span>{{ __('Export') }}</span>
                             <x-icons.excel class="m-2" /></button>
                     </div>
                 @endif
@@ -76,7 +76,7 @@
 
                 @foreach ($columnGroups as $name => $group)
                     <button wire:click="toggleGroup('{{ $name }}')"
-                            class="px-3 py-2   text-success text-uppercase bg-white border border-green-400 rounded-md hover:bg-green-200">
+                            class="px-3 py-2   text-success text-uppercase bg-white border border-green-400 ">
                         <span class="d-flex align-items-center h-5">{{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}</span>
                     </button>
                 @endforeach

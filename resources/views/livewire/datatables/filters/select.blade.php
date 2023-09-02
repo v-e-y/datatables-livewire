@@ -3,7 +3,7 @@
         <select
             x-ref="select"
             name="{{ $name }}"
-            class="w-100 m-1  block rounded-md border-gray-300 shadow-sm "
+            class="w-100 m-1  block border-gray-300 shadow-sm "
             wire:input="doSelectFilter('{{ $index }}', $event.target.value)"
             x-on:input="$refs.select.value=''"
         >

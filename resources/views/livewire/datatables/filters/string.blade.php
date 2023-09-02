@@ -2,7 +2,7 @@
     <input
         x-ref="input"
         type="text"
-        class="m-1  block rounded-md border-gray-300 shadow-sm "
+        class="m-1  block border-gray-300 shadow-sm "
         wire:change="doTextFilter('{{ $index }}', $event.target.value)"
         x-on:change="$refs.input.value = ''"
     />
