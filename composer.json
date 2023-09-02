@@ -45,7 +45,7 @@
     },
     "autoload": {
         "psr-4": {
-            "VEY\\DataTablesLivewire\\": "src"
+            "VEY\\DataTablesLivewire\\": "src/"
         }
     },
     "autoload-dev": {
