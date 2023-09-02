@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace VEY\DataTablesLivewire\Traits;
 
 use Illuminate\Support\Facades\DB;
@@ -9,7 +11,8 @@ trait WithCallbacks
 {
     public function edited($value, $key, $column, $rowId)
     {
-        DB::table(Str::before($key, '.'))
+        DB::connection($this->connection ?? config('database.default'))
+            ->table(Str::before($key, '.'))
             ->where(Str::after($key, '.'), $rowId)
             ->update([$column => $value]);
 
