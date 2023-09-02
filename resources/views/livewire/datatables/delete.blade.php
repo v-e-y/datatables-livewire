@@ -30,7 +30,7 @@
             </div>
             <div class="w-100">
                 <div class="mt-3 text-center">
-                    <h3 class="text-lg leading-6  text-gray-900">
+                    <h3 class="text-lg   text-gray-900">
                         {{ __('Delete') }} {{ $value }}
                     </h3>
                     <div class="mt-2">
