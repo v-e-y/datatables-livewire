@@ -202,7 +202,7 @@
         </div>
 
         @unless($this->hidePagination)
-            <div class="d-flex align-items-center justify-content-between p-2">
+            <div class="d-flex align-items-center justify-content-between pt-10">
                 @if(count($this->results))
                     <div class="d-flex align-items-center">
                         <select 
@@ -221,8 +221,7 @@
                             <option value="99999999">{{__('All')}}</option>
                         </select>
                     </div>
-
-                    <div class="my-4 sm:my-0">
+                    <div>
                         <div class="d-lg-none">
                             <span class="">{{ $this->results->links('datatables::tailwind-simple-pagination') }}</span>
                         </div>
@@ -231,7 +230,6 @@
                             <span>{{ $this->results->links('datatables::tailwind-pagination') }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-end text-gray-600">
                         {{__('Results')}} {{ $this->results->firstItem() }} - {{ $this->results->lastItem() }} {{__('of')}}
                         {{ $this->results->total() }}
