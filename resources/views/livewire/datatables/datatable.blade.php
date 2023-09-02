@@ -1,20 +1,20 @@
 <div>
     @includeIf($beforeTableSlot)
-    <div class="position-relative mb-5">
-        <div class="d-flex align-items-center justify-content-between mb-1">
-            <div class="d-flex align-items-center h-10">
+    <div class="position-relative">
+        <div class="d-flex align-items-center justify-content-between mb-10">
+            <div class="d-flex align-items-center">
                 @if($this->searchableColumns()->count())
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm w-100">
                         <input 
                             wire:model.debounce.500ms="search" 
-                            class="w-100 form-control form-control-sm" 
+                            class="form-control form-control-sm" 
                             placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
                             type="text" 
                         />
                         @if ($this->search)
                             <button 
                                 wire:click="$set('search', null)" 
-                                class="btn btn-sm btn-link text-danger"
+                                class="btn btn-sm btn-danger"
                             >
                                 <x-icons.x-circle class="w-5 h-5 " />
                             </button>
@@ -27,7 +27,7 @@
                 <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span>
             @endif
 
-            <div class="d-flex flex-wrap align-items-center space-x-1">
+            <div class="d-flex flex-wrap align-items-center ">
                 <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
 
                 @if($this->activeFilters)
@@ -37,7 +37,7 @@
                 @endif
 
                 @if(count($this->massActionsOptions))
-                    <div class="d-flex align-items-center justify-content-center space-x-1">
+                    <div class="d-flex align-items-center justify-content-center ">
                         <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
                         <select wire:model="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
                             <option value="">{{ __('Choose...') }}</option>

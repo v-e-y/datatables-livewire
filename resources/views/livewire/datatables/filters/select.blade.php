@@ -22,10 +22,10 @@
         </select>
     </div>
 
-    <div class="d-flex flex-wrap max-w-48 space-x-1">
+    <div class="d-flex flex-wrap max-w-48 ">
         @foreach($this->activeSelectFilters[$index] ?? [] as $key => $value)
         <button wire:click="removeSelectFilter('{{ $index }}', '{{ $key }}')" x-on:click="$refs.select.value=''"
-            class="m-1 pl-1 d-flex align-items-center text-uppercase bg-gray-300 text-white  rounded-full space-x-1">
+            class="m-1 pl-1 d-flex align-items-center text-uppercase bg-gray-300 text-white  rounded-full ">
             <span>{{ $this->getDisplayValue($index, $value) }}</span>
             <x-icons.x-circle />
         </button>
