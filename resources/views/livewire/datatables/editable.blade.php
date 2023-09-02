@@ -17,8 +17,8 @@
     wire:key="{{ $rowId }}_{{ $column }}"
 >
     <button 
-        class="w-100 btn btn-light btn-sm" 
-        x-bind:class="{ 'text-green-600': edited }" 
+        class="w-100 btn btn-light btn-sm text-start" 
+        x-bind:class="{ 'text-succes': edited }" 
         x-show="!edit"
         x-on:click="edit = true; $nextTick(() => { $refs.input.focus() })"
     >
