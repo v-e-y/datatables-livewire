@@ -30,6 +30,9 @@ trait WithModals {
     /** @var string|null $modalTitle */
     public ?string $modalTitle = null;
 
+    /** @var string string $modalButtonStyle */
+    public string $modalButtonStyle = 'btn btn-primary';
+
     /**
      * @return void Reset modal props
      */
@@ -49,6 +52,14 @@ trait WithModals {
      */
     public function openModal(): void
     {
-        $this->dispatchBrowserEvent('open' . $this->modalId);
+        $this->dispatchBrowserEvent('open_' . $this->modalId);
+    }
+
+    /**
+     * @return void Send browser event to close modal
+     */
+    public function closeModal(): void
+    {
+        $this->dispatchBrowserEvent('close_' . $this->modalId);
     }
 }
