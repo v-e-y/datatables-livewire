@@ -5,5 +5,5 @@
     data-bs-target="#{{ $modalId }}" --}}
     wire:click.prevent="{{ $clickReceiverName }}({{ $id }})"
 >
-    {!! isset($buttonText) ? $buttonText : '<i class="fa-regular fa-eye"></i>' !!}
+    {!! isset($buttonText) ? $buttonText : '<i class="fa-regular fa-eye pe-0"></i>' !!}
 </button>
