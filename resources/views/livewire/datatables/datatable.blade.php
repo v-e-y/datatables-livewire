@@ -201,7 +201,7 @@
                     @foreach($this->results as $row)
                         <div 
                             class="d-table-row {{ $this->rowClasses($row, $loop) }}"
-                            wire:key="row_{{ $row->id }}_{{ $loop->index }}_{{ $this->id }}"
+                            wire:key="row_{{ $row->id }}_{{ Str::random(8) }}_{{ $this->id }}"
                         >
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
@@ -260,7 +260,7 @@
                             class="form-select form-select-sm" 
                             wire:model="perPage"
                         >
-                            @foreach(config('livewire-datatables.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
+                            @foreach(config('datatables-livewire.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
                                 <option 
                                     value="{{ $per_page_option }}"
                                     wire:key="per_page_{{ $per_page_option }}"
