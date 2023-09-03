@@ -66,7 +66,7 @@
 
                     @if (count($userHeaderHTMLComponents))
                         @foreach ($userHeaderHTMLComponents as $headerComponent)
-                            <div class="col-auto" wire:key="{{ Str::random(8) }}">
+                            <div class="col-auto" wire:key="userHeaderHTMLComponents_{{ Str::random(8) }}">
                                 {!! $headerComponent !!}
                             </div>
                         @endforeach
@@ -74,7 +74,7 @@
 
                     @if (count($headerLWComponents))
                         @foreach ($headerLWComponents as $component => $componentProps)
-                            <div class="col-auto" wire:key="{{ Str::random(8) }}">
+                            <div class="col-auto" wire:key="headerLWComponents_{{ Str::random(8) }}">
                                 @livewire($component, $componentProps)
                             </div>
                         @endforeach
@@ -105,6 +105,7 @@
                         <button
                             wire:click="toggleGroup('{{ $name }}')"
                             class="px-3 py-2 text-success text-uppercase  border"
+                            wire:key="toggleGroup_{{ Str::slug($name, '_') }}"
                         >
                             <span class="d-flex align-items-center h-5">
                                 {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
@@ -120,8 +121,11 @@
             <div class="p-2 grid grid-cols-8 gap-2">
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'])
-                        <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white
-                        {{ $column['hidden'] ? 'bg-light bg-gradient  text-primary' : 'bg-blue-500 hover:bg-blue-800' }}">
+                        <button 
+                            wire:click.prefetch="toggle('{{ $index }}')" 
+                            class="px-3 py-2 rounded text-white {{ $column['hidden'] ? 'bg-light bg-gradient  text-primary' : 'bg-blue-500 hover:bg-blue-800' }}"
+                            wire:key="hide_button_{{ $index }}_{{ $this->id }}"
+                        >
                             {{ $column['label'] }}
                         </button>
                     @endif
@@ -202,7 +206,10 @@
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
-                                        <div class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"></div>
+                                        <div 
+                                            class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
+                                            wire:key="cell_{{ Str::slug($column['name'], '_') }}_{{ $row->id }}_{{ $this->id }}"    
+                                        ></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
                                     @include('datatables::checkbox', ['value' => $row->checkbox_attribute])
