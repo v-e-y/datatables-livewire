@@ -19,7 +19,7 @@ use VEY\DataTablesLivewire\ColumnSet;
 use VEY\DataTablesLivewire\Exports\DataTableExport;
 use VEY\DataTablesLivewire\Http\DTO\EntityUpdatedDTO;
 use VEY\DataTablesLivewire\Traits\WithCallbacks;
-use VEY\DataTablesLivewire\Traits\WithHeaderComponent;
+use VEY\DataTablesLivewire\Traits\WithHeaderComponents;
 use VEY\DataTablesLivewire\Traits\WithModals;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
@@ -31,7 +31,7 @@ class DataTableLivewire extends Component
     use WithPresetDateFilters;
     use WithPresetTimeFilters;
     use WithModals;
-    use WithHeaderComponent;
+    use WithHeaderComponents;
 
     const SEPARATOR = '|**lwdt**|';
     public $model;
