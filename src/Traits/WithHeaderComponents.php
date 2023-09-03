@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VEY\DataTablesLivewire\Traits;
 
-trait WithHeaderComponent {
+trait WithHeaderComponents {
     /** @var array<string> $userHeaderHTMLComponents */
     public array $userHeaderHTMLComponents = [];
 
