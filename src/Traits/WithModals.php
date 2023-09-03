@@ -60,6 +60,7 @@ trait WithModals {
      */
     public function closeModal(): void
     {
+        $this->resetModalProps();
         $this->dispatchBrowserEvent('close_' . $this->modalId);
     }
 }
