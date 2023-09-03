@@ -253,6 +253,8 @@ class DataTableLivewire extends Component
         $afterTableSlot = false,
         $params = []
     ) {
+        $this->initialize();
+
         foreach ([
             'model',
             'include',
@@ -289,6 +291,15 @@ class DataTableLivewire extends Component
         if (isset($this->pinnedRecords)) {
             $this->initialisePinnedRecords();
         }
+    }
+
+    /**
+     * Child component "mount" method
+     * @return void
+     */
+    public function initialize(): void
+    {
+        //
     }
 
     // save settings
