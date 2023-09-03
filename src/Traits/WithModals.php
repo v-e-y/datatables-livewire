@@ -12,6 +12,9 @@ trait WithModals {
     /** @var string $modalId */
     public string $modalId = 'data_tables_livewire_modal';
 
+    /** @var string $clickReceiverName */
+    public string $clickReceiverName = 'openModal';
+
     /** @var string|null $modalLWComponent */
     public ?string $modalLWComponent = null;
 
@@ -26,4 +29,26 @@ trait WithModals {
 
     /** @var string|null $modalTitle */
     public ?string $modalTitle = null;
+
+    /**
+     * @return void Reset modal props
+     */
+    public function resetModalProps(): void
+    {
+        $this->reset([
+            'modalLWComponent',
+            'modalLWComponentParams',
+            'modalView',
+            'modalBody',
+            'modalTitle',
+        ]);
+    }
+
+    /**
+     * @return void Send browser event to open modal
+     */
+    public function openModal(): void
+    {
+        $this->dispatchBrowserEvent('open' . $this->modalId);
+    }
 }
