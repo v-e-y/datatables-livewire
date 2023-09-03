@@ -12,6 +12,9 @@ trait WithModals {
     /** @var string $modalId */
     public string $modalId = 'data_tables_livewire_modal';
 
+    /** @var string $clickReceiverName */
+    public string $clickReceiverName = 'openModal';
+
     /** @var string|null $modalLWComponent */
     public ?string $modalLWComponent = null;
 
