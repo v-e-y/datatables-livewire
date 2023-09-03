@@ -1,8 +1,9 @@
 <div id="data_table_livewire">
     @includeIf($beforeTableSlot)
     <div class="position-relative">
-        <div class="d-flex align-items-center justify-content-between mb-10">
-            <div class="d-flex align-items-center">
+        <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin position-absolute top-50 start-50 translate-middle" />
+        <div class="row align-items-center justify-content-between mb-10">
+            <div class="col-12 col-md-4 col-lg-3 align-items-center">
                 @if($this->searchableColumns()->count())
                     <div class="input-group input-group-sm w-100">
                         <input 
@@ -22,83 +23,96 @@
                     </div>
                 @endif
             </div>
+            <div class="col-12 col-md-8">
+                <div class="row g-1 justify-content-end align-items-center">
+                    @if($this->activeFilters)
+                        <div class="col-auto">
+                            {{-- <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span> --}}
+                            <button 
+                                wire:click="clearAllFilters" 
+                                class="btn btn-sm btn-warning"
+                            >
+                                <span>Reset Filters</span>
+                                <x-icons.x-circle />
+                            </button>
+                        </div>
+                    @endif
 
-            @if($this->activeFilters)
-                <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span>
-            @endif
-
-            <div class="row g-1 justify-content-end align-items-center">
-                <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin" />
-                @if($this->activeFilters)
-                    <div class="col-auto">
-                        <button 
-                            wire:click="clearAllFilters" 
-                            class="btn btn-sm btn-warning py-1 px-2"
-                        >
-                            <span>{{ __('Reset') }}</span>
-                            <x-icons.x-circle />
-                        </button>
-                    </div>
-                @endif
-
-                @if(count($this->massActionsOptions))
-                    <div class="d-flex align-items-center justify-content-center ">
-                        <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                        <select wire:model="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
-                            <option value="">{{ __('Choose...') }}</option>
-                            @foreach($this->massActionsOptions as $group => $items)
-                                @if(!$group)
-                                    @foreach($items as $item)
-                                        <option value="{{$item['value']}}">{{$item['label']}}</option>
-                                    @endforeach
-                                @else
-                                    <optgroup label="{{$group}}">
+                    @if(count($this->massActionsOptions))
+                        <div class="d-flex align-items-center justify-content-center ">
+                            <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
+                            <select wire:model="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
+                                <option value="">{{ __('Choose...') }}</option>
+                                @foreach($this->massActionsOptions as $group => $items)
+                                    @if(!$group)
                                         @foreach($items as $item)
                                             <option value="{{$item['value']}}">{{$item['label']}}</option>
                                         @endforeach
-                                    </optgroup>
-                                @endif
-                            @endforeach
-                        </select>
-                        <button
-                            wire:click="massActionOptionHandler"
-                            class="d-flex align-items-center px-4 py-2 text-success text-uppercase border" type="submit" title="Submit"
-                        >Go</button>
-                    </div>
-                @endif
+                                    @else
+                                        <optgroup label="{{$group}}">
+                                            @foreach($items as $item)
+                                                <option value="{{$item['value']}}">{{$item['label']}}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <button
+                                wire:click="massActionOptionHandler"
+                                class="d-flex align-items-center px-4 py-2 text-success text-uppercase border" type="submit" title="Submit"
+                            >Go</button>
+                        </div>
+                    @endif
 
-                @if($exportable)
-                    <div 
-                        x-data="{ init() {window.livewire.on('startDownload', link => window.open(link, '_blank'))} }" 
-                        x-init="init"
-                    >
-                        <button 
-                            wire:click="export" 
-                            class="d-flex align-items-center px-3 text-success text-uppercase border"
+                    @if (count($userHeaderHTMLComponents))
+                        @foreach ($userHeaderHTMLComponents as $headerComponent)
+                            <div class="col-auto" wire:key="{{ Str::random(8) }}">
+                                {!! $headerComponent !!}
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if (count($headerLWComponents))
+                        @foreach ($headerLWComponents as $component => $componentProps)
+                            <div class="col-auto" wire:key="{{ Str::random(8) }}">
+                                @livewire($component, $componentProps)
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if($exportable)
+                        <div 
+                            x-data="{ init() {window.livewire.on('startDownload', link => window.open(link, '_blank'))} }" 
+                            x-init="init"
                         >
-                            <span>{{ __('Export') }}</span>
-                            <x-icons.excel class="m-2" />
+                            <button 
+                                wire:click="export" 
+                                class="d-flex align-items-center px-3 text-success text-uppercase border"
+                            >
+                                <span>{{ __('Export') }}</span>
+                                <x-icons.excel class="m-2" />
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($hideable === 'select')
+                        <div class="col-auto">
+                            @include('datatables::hide-column-multiselect')
+                        </div>
+                    @endif
+
+                    @foreach ($columnGroups as $name => $group)
+                        <button
+                            wire:click="toggleGroup('{{ $name }}')"
+                            class="px-3 py-2 text-success text-uppercase  border"
+                        >
+                            <span class="d-flex align-items-center h-5">
+                                {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
+                            </span>
                         </button>
-                    </div>
-                @endif
-
-                @if($hideable === 'select')
-                    <div class="col-auto">
-                        @include('datatables::hide-column-multiselect')
-                    </div>
-                @endif
-
-                @foreach ($columnGroups as $name => $group)
-                    <button
-                        wire:click="toggleGroup('{{ $name }}')"
-                        class="px-3 py-2 text-success text-uppercase  border"
-                    >
-                        <span class="d-flex align-items-center h-5">
-                            {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
-                        </span>
-                    </button>
-                @endforeach
-                @includeIf($buttonsSlot)
+                    @endforeach
+                    @includeIf($buttonsSlot)
+                </div>
             </div>
         </div>
 
