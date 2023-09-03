@@ -208,7 +208,7 @@ class DataTableLivewire extends Component
      */
     public function resetTable()
     {
-        $this->perPage = config('livewire-datatables.default_per_page', 10);
+        $this->perPage = config('datatables-livewire.default_per_page', 10);
         $this->sort = $this->defaultSort();
         $this->search = null;
         $this->setPage(1);
@@ -620,7 +620,7 @@ class DataTableLivewire extends Component
         $this->getSessionStoredPerPage();
 
         if (! $this->perPage) {
-            $this->perPage = $this->perPage ?? config('livewire-datatables.default_per_page', 10);
+            $this->perPage = $this->perPage ?? config('datatables-livewire.default_per_page', 10);
         }
     }
 
@@ -1583,8 +1583,8 @@ class DataTableLivewire extends Component
                     break;
                 }
                 $query->whereBetween($this->getColumnFilterStatement($index)[0], [
-                    isset($filter['start']) && $filter['start'] != '' ? $filter['start'] : config('livewire-datatables.default_time_start', '0000-00-00'),
-                    isset($filter['end']) && $filter['end'] != '' ? $filter['end'] : config('livewire-datatables.default_time_end', '9999-12-31'),
+                    isset($filter['start']) && $filter['start'] != '' ? $filter['start'] : config('datatables-livewire.default_time_start', '0000-00-00'),
+                    isset($filter['end']) && $filter['end'] != '' ? $filter['end'] : config('datatables-livewire.default_time_end', '9999-12-31'),
                 ]);
             }
         });
@@ -1604,8 +1604,8 @@ class DataTableLivewire extends Component
                     break;
                 }
                 $query->whereBetween($this->getColumnFilterStatement($index)[0], [
-                    isset($filter['start']) && $filter['start'] != '' ? $filter['start'] : config('livewire-datatables.default_time_start', '0000-00-00 00:00'),
-                    isset($filter['end']) && $filter['end'] != '' ? $filter['end'] : config('livewire-datatables.default_time_end', '9999-12-31 23:59'),
+                    isset($filter['start']) && $filter['start'] != '' ? $filter['start'] : config('datatables-livewire.default_time_start', '0000-00-00 00:00'),
+                    isset($filter['end']) && $filter['end'] != '' ? $filter['end'] : config('datatables-livewire.default_time_end', '9999-12-31 23:59'),
                 ]);
             }
         });
@@ -1683,7 +1683,7 @@ class DataTableLivewire extends Component
     {
         $paginatedCollection->collect()->map(function ($row, $i) use ($export) {
             foreach ($row as $name => $value) {
-                if ($this->search && ! config('livewire-datatables.suppress_search_highlights') && $this->searchableColumns()->firstWhere('name', $name)) {
+                if ($this->search && ! config('datatables-livewire.suppress_search_highlights') && $this->searchableColumns()->firstWhere('name', $name)) {
                     $row->$name = $this->highlight($row->$name, $this->search);
                 }
                 if ($export && isset($this->export_callbacks[$name])) {
@@ -1885,12 +1885,12 @@ class DataTableLivewire extends Component
     {
         // Override this method with your own method for adding classes to a row
         if ($this->rowIsSelected($row)) {
-            return config('livewire-datatables.default_classes.row.selected', 'divide-x');
+            return config('datatables-livewire.default_classes.row.selected', 'divide-x');
         } else {
             if ($loop->even) {
-                return config('livewire-datatables.default_classes.row.even', 'divide-x');
+                return config('datatables-livewire.default_classes.row.even', 'divide-x');
             } else {
-                return config('livewire-datatables.default_classes.row.odd', 'divide-x');
+                return config('datatables-livewire.default_classes.row.odd', 'divide-x');
             }
         }
     }
@@ -1898,7 +1898,7 @@ class DataTableLivewire extends Component
     public function cellClasses($row, $column)
     {
         // Override this method with your own method for adding classes to a cell
-        return config('livewire-datatables.default_classes.cell', 'text-sm');
+        return config('datatables-livewire.default_classes.cell', 'text-sm');
     }
 
     public function getMassActions()

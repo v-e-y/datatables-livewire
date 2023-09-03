@@ -17,7 +17,7 @@ class DatetimeColumn extends Column
     public function format($format = null)
     {
         $this->callback = function ($value) use ($format) {
-            return $value ? Carbon::parse($value)->format($format ?? config('livewire-datatables.default_datetime_format')) : null;
+            return $value ? Carbon::parse($value)->format($format ?? config('datatables-livewire.default_datetime_format')) : null;
         };
 
         return $this;

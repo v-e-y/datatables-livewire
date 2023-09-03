@@ -67,7 +67,7 @@ class Column
 
     public function __construct()
     {
-        $this->sortable = config('livewire-datatables.default_sortable', true);
+        $this->sortable = config('datatables-livewire.default_sortable', true);
     }
 
     public static function name($name)

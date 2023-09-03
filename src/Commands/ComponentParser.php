@@ -81,7 +81,7 @@ class ComponentParser
                 ['/\[namespace\]/', '/\[use\]/', '/\[class\]/', '/\[model\]/'],
                 [
                     $this->classNamespace(),
-                    config('livewire-datatables.model_namespace', 'App') . '\\' . Str::studly($this->model),
+                    config('datatables-livewire.model_namespace', 'App') . '\\' . Str::studly($this->model),
                     $this->className(),
                     Str::studly($this->model),
                 ],
