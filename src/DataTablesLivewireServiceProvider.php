@@ -170,7 +170,7 @@ class DataTablesLivewireServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/datatables-livewire.php', 'livewire-datatables');
+        $this->mergeConfigFrom(__DIR__ . '/../config/datatables-livewire.php', 'datatables-livewire');
     }
 
     protected function loadViewsFrom($path, $namespace)
