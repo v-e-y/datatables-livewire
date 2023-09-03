@@ -208,7 +208,7 @@
                                     @if($hideable === 'inline')
                                         <div 
                                             class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
-                                            wire:key="cell_{{ Str::slug($column['name'], '_') }}_{{ $row->id }}_{{ $this->id }}"    
+                                            wire:key="cell_{{ Str::random(8) }}_{{ $row->id }}_{{ $this->id }}"    
                                         ></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
@@ -218,7 +218,7 @@
                                 @else
                                     <div 
                                         class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
-                                        wire:key="cell_{{ Str::slug($column['name'], '_') }}_{{ $row->id }}_{{ $this->id }}"
+                                        wire:key="cell_{{ Str::random(8) }}_{{ $row->id }}_{{ $this->id }}"
                                     >
                                         {!! $row->{$column['name']} !!}
                                     </div>
