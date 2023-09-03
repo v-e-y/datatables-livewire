@@ -253,9 +253,7 @@ class DataTableLivewire extends Component
         $afterTableSlot = false,
         $params = []
     ) {
-        if (method_exists($this, 'initialize')) {
-            $this->initialize();
-        }
+        $this->initialize();
 
         foreach ([
             'model',
@@ -295,8 +293,14 @@ class DataTableLivewire extends Component
         }
     }
 
-    // Child component "mount" method
-    // public function initialize()
+    /**
+     * Child component "mount" method
+     * @return void
+     */
+    public function initialize(): void
+    {
+        //
+    }
 
     // save settings
     public function dehydrate()
