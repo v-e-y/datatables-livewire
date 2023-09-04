@@ -1,4 +1,7 @@
 <div id="data_table_livewire">
+    @isset($title)
+        <h1 class="h2 mb-5">{{ $title }}</h1>
+    @endisset
     @includeIf($beforeTableSlot)
     <div class="position-relative">
         <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin position-absolute top-50 start-50 translate-middle" />
