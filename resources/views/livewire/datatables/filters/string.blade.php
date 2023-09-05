@@ -10,7 +10,7 @@
         @foreach($this->activeTextFilters[$index] ?? [] as $key => $value)
             <button 
                 wire:click="removeTextFilter('{{ $index }}', '{{ $key }}')" 
-                class="m-1 pl-1 d-flex align-items-center text-uppercase bg-gray-300 text-white"
+                class="btn btn-sm btn-danger py-1 px-2 m-1"
                 wire:key="removeTextFilter_{{ $key }}_{{ $index }}_{{ $this->id }}"
             >
                 <span>{{ $this->getDisplayValue($index, $value) }}</span>
