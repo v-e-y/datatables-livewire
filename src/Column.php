@@ -347,11 +347,11 @@ class Column
         return $this;
     }
 
-    public function round($precision = 0)
+    public function round(int $precision = 0)
     {
-        $this->callback = function ($value) use ($precision) {
-            return $value ? round($value, $precision) : null;
-        };
+        $this->callback = fn($value) => $value 
+            ? round($value, $precision) 
+            : null;
 
         return $this;
     }
