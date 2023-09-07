@@ -166,7 +166,7 @@
                             @endforeach
                         </div>
                     @endunless
-                    <div class="d-table-row bg-light bg-gradient">
+                    <div class="d-table-row bg-secondary bg-gradient">
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')

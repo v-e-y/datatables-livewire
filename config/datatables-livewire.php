@@ -96,8 +96,8 @@ return [
 
     'default_classes' => [
         'row' => [
-            'even' => 'divide-x',
-            'odd' => 'divide-x bg-light',
+            'even' => 'divide-x bg-light',
+            'odd' => 'divide-x',
             'selected' => 'divide-x',
         ],
         'cell' => 'text-nowrap px-2 py-2',
