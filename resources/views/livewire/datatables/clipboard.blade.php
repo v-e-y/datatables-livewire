@@ -1,6 +1,9 @@
 <div 
     class="d-flex align-items-center justify-content-between position-relative pe-5" 
-    x-data="{ data_to_copy: '{{ $data }}',  showMsg: false }"
+    x-data="{ 
+        data_to_copy: '{{ $data }}',  
+        showMsg: false 
+    }"
 >
     <span>
         {{ $data }}

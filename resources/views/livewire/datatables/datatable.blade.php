@@ -141,7 +141,7 @@
             class="shadow-lg w-100 overflow-auto"
         >
             <div>
-                <div class="table d-table mw-100 align-middle">
+                <div class="w-100 d-table mw-100 align-middle">
                     @unless($this->hideHeader)
                         <div class="d-table-row">
                             @foreach($this->columns as $index => $column)
@@ -150,7 +150,7 @@
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
                                         <div 
-                                            class="d-flex justify-content-center d-table-cell w-32 h-12 px-4 py-4 overflow-hidden text-start text-uppercase align-top border-bottom border-gray-200"
+                                            class="d-flex justify-content-center d-table-cell bg-transparent w-32 h-12 px-4 py-4 overflow-hidden text-start text-uppercase align-top border-bottom border-gray-200"
                                             wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
                                         >
                                             <div 
@@ -170,20 +170,20 @@
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
-                                    <div class="d-table-cell w-5 overflow-hidden align-top bg-light bg-gradient"></div>
+                                    <div class="d-table-cell p-2 w-5 overflow-hidden align-top bg-light bg-gradient"></div>
                                 @endif
                             @elseif($column['type'] === 'checkbox')
                                 @include('datatables::filters.checkbox')
                             @elseif($column['type'] === 'label')
                                 <div 
-                                    class="d-table-cell overflow-hidden align-top"
+                                    class="d-table-cell p-2 overflow-hidden align-top"
                                     wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}"
                                 >
                                     {{ $column['label'] ?? '' }}
                                 </div>
                             @else
                                 <div 
-                                    class="d-table-cell overflow-hidden align-top"
+                                    class="d-table-cell p-2 overflow-hidden align-top"
                                     wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ $this->id }}"
                                 >
                                     @isset($column['filterable'])
