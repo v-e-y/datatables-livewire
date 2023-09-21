@@ -1,6 +1,10 @@
-<div x-data="{ open: {{ isset($open) && $open ? 'true' : 'false' }}, working: false }" x-cloak wire:key="delete-{{ $value }}">
+<div 
+    x-data="{ open: {{ isset($open) && $open ? 'true' : 'false' }}, working: false }" 
+    x-cloak 
+    wire:key="delete-{{ $value }}"
+>
     <span x-on:click="open = true">
-        <button class="p-1  rounded  "><x-icons.trash /></button>
+        <button class="btn btn-sm btn-outline-danger"><x-icons.trash /></button>
     </span>
 
     <div x-show="open"
@@ -20,31 +24,38 @@
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 "
             class="position-relative bg-gray-100 rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-100 sm:p-6">
             <div class="hidden sm:block position-absolute top-0 right-0 pt-4 pr-4">
-                <button @click="open = false" type="button"
-                    class="text-gray-400 hover:text-gray-500 focus:text-gray-500 transition ease-in-out duration-150">
+                <button 
+                    @click="open = false" 
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                >
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
             <div class="w-100">
                 <div class="mt-3 text-center">
-                    <h3 class="text-lg   text-gray-900">
-                        {{ __('Delete') }} {{ $value }}
-                    </h3>
+                    <h3 class="text-lg text-gray-900">{{ __('Delete') }}: <small>{{ $value }}</small></h3>
                     <div class="mt-2">
                         <div class="mt-10 text-gray-700">
                             {{ __('Are you sure?')}}
                         </div>
                         <div class="mt-10 d-flex justify-content-center">
                             <span class="mr-2">
-                                <button x-on:click="open = false" x-bind:disabled="working" class="w-32 shadow-sm inline-flex justify-content-center align-items-center px-3 py-2 border border-transparent   text-white bg-gray-600 hover:bg-gray-700-gray-700 focus:shadow-outline-teal active:bg-gray-700 transition ease-in-out duration-150">
+                                <button 
+                                    x-on:click="open = false" 
+                                    x-bind:disabled="working" 
+                                    class="btn btn-sm btn-outline-secondary"
+                                >
                                     {{ __('No')}}
                                 </button>
                             </span>
                             <span x-on:click="working = !working">
-                                <button wire:click="delete('{{ $value }}')" class="w-32 shadow-sm inline-flex justify-content-center align-items-center px-3 py-2 border border-transparent   text-white bg-red-600 hover:bg-red-700-red-700 focus:shadow-outline-teal active:bg-red-700 transition ease-in-out duration-150">
+                                <button 
+                                    wire:click="delete('{{ $value }}')" 
+                                    class="btn btn-sm btn-outline-danger"
+                                >
                                     {{ __('Yes')}}
                                 </button>
                             </span>
