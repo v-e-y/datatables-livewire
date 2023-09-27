@@ -83,6 +83,9 @@ class DataTableLivewire extends Component
     /** @var string|null $connection Prefer database connection */
     public string|null $connection = null;
 
+    /** @var ?string $driverName DB driver name */
+    public ?string $driverName = null;
+
     /** @var string $logChannelNameForErrors */
     public string $logChannelNameForErrors = 'veyDataTables';
 
@@ -1640,7 +1643,6 @@ class DataTableLivewire extends Component
 
     /**
      * Set the 'ORDER BY' clause of the SQL query.
-     *
      * Do not set a 'ORDER BY' clause if the column to be sorted does not have a name assigned.
      * This could be a 'label' or 'checkbox' column which is not 'sortable' by SQL by design.
      */
@@ -1650,7 +1652,10 @@ class DataTableLivewire extends Component
             if (isset($this->pinnedRecords) && $this->pinnedRecords) {
                 $this->query->orderBy(DB::raw('FIELD(id,' . implode(',', $this->pinnedRecords) . ')'), 'DESC');
             }
-            $this->query->orderBy(DB::raw($this->getSortString($this->query->getConnection()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME))), $this->direction ? 'asc' : 'desc');
+            $this->query->orderBy(
+                $this->driverName
+                ?? DB::raw($this->getSortString($this->query->getConnection()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME))), $this->direction ? 'asc' : 'desc'
+            );
         }
 
         return $this;
