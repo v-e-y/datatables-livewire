@@ -760,7 +760,6 @@ class DataTableLivewire extends Component
                 break;
 
             default:
-
                 switch ($dbtable) {
                     case 'mysql':
                         return new Expression('`' . $column['name'] . '`');
@@ -1656,8 +1655,11 @@ class DataTableLivewire extends Component
                 $this->query->orderBy(DB::raw('FIELD(id,' . implode(',', $this->pinnedRecords) . ')'), 'DESC');
             }
             $this->query->orderBy(
-                $this->driverName
-                ?? DB::raw($this->getSortString($this->query->getConnection()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME))), $this->direction ? 'asc' : 'desc'
+                DB::raw($this->getSortString(
+                    $this->driverName
+                    ?? $this->query->getConnection()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME)
+                )), 
+                $this->direction ? 'asc' : 'desc'
             );
         }
 
