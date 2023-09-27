@@ -771,6 +771,9 @@ class DataTableLivewire extends Component
                     case 'sqlsrv':
                         return new Expression("'" . $column['name'] . "'");
                         break;
+                    case 'clickhouse':
+                        return new Expression('`' . $column['name'] . '`');
+                        break;
                     default:
                         return new Expression("'" . $column['name'] . "'");
                 }
