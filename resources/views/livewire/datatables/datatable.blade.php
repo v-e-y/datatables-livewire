@@ -85,12 +85,13 @@
 
                     @if($exportable)
                         <div 
+                            class="col-auto"
                             x-data="{ init() {window.livewire.on('startDownload', link => window.open(link, '_blank'))} }" 
                             x-init="init"
                         >
                             <button 
                                 wire:click="export" 
-                                class="d-flex align-items-center px-3 text-success text-uppercase border"
+                                class="btn btn-sm btn-info"
                             >
                                 <span>{{ __('Export') }}</span>
                                 <x-icons.excel class="m-2" />
