@@ -363,6 +363,8 @@ class DataTableLivewire extends Component
     public function delete($id)
     {
         $this->model::destroy($id);
+
+        $this->callAfterEntityUpdated(entityId: $id);
     }
 
     public function getProcessedColumnsProperty()
