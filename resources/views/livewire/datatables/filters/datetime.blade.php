@@ -5,7 +5,6 @@
             class="w-100 pe-6 form-control form-control-sm" 
             type="datetime-local"
             wire:change="doDatetimeFilterStart('{{ $index }}', $event.target.value)" 
-            style="padding-bottom: 5px"
             value="{{ $this->activeDatetimeFilters[$index]['start'] ?? ''}}"
         />
         <div class="position-absolute top-50 end-0 translate-middle-y">
@@ -25,7 +24,6 @@
             class="w-100 pe-6 form-control form-control-sm" 
             type="datetime-local"
             wire:change="doDatetimeFilterEnd('{{ $index }}', $event.target.value)" 
-            style="padding-bottom: 5px"
             value="{{ $this->activeDatetimeFilters[$index]['end'] ?? ''}}"
         />
         <div class="position-absolute top-50 end-0 translate-middle-y">

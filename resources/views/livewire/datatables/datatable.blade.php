@@ -94,7 +94,7 @@
                                 class="btn btn-sm btn-info"
                             >
                                 <span>{{ __('Export') }}</span>
-                                <x-icons.excel class="m-2" />
+                                <x-icons.excel />
                             </button>
                         </div>
                     @endif
