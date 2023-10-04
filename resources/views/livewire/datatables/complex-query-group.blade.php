@@ -61,13 +61,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-end">
                         @unless($key === 0)
                             <button wire:click="removeRule('{{ collect(explode('.', $key))->join(".content.") . ".content" }}')" class="px-3 py-2 rounded bg-red-600 text-white"><x-icons.trash /></button>
                         @endunless
                     </div>
-
                 </div>
             @endif
         </div>
