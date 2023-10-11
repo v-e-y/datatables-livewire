@@ -7,7 +7,7 @@
     wire:ignore.self
 >
     <div 
-        class="modal-dialog {{ isset($modalSize) ? $modalSize : '' }}"
+        class="modal-dialog {{ $modalSize }}"
     >
         <div class="modal-content">
             <div class="modal-header">

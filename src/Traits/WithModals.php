@@ -30,6 +30,12 @@ trait WithModals {
     /** @var string|null $modalTitle */
     public ?string $modalTitle = null;
 
+    /** 
+     * @var string $modalSize 
+     * modal-sm, modal-lg, modal-xl or modal-fullscreen
+     */
+    public string $modalSize = 'modal-lg';
+
     /** @var string string $modalButtonStyle */
     public string $modalButtonStyle = 'btn btn-primary';
 
@@ -44,6 +50,7 @@ trait WithModals {
             'modalView',
             'modalBody',
             'modalTitle',
+            'modalSize',
         ]);
     }
 
