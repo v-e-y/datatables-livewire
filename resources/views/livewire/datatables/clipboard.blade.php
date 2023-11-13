@@ -1,7 +1,7 @@
 <div 
     class="d-flex align-items-center justify-content-between position-relative pe-5" 
     x-data="{ 
-        data_to_copy: '{{ $data }}',  
+        data_to_copy: '{{ isset($dataToCopy) ? $dataToCopy : $data }}',  
         showMsg: false 
     }"
 >
