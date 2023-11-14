@@ -15,6 +15,8 @@
                             placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
                             type="text" 
                             autocomplete="off"
+                            name="search"
+                            id="search"
                         />
                         @if ($this->search)
                             <button 
