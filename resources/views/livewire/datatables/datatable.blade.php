@@ -14,6 +14,7 @@
                             class="form-control form-control-sm" 
                             placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
                             type="text" 
+                            autocomplete="off"
                         />
                         @if ($this->search)
                             <button 
