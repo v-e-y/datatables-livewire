@@ -89,6 +89,9 @@ class DataTableLivewire extends Component
     /** @var string $logChannelNameForErrors */
     public string $logChannelNameForErrors = 'veyDataTables';
 
+    /** @var ?array<string> $clearOnClearAllFilters */
+    public ?array $clearOnClearAllFilters = null;
+
     public $actions;
     public $massActionOption;
 
@@ -1083,6 +1086,14 @@ class DataTableLivewire extends Component
         $this->visibleSelected = $this->selected;
         $this->setPage(1);
         $this->setSessionStoredFilters();
+
+        if ($this->clearOnClearAllFilters) {
+            foreach ($this->clearOnClearAllFilters as $varName) {
+                if (isset($this->$varName)) {
+                    $this->$varName = null;
+                }
+            }
+        }
 
         $this->emitTo('complex-query', 'resetQuery');
     }
