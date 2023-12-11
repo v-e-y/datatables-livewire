@@ -154,13 +154,15 @@
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
                                         <div 
-                                            class="d-flex justify-content-center d-table-cell bg-transparent w-32 h-12 px-4 py-4 overflow-hidden text-start text-uppercase align-top border-bottom border-gray-200"
+                                            class="position-relative d-table-cell h-12 overflow-hidden align-top"
                                             wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
                                         >
                                             <div 
-                                                class="px-3 py-1 rounded @if(count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center"
+                                                class="w-100 h-100 px-6 py-3 border border-gray-200 bg-transparent text-start text-gray-500 text-uppercase d-flex align-items-center justify-content-center"
                                             >
-                                                {{ count($visibleSelected) }}
+                                                <span class="badge badge-square @if(count($selected)) badge-primary @else badge-secondary @endif">
+                                                    {{ count($visibleSelected) }}
+                                                </span>
                                             </div>
                                         </div>
                                     @endunless
