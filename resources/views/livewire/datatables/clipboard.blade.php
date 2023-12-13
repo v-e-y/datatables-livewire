@@ -4,12 +4,21 @@
         data_to_copy: '{{ isset($dataToCopy) ? $dataToCopy : $data }}',  
         showMsg: false 
     }"
+    @if (isset($cropped) && $cropped)
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom" 
+        title="{{ $data }}"
+    @endif
 >
     <span>
-        {{ $data }}
+        @if (isset($cropped) && $cropped)
+            {{ Str::limit($data, $cropped) }}
+        @else
+            {{ $data }}
+        @endif
     </span>
     <a 
-        type="button" 
+        type="button"  
         class="position-absolute top-50 end-0 translate-middle-y opacity-50"
         @mouseover="$el.classList.add('opacity-100')"
         @mouseleave="$el.classList.remove('opacity-100')"
