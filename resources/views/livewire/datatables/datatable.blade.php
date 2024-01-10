@@ -1,4 +1,7 @@
-<div id="data_table_livewire">
+<div 
+    id="data_table_livewire"
+    class="{{ $cmpWrapperClasses }}"
+>
     @isset($title)
         <h1 class="h2 mb-5">{{ $title }}</h1>
     @endisset

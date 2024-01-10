@@ -92,6 +92,9 @@ class DataTableLivewire extends Component
     /** @var ?array<string> $clearOnClearAllFilters */
     public ?array $clearOnClearAllFilters = null;
 
+    /** @var string $cmpWrapperClasses Component wrapper html classes */
+    public string $cmpWrapperClasses = '';
+
     public $actions;
     public $massActionOption;
 
