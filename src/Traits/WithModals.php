@@ -24,8 +24,8 @@ trait WithModals {
     /** @var string|null $modalView */
     public ?string $modalView = null;
 
-    /** @var mixed $modalBody */
-    public $modalBody = null;
+    /** @var string|null $modalBody */
+    public string|null $modalBody = null;
 
     /** @var string|null $modalTitle */
     public ?string $modalTitle = null;
