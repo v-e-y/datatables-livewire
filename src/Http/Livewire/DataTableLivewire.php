@@ -1808,14 +1808,26 @@ class DataTableLivewire extends Component
         return view('datatables::datatable')->layoutData(['title' => $this->title]);
     }
 
-    public function export(string $filename = 'DataTableExport.xlsx')
+    /**
+     * Export the data table.
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export()
     {
         $this->forgetComputed();
-
         $export = new DataTableExport($this->getExportResultsSet());
-        $export->setFilename($filename);
+        $export->setFilename($this->getExportFileName());
 
         return $export->download();
+    }
+
+    /**
+     * Get file name for export.
+     * @return string The file name. File Name should contain extension.
+     */
+    protected function getExportFileName(): string
+    {
+        return 'DataTableExport.xlsx';
     }
 
     public function getExportResultsSet()
