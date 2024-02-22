@@ -50,7 +50,6 @@ trait WithModals {
             'modalView',
             'modalBody',
             'modalTitle',
-            'modalSize',
         ]);
     }
 
