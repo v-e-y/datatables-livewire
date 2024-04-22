@@ -1,4 +1,7 @@
-<div class="d-flex justify-content-center">
+<div 
+    class="d-flex justify-content-center"
+    wire:key="checkbox_{{ Str::random(4) }}"
+>
     <input
         type="checkbox"
         wire:model="selected"

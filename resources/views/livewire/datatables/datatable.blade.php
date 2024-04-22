@@ -55,12 +55,22 @@
                                 @foreach($this->massActionsOptions as $group => $items)
                                     @if(!$group)
                                         @foreach($items as $item)
-                                            <option value="{{$item['value']}}">{{$item['label']}}</option>
+                                            <option 
+                                                value="{{$item['value']}}"
+                                                wire:key="massActionOption_{{ Str::slug($item['value'] . $item['label'], '_') }}"
+                                            >
+                                                {{ $item['label'] }}
+                                            </option>
                                         @endforeach
                                     @else
-                                        <optgroup label="{{$group}}">
+                                        <optgroup label="{{ $group }}">
                                             @foreach($items as $item)
-                                                <option value="{{$item['value']}}">{{$item['label']}}</option>
+                                                <option 
+                                                    value="{{$item['value']}}"
+                                                    wire:key="massActionOption_{{ Str::slug($item['value'] . $item['label'], '_') }}"
+                                                >
+                                                    {{$item['label']}}
+                                                </option>
                                             @endforeach
                                         </optgroup>
                                     @endif
@@ -68,8 +78,12 @@
                             </select>
                             <button
                                 wire:click="massActionOptionHandler"
-                                class="d-flex align-items-center px-4 py-2 text-success text-uppercase border" type="submit" title="Submit"
-                            >Go</button>
+                                class="d-flex align-items-center px-4 py-2 text-success text-uppercase border" 
+                                type="submit" 
+                                title="Submit"
+                            >
+                                Go
+                            </button>
                         </div>
                     @endif
 
@@ -83,8 +97,8 @@
 
                     @if (count($headerLWComponents))
                         @foreach ($headerLWComponents as $component => $componentProps)
-                            <div class="col-auto" wire:key="headerLWComponents_{{ Str::random(4) }}">
-                                @livewire($component, $componentProps)
+                            <div class="col-auto" wire:ignore>
+                                @livewire($component, $componentProps, key('headerLWComponents_' . $loop->index))
                             </div>
                         @endforeach
                     @endif
@@ -213,14 +227,14 @@
                     @foreach($this->results as $row)
                         <div 
                             class="d-table-row {{ $this->rowClasses($row, $loop) }}"
-                            wire:key="row_{{ $loop->index }}_{{ Str::random(4) }}_{{ $this->id }}"
+                            wire:key="row_{{ $loop->index }}_{{ Str::random(3) }}_{{ $this->id }}"
                         >
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
                                         <div 
                                             class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
-                                            wire:key="cell_{{ Str::random(4) }}_{{ $loop->index }}_{{ $this->id }}"    
+                                            wire:key="{{ $column['name'] ?? Str::slug($column['label'], '_') }}_cell_{{ $loop->index }}_{{ $this->id }}"
                                         ></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
@@ -230,7 +244,7 @@
                                 @else
                                     <div 
                                         class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
-                                        wire:key="cell_{{ Str::random(8) }}_{{ $loop->index }}_{{ $this->id }}"
+                                        wire:key="{{ $column['name'] ?? Str::slug($column['label'], '_') }}_cell_{{ $loop->index }}_{{ $this->id }}"
                                     >
                                         {!! $row->{$column['name']} !!}
                                     </div>
@@ -244,8 +258,26 @@
                             @foreach($this->columns as $column)
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
-                                        <div class="d-table-cell px-6 py-2 @unless ($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}">
-                                            {{ $this->summarize($column['name']) }}
+                                        <div 
+                                            class="
+                                                d-table-cell 
+                                                px-6 
+                                                py-2 
+                                                @unless ($column['wrappable']) 
+                                                    whitespace-nowrap truncate 
+                                                @endunless 
+                                                @if($column['contentAlign'] === 'right') 
+                                                    text-end 
+                                                @elseif($column['contentAlign'] === 'center') 
+                                                    text-center 
+                                                @else 
+                                                    text-start 
+                                                @endif 
+                                                {{ $this->cellClasses($row, $column) }}
+                                            "
+                                            wire:key="summary_cell_{{ $loop->index }}_{{ $this->id }}"
+                                        >
+                                            {!! $this->summarize($column['name']) !!}
                                         </div>
                                     @else
                                         <div class="d-table-cell"></div>
