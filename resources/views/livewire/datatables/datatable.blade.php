@@ -224,7 +224,7 @@
                             @endif
                         @endforeach
                     </div>
-                    @foreach($this->results as $row)
+                    @foreach($this->results as $rowIndex => $row)
                         <div 
                             class="d-table-row {{ $this->rowClasses($row, $loop) }}"
                             wire:key="row_{{ $loop->index }}_{{ Str::random(3) }}_{{ $this->id }}"
@@ -234,7 +234,7 @@
                                     @if($hideable === 'inline')
                                         <div 
                                             class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
-                                            wire:key="{{ Str::slug($column['name'], '_') ?? Str::slug($column['label'], '_') }}_cell_{{ $loop->index }}_{{ $this->id }}"
+                                            wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
                                         ></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
@@ -244,7 +244,7 @@
                                 @else
                                     <div 
                                         class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
-                                        wire:key="{{ Str::slug($column['name'], '_') ?? Str::slug($column['label'], '_') }}_cell_{{ $loop->index }}_{{ $this->id }}"
+                                        wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
                                     >
                                         {!! $row->{$column['name']} !!}
                                     </div>
