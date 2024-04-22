@@ -2,27 +2,27 @@
 
 namespace VEY\DataTablesLivewire\Http\Livewire;
 
-use Exception;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
-use Livewire\Component;
 use Log;
+use Exception;
+use Livewire\Component;
+use Illuminate\View\View;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 use VEY\DataTablesLivewire\Column;
 use VEY\DataTablesLivewire\ColumnSet;
+use Illuminate\Database\Query\Expression;
+use VEY\DataTablesLivewire\Traits\WithModals;
+use VEY\DataTablesLivewire\Traits\WithCallbacks;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use VEY\DataTablesLivewire\Exports\DataTableExport;
 use VEY\DataTablesLivewire\Http\DTO\EntityUpdatedDTO;
-use VEY\DataTablesLivewire\Traits\WithCallbacks;
-use VEY\DataTablesLivewire\Traits\WithHeaderComponents;
-use VEY\DataTablesLivewire\Traits\WithModals;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use VEY\DataTablesLivewire\Traits\WithSiblingsComponents;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class DataTableLivewire extends Component
 {
@@ -31,7 +31,7 @@ class DataTableLivewire extends Component
     use WithPresetDateFilters;
     use WithPresetTimeFilters;
     use WithModals;
-    use WithHeaderComponents;
+    use WithSiblingsComponents;
 
     const SEPARATOR = '|**lwdt**|';
     public $model;
