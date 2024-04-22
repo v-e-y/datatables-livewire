@@ -339,6 +339,16 @@
         </div>
     @endif
 
+    @if (count($footerLWComponents))
+        <div class="row g-1 align-items-center">
+            @foreach ($footerLWComponents as $fCmp => $fCmpProps)
+                <div class="col-auto" wire:ignore>
+                    @livewire($fCmp, $fCmpProps, key('footerLWComponents' . $loop->index))
+                </div>
+            @endforeach
+        </div>
+    @endif
+
     @includeIf($afterTableSlot)
 
     <span class="hidden  text-start text-center text-end text-gray-900 bg-gray-100 bg-yellow-100 leading-5 "></span>
