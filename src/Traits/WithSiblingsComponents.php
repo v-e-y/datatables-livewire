@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace VEY\DataTablesLivewire\Traits;
 
+use VEY\DataTablesLivewire\Http\DTO\TableSiblingCmpDTO;
+
 trait WithSiblingsComponents {
     /** @var array<string> $userHeaderHTMLComponents */
     public array $userHeaderHTMLComponents = [];
@@ -11,6 +13,9 @@ trait WithSiblingsComponents {
     /** @var array<array<string>> $headerLWComponents */
     public array $headerLWComponents = [];
 
-    /** @var array<array<string>> $footerLWComponents */
+    /**
+     * Add footer Livewire components
+     * @var array<TableSiblingCmpDTO> $footerLWComponents
+     */
     public array $footerLWComponents = [];
 }
