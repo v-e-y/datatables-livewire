@@ -341,14 +341,18 @@
 
     @if (count($footerLWComponents))
         <div class="row g-1 align-items-center">
-            @foreach ($footerLWComponents as $fLWCmp)
+            @foreach ($footerLWComponents as $fLWCmpName => $fLWCmpSettings)
                 <div 
-                    class="{{ $fLWCmp->cmpWrapperClasses }}"
+                    class="{{ 
+                        isset($fLWCmpSettings['cmp_wrapper_classes'])
+                            ? $fLWCmpSettings['cmp_wrapper_classes']
+                            : 'col-auto'
+                    }}"
                     wire:ignore
                 >
                     @livewire(
-                        $fLWCmp->livewireCmpName,
-                        $fLWCmp->cmpProps,
+                        $fLWCmpName,
+                        isset($fLWCmpSettings['cmp_props']) ? $fLWCmpSettings['cmp_props'] : [],
                         key('footerLWComponents_' . $loop->index)
                     )
                 </div>
