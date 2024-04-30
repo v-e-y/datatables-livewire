@@ -304,7 +304,7 @@
                             class="form-select form-select-sm" 
                             wire:model="perPage"
                         >
-                            @foreach(config('datatables-livewire.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
+                            @foreach($this->perPageOptions as $per_page_option)
                                 <option 
                                     value="{{ $per_page_option }}"
                                     wire:key="per_page_{{ $per_page_option }}"
@@ -312,7 +312,9 @@
                                     {{ $per_page_option }}
                                 </option>
                             @endforeach
-                            <option value="99999999">{{__('All')}}</option>
+                            @if ($this->showAll)
+                                <option value="99999999">{{__('All')}}</option>
+                            @endif
                         </select>
                     </div>
                     <div>
