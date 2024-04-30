@@ -8,7 +8,6 @@ use Livewire\Component;
 use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 use VEY\DataTablesLivewire\Column;
 use VEY\DataTablesLivewire\ColumnSet;
@@ -18,6 +17,7 @@ use VEY\DataTablesLivewire\Traits\WithCallbacks;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use VEY\DataTablesLivewire\Exports\DataTableExport;
 use VEY\DataTablesLivewire\Http\DTO\EntityUpdatedDTO;
+use VEY\DataTablesLivewire\Traits\WithTablePagination;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,11 +26,11 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class DataTableLivewire extends Component
 {
-    use WithPagination;
+    use WithModals;
     use WithCallbacks;
+    use WithTablePagination;
     use WithPresetDateFilters;
     use WithPresetTimeFilters;
-    use WithModals;
     use WithSiblingsComponents;
 
     const SEPARATOR = '|**lwdt**|';
@@ -217,7 +217,7 @@ class DataTableLivewire extends Component
      */
     public function resetTable()
     {
-        $this->perPage = config('datatables-livewire.default_per_page', 10);
+        $this->perPage = $this->perPageOptions[0];
         $this->sort = $this->defaultSort();
         $this->search = null;
         $this->setPage(1);
@@ -544,7 +544,9 @@ class DataTableLivewire extends Component
             return;
         }
 
-        $this->perPage = session()->get($this->sessionStorageKey() . $this->name . '_perpage', $this->perPage);
+        $fromSession = session()->get($this->sessionStorageKey() . $this->name . '_perpage', $this->perPage);
+        
+        $this->perPage = in_array($fromSession, $this->perPageOptions) ? $fromSession : $this->perPageOptions[0];
     }
 
     public function setSessionStoredSort()
@@ -631,7 +633,7 @@ class DataTableLivewire extends Component
         $this->getSessionStoredPerPage();
 
         if (! $this->perPage) {
-            $this->perPage = $this->perPage ?? config('datatables-livewire.default_per_page', 10);
+            $this->perPage = $this->perPage ?? $this->perPageOptions[0];
         }
     }
 
