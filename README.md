@@ -12,6 +12,7 @@ php artisan vendor:publish --provider="VEY\DataTablesLivewire\DataTablesLivewire
 - [Jonathan Reinink\'s Eloquent course](https://eloquent-course.reinink.ca/)
 
 # "Non actual" Description from forked package
+### Will be updated soon
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mediconesystems/livewire-datatables.svg?style=flat-square)](https://packagist.org/packages/mediconesystems/livewire-datatables)
 [![Total Downloads](https://img.shields.io/packagist/dt/mediconesystems/livewire-datatables.svg?style=flat-square)](https://packagist.org/packages/mediconesystems/livewire-datatables)
