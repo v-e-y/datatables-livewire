@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use VEY\DataTablesLivewire\Commands\DataTableMakeCommand;
-use VEY\DataTablesLivewire\Commands\MakeDataTableCommand;
 use VEY\DataTablesLivewire\Http\Livewire\ComplexQuery;
 use VEY\DataTablesLivewire\Http\Livewire\DataTableLivewire;
 
@@ -47,8 +45,6 @@ class DataTablesLivewireServiceProvider extends ServiceProvider
                 __DIR__ . '/../resources/views/livewire/datatables' => resource_path('views/livewire/datatables'),
                 __DIR__ . '/../resources/views/icons' => resource_path('views/livewire/datatables/icons'),
             ], 'views');
-
-            $this->commands([MakeDataTableCommand::class, DataTableMakeCommand::class]);
         }
 
         $this->app->make('config')->set('logging.channels.veyDataTables', [
