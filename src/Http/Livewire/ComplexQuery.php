@@ -64,7 +64,7 @@ class ComplexQuery extends Component
     {
         $this->validateRules();
 
-        $this->emit('complexQuery', count($this->rules[0]['content']) ? $this->rules : null);
+        $this->dispatch('complexQuery', count($this->rules[0]['content']) ? $this->rules : null);
     }
 
     public function saveQuery($name)
