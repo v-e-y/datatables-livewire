@@ -16,7 +16,7 @@ trait WithCallbacks
             ->where(Str::after($key, '.'), $rowId)
             ->update([$column => $value]);
 
-        $this->emit('fieldEdited', $rowId, $column);
+        $this->dispatch('fieldEdited', $rowId, $column);
 
         $this->callAfterEntityUpdated(entityId: $rowId, propertyName: $column, value: $value);
     }

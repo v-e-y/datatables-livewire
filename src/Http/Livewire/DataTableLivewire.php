@@ -1100,7 +1100,7 @@ class DataTableLivewire extends Component
             }
         }
 
-        $this->emitTo('complex-query', 'resetQuery');
+        $this->dispatchTo('complex-query', 'resetQuery');
     }
 
     public function removeBooleanFilter($column)
@@ -1801,7 +1801,7 @@ class DataTableLivewire extends Component
 
     public function render()
     {
-        $this->emit('refreshDynamic');
+        $this->dispatch('refreshDynamic');
 
         if ($this->persistPerPage) {
             session()->put([$this->sessionStorageKey() . '_perpage' => $this->perPage]);
