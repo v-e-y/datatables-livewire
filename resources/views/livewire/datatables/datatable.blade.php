@@ -70,7 +70,7 @@
                     @if(count($this->massActionsOptions))
                         <div class="d-flex align-items-center justify-content-center ">
                             <label for="datatables_mass_actions">{{ __('With selected') }}:</label>
-                            <select wire:model="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
+                            <select wire:model.live="massActionOption" class="px-3 text-uppercase  border" id="datatables_mass_actions">
                                 <option value="">{{ __('Choose...') }}</option>
                                 @foreach($this->massActionsOptions as $group => $items)
                                     @if(!$group)
@@ -177,10 +177,7 @@
             </div>
         @endif
 
-        <div 
-            wire:loading.class="opacity-50" 
-            class="shadow-lg w-100 overflow-auto"
-        >
+        <div wire:loading.class="opacity-50" class="shadow-lg w-100 overflow-auto">
             <div>
                 <div class="w-100 d-table mw-100 align-middle">
                     @unless($this->hideHeader)
@@ -322,7 +319,7 @@
                         <select 
                             name="perPage" 
                             class="form-select form-select-sm" 
-                            wire:model="perPage"
+                            wire:model.live="perPage"
                         >
                             @foreach($this->perPageOptions as $per_page_option)
                                 <option 
@@ -392,9 +389,13 @@
 
     @push('scripts')
         <script>
-            Livewire.on('tooltipHydrate', () => {
-                $('[data-bs-toggle="tooltip"]').tooltip('dispose');
+            $(document).ready(function() {
                 $('[data-bs-toggle="tooltip"]').tooltip();
+                if (typeof window.Livewire !== 'undefined') {
+                    window.Livewire.hook('message.processed', (message, component) => {
+                        $('[data-bs-toggle="tooltip"]').tooltip('dispose').tooltip();
+                    });
+                }
             });
         </script>
     @endpush

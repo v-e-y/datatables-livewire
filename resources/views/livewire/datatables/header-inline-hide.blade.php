@@ -23,7 +23,7 @@
 >
     @if($column['sortable'])
         <button 
-            wire:click="sort('{{ $index }}')"
+            wire:click="sortColumn('{{ $index }}')"
             class="w-100 h-100 px-3 py-3 bg-transparent border-bottom border-gray-200 text-gray-500 text-uppercase d-flex justify-content-between align-items-center"
         >
             <span class="inline flex-grow @if($column['headerAlign'] === 'right') text-end @elseif($column['headerAlign'] === 'center') text-center @endif"">

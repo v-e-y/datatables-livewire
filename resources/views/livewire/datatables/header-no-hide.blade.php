@@ -1,12 +1,15 @@
 @unless($column['hidden'])
     <div
-        @if (isset($column['tooltip']['text'])) title="{{ $column['tooltip']['text'] }}" @endif
-        class="position-relative d-table-cell h-12 overflow-hidden align-top" @include('datatables::style-width')
+        @if (isset($column['tooltip']['text'])) 
+            title="{{ $column['tooltip']['text'] }}" 
+        @endif
+        class="position-relative d-table-cell h-12 overflow-hidden align-top" 
+        @include('datatables::style-width')
         wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ Str::random(3) }}"
     >
         @if($column['sortable'])
             <button 
-                wire:click="sort('{{ $index }}')" 
+                wire:click="sortColumn('{{ $index }}')" 
                 class="w-100 h-100 px-6 py-3 border border-gray-200 bg-transparent text-start text-gray-500 text-uppercase d-flex align-items-center @if($column['headerAlign'] === 'right') justify-content-end @elseif($column['headerAlign'] === 'center') justify-content-center @endif"
             >
                 <span class="fw-bold">
