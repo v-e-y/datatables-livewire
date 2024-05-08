@@ -17,7 +17,7 @@
             <div class="d-flex flex-column w-100">
                 @foreach($this->columns as $index => $column)
                     @if ($column['hideable'] !== false)
-                        <div wire:key="hide_column_{{ $index }}_{{ $this->id }}">
+                        <div wire:key="hide_column_{{ $index }}_{{ Str::random(3) }}">
                             <div 
                                 class="@unless($column['hidden']) d-none @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-gray-500" 
                                 wire:click="toggle({{$index}})"

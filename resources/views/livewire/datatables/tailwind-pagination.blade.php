@@ -14,7 +14,7 @@
     </li>
     @foreach ($elements as $element)
         @if (is_string($element))
-            <li class="page-item active m-1" wire:key="paginator_page_{{ Str::random(4) }}_{{ $this->id }}">
+            <li class="page-item active m-1" wire:key="paginator_page_{{ Str::random(3) }}">
                 <span class="page-link">
                     {{ $element }}
                 </span>
@@ -22,7 +22,7 @@
         @endif
         @if (is_array($element))
             @foreach ($element as $page => $url)
-                <li class="page-item m-1" wire:key="paginator_page_{{ $page }}_{{ $this->id }}">
+                <li class="page-item m-1" wire:key="paginator_page_{{ $page }}_{{ Str::random(3) }}">
                     <a 
                         class="page-link {{ $page === $paginator->currentPage() ? 'active' : '' }}" 
                         wire:click="gotoPage({{ $page }})"

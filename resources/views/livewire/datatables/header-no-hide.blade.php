@@ -2,7 +2,7 @@
     <div
         @if (isset($column['tooltip']['text'])) title="{{ $column['tooltip']['text'] }}" @endif
         class="position-relative d-table-cell h-12 overflow-hidden align-top" @include('datatables::style-width')
-        wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ $this->id }}"
+        wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ Str::random(3) }}"
     >
         @if($column['sortable'])
             <button 

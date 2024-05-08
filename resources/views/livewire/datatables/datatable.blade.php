@@ -168,7 +168,7 @@
                         <button 
                             wire:click.prefetch="toggle('{{ $index }}')" 
                             class="px-3 py-2 rounded text-white {{ $column['hidden'] ? 'bg-light bg-gradient  text-primary' : 'bg-blue-500 hover:bg-blue-800' }}"
-                            wire:key="hide_button_{{ $index }}_{{ $this->id }}"
+                            wire:key="hide_button_{{ $index }}_{{ Str::random(3) }}"
                         >
                             {{ $column['label'] }}
                         </button>
@@ -192,7 +192,7 @@
                                     @unless($column['hidden'])
                                         <div 
                                             class="position-relative d-table-cell h-12 overflow-hidden align-top"
-                                            wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
+                                            wire:key="header_checkbox_{{ $index }}_{{ Str::random(3) }}"
                                         >
                                             <div 
                                                 class="w-100 h-100 px-6 py-3 border border-gray-200 bg-transparent text-start text-gray-500 text-uppercase d-flex align-items-center justify-content-center"
@@ -220,14 +220,14 @@
                             @elseif($column['type'] === 'label')
                                 <div 
                                     class="d-table-cell p-2 overflow-hidden align-top"
-                                    wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                    wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ Str::random(3) }}"
                                 >
                                     {{ $column['label'] ?? '' }}
                                 </div>
                             @else
                                 <div 
                                     class="d-table-cell p-2 overflow-hidden align-top"
-                                    wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                    wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ Str::random(3) }}"
                                 >
                                     @isset($column['filterable'])
                                         @if( is_iterable($column['filterable']) )
@@ -247,14 +247,14 @@
                     @foreach($this->results as $rowIndex => $row)
                         <div 
                             class="d-table-row {{ $this->rowClasses($row, $loop) }}"
-                            wire:key="row_{{ $loop->index }}_{{ Str::random(3) }}_{{ $this->id }}"
+                            wire:key="row_{{ $loop->index }}_{{ Str::random(3) }}_{{ Str::random(3) }}"
                         >
                             @foreach($this->columns as $column)
                                 @if($column['hidden'])
                                     @if($hideable === 'inline')
                                         <div 
                                             class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
-                                            wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
+                                            wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ Str::random(3) }}"
                                         ></div>
                                     @endif
                                 @elseif($column['type'] === 'checkbox')
@@ -264,7 +264,7 @@
                                 @else
                                     <div 
                                         class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
-                                        wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
+                                        wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ Str::random(3) }}"
                                     >
                                         {!! $row->{$column['name']} !!}
                                     </div>
@@ -295,7 +295,7 @@
                                                 @endif 
                                                 {{ $this->cellClasses($row, $column) }}
                                             "
-                                            wire:key="summary_cell_{{ $loop->index }}_{{ $this->id }}"
+                                            wire:key="summary_cell_{{ $loop->index }}_{{ Str::random(3) }}"
                                         >
                                             {!! $this->summarize($column['name']) !!}
                                         </div>
