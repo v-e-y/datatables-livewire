@@ -177,10 +177,7 @@
             </div>
         @endif
 
-        <div 
-            wire:loading.class="opacity-50" 
-            class="shadow-lg w-100 overflow-auto"
-        >
+        <div wire:loading.class="opacity-50" class="shadow-lg w-100 overflow-auto">
             <div>
                 <div class="w-100 d-table mw-100 align-middle">
                     @unless($this->hideHeader)

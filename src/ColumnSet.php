@@ -145,7 +145,7 @@ class ColumnSet
         return $this;
     }
 
-    public function sort($sort)
+    public function sortColumn($sort)
     {
         if ($sort && $column = $this->columns->first(function ($column) use ($sort) {
             return Str::after($column->name, '.') === Str::before($sort, '|');
