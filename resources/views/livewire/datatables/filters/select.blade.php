@@ -12,28 +12,28 @@
                 @if(is_object($label))
                     <option 
                         value="{{ $label->id }}"
-                        wire:key="doSelectFilter_{{ $label->id }}_{{ $index }}_{{ $this->id }}"
+                        wire:key="doSelectFilter_{{ $label->id }}_{{ $index }}_{{ Str::random(3) }}"
                     >
                         {{ $label->name }}
                     </option>
                 @elseif(is_array($label))
                     <option 
                         value="{{ $label['id'] }}"
-                        wire:key="doSelectFilter_{{ $label['id'] }}_{{ $index }}_{{ $this->id }}"
+                        wire:key="doSelectFilter_{{ $label['id'] }}_{{ $index }}_{{ Str::random(3) }}"
                     >
                         {{ $label['name'] }}
                     </option>
                 @elseif(is_numeric($value))
                     <option 
                         value="{{ $label }}"
-                        wire:key="doSelectFilter_{{ $label }}_{{ $index }}_{{ $this->id }}"
+                        wire:key="doSelectFilter_{{ $label }}_{{ $index }}_{{ Str::random(3) }}"
                     >
                         {{ $label }}
                     </option>
                 @else
                     <option 
                         value="{{ $value }}"
-                        wire:key="doSelectFilter_{{ $value }}_{{ $index }}_{{ $this->id }}"
+                        wire:key="doSelectFilter_{{ $value }}_{{ $index }}_{{ Str::random(3) }}"
                     >
                         {{ $label }}
                     </option>
@@ -48,7 +48,7 @@
                 wire:click="removeSelectFilter('{{ $index }}', '{{ $key }}')" 
                 x-on:click="$refs.select.value=''"
                 class="btn btn-sm btn-danger py-1 px-2 m-1"
-                wire:key="removeSelectFilter_{{ $key }}_{{ $index }}_{{ $this->id }}"
+                wire:key="removeSelectFilter_{{ $key }}_{{ $index }}_{{ Str::random(3) }}"
             >
                 <span>{{ $this->getDisplayValue($index, $value) }}</span>
                 <x-icons.x-circle />

@@ -11,7 +11,7 @@
             <button 
                 wire:click="removeTextFilter('{{ $index }}', '{{ $key }}')" 
                 class="btn btn-sm btn-danger py-1 px-2 m-1"
-                wire:key="removeTextFilter_{{ $key }}_{{ $index }}_{{ $this->id }}"
+                wire:key="removeTextFilter_{{ $key }}_{{ $index }}_{{ Str::random(3) }}"
             >
                 <span>{{ $this->getDisplayValue($index, $value) }}</span>
                 <x-icons.x-circle />

@@ -2,7 +2,7 @@
     wire:click.prefetch="toggle('{{ $index }}')"
     class="@if($column['hidden']) position-relative bg-transparent d-table-cell h-12 w-3 bg-light bg-gradient overflow-none align-top group @else d-none @endif"
     style="min-width:12px; max-width:12px"
-    wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ $this->id }}"
+    wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ Str::random(3) }}"
 >
     <button class="position-relative h-12 w-3">
         <span
