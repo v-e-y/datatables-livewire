@@ -1811,7 +1811,13 @@ class DataTableLivewire extends Component
 
     public function render()
     {
-        $this->dispatch('refreshDynamic');
+        if (method_exists($this, 'emit')) {
+            $this->emit('refreshDynamic');
+        }
+
+        if (method_exists($this, 'dispatch')) {
+            $this->dispatch('refreshDynamic');
+        }
 
         if ($this->persistPerPage) {
             session()->put([$this->sessionStorageKey() . '_perpage' => $this->perPage]);
