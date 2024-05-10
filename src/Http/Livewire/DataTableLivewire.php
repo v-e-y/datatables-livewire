@@ -1102,7 +1102,15 @@ class DataTableLivewire extends Component
             }
         }
 
-        $this->dispatchTo('complex-query', 'resetQuery');
+        if (method_exists($this, 'emitTo')) {
+            $this->emitTo('complex-query', 'resetQuery');
+            return;
+        }
+
+        if (method_exists($this, 'dispatchTo')) {
+            $this->dispatchTo('complex-query', 'resetQuery');
+            return;
+        }
     }
 
     public function removeBooleanFilter($column)
