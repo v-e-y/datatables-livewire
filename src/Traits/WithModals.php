@@ -59,7 +59,7 @@ trait WithModals {
     public function openModal(): void
     {
         if (method_exists($this, 'dispatchBrowserEvent')) {
-            $this->emit('open_' . $this->modalId);
+            $this->dispatchBrowserEvent('open_' . $this->modalId);
             return;
         }
 
@@ -75,9 +75,9 @@ trait WithModals {
     public function closeModal(): void
     {
         $this->resetModalProps();
-        
+
         if (method_exists($this, 'dispatchBrowserEvent')) {
-            $this->emit('close_' . $this->modalId);
+            $this->dispatchBrowserEvent('close_' . $this->modalId);
             return;
         }
 
