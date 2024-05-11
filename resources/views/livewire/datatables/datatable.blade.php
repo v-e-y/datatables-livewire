@@ -3,24 +3,24 @@
     class="{{ $cmpWrapperClasses }}"
 >
     @if (! empty($this->beforeCmpLWComponents))
-        <div class="row g-1 align-items-center mb-10">
-            @foreach ($this->beforeCmpLWComponents as $bcLWCmpName => $bcWCmpSettings)
-                <div 
-                    class="{{ 
-                        isset($bcWCmpSettings['cmp_wrapper_classes'])
-                            ? $bcWCmpSettings['cmp_wrapper_classes']
-                            : 'col-auto'
-                    }}"
-                    wire:ignore
-                >
-                    @livewire(
-                        $bcLWCmpName,
-                        isset($bcWCmpSettings['cmp_props']) ? $bcWCmpSettings['cmp_props'] : [],
-                        key('beforeCmpLWComponents_' . $loop->index)
-                    )
-                </div>
-            @endforeach
-        </div>
+    <div class="row g-1 align-items-center mb-10">
+        @foreach ($this->beforeCmpLWComponents as $beforeCmpLWCmp)
+            <div 
+                class="{{ 
+                    isset($bcWCmpSettings['cmp_wrapper_classes'])
+                        ? $bcWCmpSettings['cmp_wrapper_classes']
+                        : 'col-auto'
+                }}"
+                wire:ignore
+            >
+                @livewire(
+                    $beforeCmpLWCmp['cmp'],
+                    isset($beforeCmpLWCmp['cmp_props']) ? $beforeCmpLWCmp['cmp_props'] : [],
+                    key('beforeCmpLWCmp' . $loop->index)
+                )
+            </div>
+        @endforeach
+    </div>
     @endif
     @isset($title)
         <h1 class="h2 mb-5">{{ $title }}</h1>
