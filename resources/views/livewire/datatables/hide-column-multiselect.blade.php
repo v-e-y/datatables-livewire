@@ -1,12 +1,10 @@
-<div x-data="{ show: false }" class="d-flex flex-column align-items-center">
-    <div class="d-flex flex-column align-items-center position-relative">
+<div x-data="{ show: false }">
+    <div class="position-relative">
         <button 
             x-on:click="show = !show" 
             class="btn btn-sm btn-info"
         >
-            <div class="d-flex align-items-center h-5">
-                {{ __('Show / Hide Columns')}}
-            </div>
+            {{ __('Show / Hide Columns') }}
         </button>
         <div 
             x-show="show" 
@@ -34,7 +32,7 @@
                             <div 
                                 class="@if($column['hidden']) d-none @endif cursor-pointer w-100 border-gray-800 border-bottom bg-gray-700 text-white" 
                                 wire:click="toggle({{$index}})"
-                                >
+                            >
                                 <div class="position-relative d-flex w-100 align-items-center p-2">
                                     <div class="w-100 align-items-center d-flex">
                                         <div class="mx-2">{{ $column['label'] }}</div>
