@@ -453,7 +453,9 @@ class DataTableLivewire extends Component
                     if ($column->select instanceof Expression) {
                         $sep_string = config('database.default') === 'pgsql' ? '"' : '`';
 
-                        return new Expression($column->select->getValue() . ' AS ' . $sep_string . $column->name . $sep_string);
+                        return new Expression(
+                            $column->select->getValue(DB::connection($this->connection)->getQueryGrammar()) . ' AS ' . $sep_string . $column->name . $sep_string
+                        );
                     }
 
                     if (is_array($column->select)) {
