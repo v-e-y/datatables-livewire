@@ -390,6 +390,43 @@
         @include('datatables::modals.modal')
     @endif
 
+    <script>
+        if (typeof editCell === 'undefined') {
+            const editCell = (el) => {
+                const element = document.querySelector(`[data-cell="${el}"]`);
+                element.querySelector('button').classList.add('d-none');
+                element.querySelector('input').classList.remove('d-none');
+                element.querySelector('input').focus();
+
+                element.querySelector('input').addEventListener('blur', () => {
+                    element.querySelector('button').classList.remove('d-none');
+                    element.querySelector('input').classList.add('d-none');
+                });
+
+                element.querySelector('input').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        element.querySelector('button').classList.remove('d-none');
+                        element.querySelector('input').classList.add('d-none');
+                    }
+                });
+            };
+        }
+
+        if (typeof toClipboard === 'undefined') {
+            const toClipboard = (el) => {
+                const element = el.parentElement;
+                const text = element.getAttribute('data-tocopy');
+                navigator.clipboard.writeText(text).then(() => {
+                    element.querySelector('i.fa-copy').classList.add('d-none');
+                    element.querySelector('i.fa-check').classList.remove('d-none');
+                    setTimeout(() => {
+                        element.querySelector('i.fa-copy').classList.remove('d-none');
+                        element.querySelector('i.fa-check').classList.add('d-none');
+                    }, 500);
+                });
+            };
+        }
+    </script>
     @push('scripts')
         <script>
             Livewire.on('tooltipHydrate', () => {

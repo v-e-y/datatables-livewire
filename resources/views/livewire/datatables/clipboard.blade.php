@@ -1,14 +1,12 @@
 <div 
     class="d-flex align-items-center justify-content-between position-relative pe-5" 
-    x-data="{ 
-        data_to_copy: '{{ isset($dataToCopy) ? $dataToCopy : $data }}',  
-        showMsg: false 
-    }"
+    data-tocopy="{{ isset($dataToCopy) ? $dataToCopy : $data }}"
     @if (isset($cropped) && $cropped)
         data-bs-toggle="tooltip" 
         data-bs-placement="bottom" 
         title="{{ $data }}"
     @endif
+    wire:key="clipboard_{{ Str::random(4) }}"
 >
     <span>
         @if (isset($cropped) && $cropped)
@@ -20,15 +18,9 @@
     <a 
         type="button"  
         class="position-absolute top-50 end-0 translate-middle-y opacity-50"
-        @mouseover="$el.classList.add('opacity-100')"
-        @mouseleave="$el.classList.remove('opacity-100')"
-        @click="navigator.clipboard.writeText(data_to_copy), showMsg = true, setTimeout(() => showMsg = false, 1000)"
+        onclick="toClipboard(this)"
     >
-        <template x-if="showMsg">
-            <i class="fa-solid fa-check text-success"></i>
-        </template>
-        <template x-if="! showMsg">
-            <i class="fa-solid fa-copy text-muted"></i>
-        </template>
+        <i class="fa-solid fa-check text-success d-none"></i>
+        <i class="fa-solid fa-copy text-muted"></i>
     </a>
 </div>
