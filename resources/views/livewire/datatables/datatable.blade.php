@@ -391,8 +391,10 @@
     @endif
 
     <script>
-        if (typeof editCell === 'undefined') {
-            const editCell = (el) => {
+        window.DatatablesLivewire = window.DatatablesLivewire || {};
+
+        if (typeof window.DatatablesLivewire.editCell === 'undefined') {
+            window.DatatablesLivewire.editCell = (el) => {
                 const element = document.querySelector(`[data-cell="${el}"]`);
                 element.querySelector('button').classList.add('d-none');
                 element.querySelector('input').classList.remove('d-none');
@@ -412,8 +414,8 @@
             };
         }
 
-        if (typeof toClipboard === 'undefined') {
-            const toClipboard = (el) => {
+        if (typeof window.DatatablesLivewire.toClipboard === 'undefined') {
+            window.DatatablesLivewire.toClipboard = (el) => {
                 const element = el.parentElement;
                 const text = element.getAttribute('data-tocopy');
                 navigator.clipboard.writeText(text).then(() => {

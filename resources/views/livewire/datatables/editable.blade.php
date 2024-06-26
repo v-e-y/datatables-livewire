@@ -1,7 +1,7 @@
 <div data-cell="{{ Str::slug($key.'_'.$column.'_'.$rowId) }}">
     <button 
         class="w-100 btn btn-light btn-sm text-start"
-        onclick="editCell('{{ Str::slug($key.'_'.$column.'_'.$rowId) }}')"
+        onclick="window.DatatablesLivewire.editCell('{{ Str::slug($key.'_'.$column.'_'.$rowId) }}')"
         @if ($truncate && $value !== null)
             data-bs-toggle="tooltip" 
             data-bs-placement="bottom" 

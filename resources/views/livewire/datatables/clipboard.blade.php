@@ -18,7 +18,7 @@
     <a 
         type="button"  
         class="position-absolute top-50 end-0 translate-middle-y opacity-50"
-        onclick="toClipboard(this)"
+        onclick="window.DatatablesLivewire.toClipboard(this)"
     >
         <i class="fa-solid fa-check text-success d-none"></i>
         <i class="fa-solid fa-copy text-muted"></i>
