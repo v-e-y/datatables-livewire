@@ -29,25 +29,51 @@
     <div class="position-relative">
         <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin position-absolute top-50 start-50 translate-middle" />
         <div class="row align-items-center justify-content-between mb-10">
-            <div class="col-12 col-md-4 col-lg-3 align-items-center">
+            <div class="col-12 col-md-4 align-items-center">
                 @if($this->searchableColumns()->count())
-                    <div class="input-group input-group-sm w-100">
-                        <input 
-                            wire:model.debounce.500ms="search" 
-                            class="form-control form-control-sm" 
-                            placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
-                            type="text" 
-                            autocomplete="off"
-                            name="search"
-                            id="search"
-                        />
-                        @if ($this->search)
-                            <button 
-                                wire:click="$set('search', null)" 
-                                class="btn btn-sm btn-danger"
-                            >
-                                <x-icons.x-circle class="w-5 h-5 " />
-                            </button>
+                    <div class="row g-1 align-items-center">
+                        <div class="col-12 col-md-6"> 
+                            <div class="input-group input-group-sm w-100">
+                                <input 
+                                    wire:model.debounce.500ms="search" 
+                                    class="form-control form-control-sm" 
+                                    placeholder="{{__('Search in')}} {{ $this->searchableColumns()->map->label->join(', ') }}" 
+                                    type="text" 
+                                    autocomplete="off"
+                                    name="search"
+                                    id="search"
+                                />
+                                @if ($this->search)
+                                    <button wire:click="$set('search', null)" class="btn btn-sm btn-danger">
+                                        <x-icons.x-circle class="w-5 h-5 " />
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
+                        @if (! empty($this->afterSearchHTMLElements))
+                            @foreach ($this->afterSearchHTMLElements as $asHTMLElement)
+                                <div class="col-auto" wire:key="afterSearchHTMLElements_{{ $loop->index }}">
+                                    {!! $asHTMLElement !!}
+                                </div>
+                            @endforeach
+                        @endif
+                        @if (! empty($this->afterSearchLWComponents))
+                            @foreach ($this->afterSearchLWComponents as $asLWCmpName => $asWCmpSettings)
+                                <div 
+                                    class="{{ 
+                                        isset($asWCmpSettings['cmp_wrapper_classes'])
+                                            ? $asWCmpSettings['cmp_wrapper_classes']
+                                            : 'col-auto'
+                                    }}"
+                                    wire:ignore
+                                >
+                                    @livewire(
+                                        $asLWCmpName,
+                                        isset($asWCmpSettings['cmp_props']) ? $asWCmpSettings['cmp_props'] : [],
+                                        key('afterSearchLWComponents_' . $loop->index)
+                                    )
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 @endif
@@ -57,10 +83,7 @@
                     @if($this->activeFilters)
                         <div class="col-auto">
                             {{-- <span class="text-xl text-primary text-uppercase">@lang('Filter active')</span> --}}
-                            <button 
-                                wire:click="clearAllFilters" 
-                                class="btn btn-sm btn-warning"
-                            >
+                            <button wire:click="clearAllFilters" class="btn btn-sm btn-warning">
                                 <span>Reset Filters</span>
                                 <x-icons.x-circle />
                             </button>
