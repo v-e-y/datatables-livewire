@@ -50,9 +50,9 @@
                                 @endif
                             </div>
                         </div>
-                        @if (! empty($this->afterSearchHTMLElements))
-                            @foreach ($this->afterSearchHTMLElements as $asHTMLElement)
-                                <div class="col-auto" wire:key="afterSearchHTMLElements_{{ $loop->index }}">
+                        @if (! empty($this->afterSearchHTMLComponents))
+                            @foreach ($this->afterSearchHTMLComponents as $asHTMLElement)
+                                <div class="col-auto" wire:key="afterSearchHTMLComponents_{{ $loop->index }}">
                                     {!! $asHTMLElement !!}
                                 </div>
                             @endforeach
