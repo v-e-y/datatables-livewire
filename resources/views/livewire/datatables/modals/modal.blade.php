@@ -5,6 +5,7 @@
     aria-labelledby="Data Tables Livewire Modal" 
     aria-hidden="true"
     wire:ignore.self
+    data-bs-backdrop='static'
 >
     <div 
         class="modal-dialog {{ $modalSize }}"
@@ -51,5 +52,13 @@
     });
     window.addEventListener('close_{{ $modalId }}', event => {
         $("#{{ $modalId }}").modal('hide');
+    });
+    document.addEventListener('click', function(e) {
+        if (
+            document.getElementById('{{ $modalId }}').classList.contains('show')
+            && e.target.id == '{{ $modalId }}'
+        ) {
+            @this.call('closeModal');
+        }
     });
 </script>
