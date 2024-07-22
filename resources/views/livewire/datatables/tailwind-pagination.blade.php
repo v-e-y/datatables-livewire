@@ -4,9 +4,9 @@
             type="button" 
             class="page-link"
             @if ($paginator->onFirstPage())
-                wire:click="previousPage"
-            @else
                 disabled
+            @else
+                wire:click="previousPage"
             @endif
         >
             <i class="previous"></i>
@@ -14,7 +14,7 @@
     </li>
     @foreach ($elements as $element)
         @if (is_string($element))
-            <li class="page-item active m-1" wire:key="paginator_page_{{ Str::random(4) }}_{{ $this->id }}">
+            <li class="page-item active m-1" wire:key="paginator_p_{{ $loop->index }}_{{ $this->id }}">
                 <span class="page-link">
                     {{ $element }}
                 </span>
@@ -22,7 +22,7 @@
         @endif
         @if (is_array($element))
             @foreach ($element as $page => $url)
-                <li class="page-item m-1" wire:key="paginator_page_{{ $page }}_{{ $this->id }}">
+                <li class="page-item m-1" wire:key="paginator_p_{{ $loop->index }}_{{ $this->id }}">
                     <a 
                         class="page-link {{ $page === $paginator->currentPage() ? 'active' : '' }}" 
                         wire:click="gotoPage({{ $page }})"
@@ -34,9 +34,7 @@
             @endforeach
         @endif
     @endforeach
-    <li 
-        class="page-item next m-1"
-    >
+    <li class="page-item next m-1">
         <a 
             type="button"
             class="page-link"

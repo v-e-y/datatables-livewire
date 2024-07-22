@@ -143,6 +143,7 @@ class DataTableLivewire extends Component
         'index',
         'hidden',
         'label',
+        'htmlLabel',
         'tooltip',
         'group',
         'summary',
@@ -1236,7 +1237,7 @@ class DataTableLivewire extends Component
         $this->row = 1;
 
         return $this->mapCallbacks(
-            $this->getQuery()->paginate($this->perPage)
+            $this->getQuery()->paginate($this->perPage, ['*'], $this->paginationName)
         );
     }
 

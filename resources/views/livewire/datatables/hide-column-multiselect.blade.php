@@ -24,7 +24,13 @@
                             >
                                 <div class="position-relative d-flex w-100 align-items-center p-2">
                                     <div class="w-100 align-items-center d-flex">
-                                        <div class="mx-2">{{ $column['label'] }}</div>
+                                        <div class="mx-2">
+                                            @if (array_key_exists('htmlLabel', $column) && ! is_null($column['htmlLabel']))
+                                                {!! $column['htmlLabel'] !!}
+                                            @else
+                                                {{ $column['label'] }}
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y pe-2 d-flex align-items-center">
                                         <x-icons.check-circle />
@@ -37,7 +43,13 @@
                                 >
                                 <div class="position-relative d-flex w-100 align-items-center p-2">
                                     <div class="w-100 align-items-center d-flex">
-                                        <div class="mx-2">{{ $column['label'] }}</div>
+                                        <div class="mx-2">
+                                            @if (array_key_exists('htmlLabel', $column) && ! is_null($column['htmlLabel']))
+                                                {!! $column['htmlLabel'] !!}
+                                            @else
+                                                {{ $column['label'] }}
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y pe-2 d-flex align-items-center">
                                         <x-icons.x-circle />

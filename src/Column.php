@@ -12,6 +12,7 @@ class Column
     public $type = 'string';
     public $index = 0;
     public $label;
+    public null|string $htmlLabel = null;
     public $tooltip;
     public $name;
     public $select;
@@ -164,6 +165,18 @@ class Column
     public function label($label)
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Set the label to be rendered as HTML.
+     * @param string $htmlLabel
+     * @return Column
+     */
+    public function htmlLabel(string $htmlLabel): Column
+    {
+        $this->htmlLabel = $htmlLabel;
 
         return $this;
     }
