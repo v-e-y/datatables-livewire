@@ -1,3 +1,7 @@
-@if (isset($column['width']))style="width:{{ $column['width'] }};"@endif
-@if (isset($column['minWidth']))style="min-width:{{ $column['minWidth'] }};"@endif
-@if (isset($column['maxWidth']))style="max-width:{{ $column['maxWidth'] }};"@endif
+@if (isset($column['width']) || isset($column['minWidth']) || isset($column['maxWidth']))
+    style="
+        @if (isset($column['width']))width: {{ $column['width'] }};@endif
+        @if (isset($column['minWidth']))min-width: {{ $column['minWidth'] }};@endif
+        @if (isset($column['maxWidth']))max-width: {{ $column['maxWidth'] }};@endif
+    "
+@endif
