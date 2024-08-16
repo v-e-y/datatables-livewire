@@ -12,18 +12,14 @@ namespace VEY\DataTablesLivewire\Traits;
  * @property array<string, mixed> $collapsedRowLWProps
  * @property string $collapsedRowCmpWrapperClasses
  * @method void setCollapsedRow(string $id)
+ * 
+ * IMPORTANT You should implement method getCollapsedRowLWPropsProperty in your component
  */
 trait WithCollapseRowCmp
 {
     public string $collapsedRow = '';
 
     public string $collapsedRowLWComponent = '';
-
-    /**
-     * @example $this->collapsedRowLWProps = ['publisherId' => (int) $this->collapsedRow, 'dateRangeValue' => $drValues];
-     * (int) - we need to cast the value to the correct type cos in this component we are using strings
-     */
-    public array $collapsedRowLWProps = [];
 
     public string $collapsedRowCmpWrapperClasses = 'p-4 border-bottom-dashed border-gray-200';
 
@@ -34,5 +30,14 @@ trait WithCollapseRowCmp
     public function setCollapsedRow(string $id): void
     {   
         $this->collapsedRow = $id === $this->collapsedRow ? '' : $id;
+    }
+
+    /**
+     * Get the component properties for the collapsed row
+     * @return array<string, mixed>
+     */
+    public function getCollapsedRowLWPropsProperty(): array
+    {
+        return [];
     }
 }
