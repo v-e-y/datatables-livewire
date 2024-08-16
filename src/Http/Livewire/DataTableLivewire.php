@@ -17,6 +17,7 @@ use VEY\DataTablesLivewire\Traits\WithCallbacks;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use VEY\DataTablesLivewire\Exports\DataTableExport;
 use VEY\DataTablesLivewire\Http\DTO\EntityUpdatedDTO;
+use VEY\DataTablesLivewire\Traits\WithCollapseRowCmp;
 use VEY\DataTablesLivewire\Traits\WithTablePagination;
 use VEY\DataTablesLivewire\Traits\WithPresetDateFilters;
 use VEY\DataTablesLivewire\Traits\WithPresetTimeFilters;
@@ -28,6 +29,7 @@ class DataTableLivewire extends Component
 {
     use WithModals;
     use WithCallbacks;
+    use WithCollapseRowCmp;
     use WithTablePagination;
     use WithPresetDateFilters;
     use WithPresetTimeFilters;

@@ -1,7 +1,7 @@
 @unless($column['hidden'])
-    <div
+    <th
         @if (isset($column['tooltip']['text'])) title="{{ $column['tooltip']['text'] }}" @endif
-        class="position-relative d-table-cell h-12 overflow-hidden align-top" @include('datatables::style-width')
+        class="position-relative h-12  p-0 overflow-hidden align-top" @include('datatables::style-width')
         wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ $this->id }}"
     >
         @if($column['sortable'])
@@ -33,5 +33,5 @@
                 <span>{{ str_replace('_', ' ', $column['label']) }}</span>
             </div>
         @endif
-    </div>
+    </th>
 @endif
