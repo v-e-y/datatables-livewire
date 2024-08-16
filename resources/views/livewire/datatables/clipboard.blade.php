@@ -8,7 +8,7 @@
     @endif
     wire:key="clipboard_{{ random_int(1, 999) }}_{{ $this->id }}"
 >
-    @if ($data)
+    @if (isset($data))
         <span>{{ isset($cropped) ? Str::limit($data, $cropped) : $data }}</span>
     @endif
     <a 
