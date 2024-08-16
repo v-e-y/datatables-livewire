@@ -11,6 +11,7 @@
                             ? $bcWCmpSettings['cmp_wrapper_classes']
                             : 'col-auto'
                     }}"
+                    wire:key="beforeCmpLWComponents_{{ $loop->index }}_{{ $this->id }}"
                     wire:ignore
                 >
                     @livewire(
@@ -52,7 +53,7 @@
                         </div>
                         @if (! empty($this->afterSearchHTMLComponents))
                             @foreach ($this->afterSearchHTMLComponents as $asHTMLElement)
-                                <div class="col-auto" wire:key="afterSearchHTMLComponents_{{ $loop->index }}">
+                                <div class="col-auto" wire:key="afterSearchHTMLComponents_{{ $loop->index }}_{{ $this->id }}">
                                     {!! $asHTMLElement !!}
                                 </div>
                             @endforeach
@@ -65,6 +66,7 @@
                                             ? $asWCmpSettings['cmp_wrapper_classes']
                                             : 'col-auto'
                                     }}"
+                                    wire:key="afterSearchLWComponents_{{ $loop->index }}_{{ $this->id }}"
                                     wire:ignore
                                 >
                                     @livewire(
@@ -100,7 +102,7 @@
                                         @foreach($items as $item)
                                             <option 
                                                 value="{{$item['value']}}"
-                                                wire:key="massActionOption_{{ Str::slug($item['value'] . $item['label'], '_') }}"
+                                                wire:key="massActionOption_{{ $loop->index }}_{{ $this->id }}"
                                             >
                                                 {{ $item['label'] }}
                                             </option>
@@ -110,7 +112,7 @@
                                             @foreach($items as $item)
                                                 <option 
                                                     value="{{$item['value']}}"
-                                                    wire:key="massActionOption_{{ Str::slug($item['value'] . $item['label'], '_') }}"
+                                                    wire:key="massActionOption_{{ $loop->index }}_{{ $this->id }}"
                                                 >
                                                     {{$item['label']}}
                                                 </option>
@@ -172,7 +174,7 @@
                         <button
                             wire:click="toggleGroup('{{ $name }}')"
                             class="px-3 py-2 text-success text-uppercase  border"
-                            wire:key="toggleGroup_{{ Str::slug($name, '_') }}"
+                            wire:key="toggleGroup_{{ $loop->index }}_{{ $this->id }}"
                         >
                             <span class="d-flex align-items-center h-5">
                                 {{ isset($this->groupLabels[$name]) ? __($this->groupLabels[$name]) : __('Toggle :group', ['group' => $name]) }}
@@ -235,23 +237,26 @@
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
-                                    <td class="p-2 w-5 overflow-hidden align-top bg-light bg-gradient"></td>
+                                    <td 
+                                        class="p-2 w-5 overflow-hidden align-top bg-light bg-gradient"
+                                        wire:key="header_cell_{{ $index }}_{{ $this->id }}"
+                                    ></td>
                                 @endif
                             @elseif($column['type'] === 'checkbox')
-                                <td wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}">
+                                <td wire:key="header_cell_{{ $index }}_{{ $this->id }}">
                                     @include('datatables::filters.checkbox')
                                 </td>
                             @elseif($column['type'] === 'label')
                                 <td 
                                     class="p-2 overflow-hidden align-top"
-                                    wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                    wire:key="header_cell_{{ $index }}_{{ $this->id }}"
                                 >
                                     {{ $column['label'] ?? '' }}
                                 </td>
                             @else
                                 <td 
                                     class="p-2 overflow-hidden align-top"
-                                    wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ $this->id }}"
+                                    wire:key="header_cell_{{ $index }}_{{ $this->id }}"
                                 >
                                     @isset($column['filterable'])
                                         @if( is_iterable($column['filterable']) )
@@ -360,7 +365,7 @@
                             @foreach($this->perPageOptions as $per_page_option)
                                 <option 
                                     value="{{ $per_page_option }}"
-                                    wire:key="per_page_{{ $per_page_option }}"
+                                    wire:key="per_page_{{ $per_page_option }}_{{ $this->id }}"
                                 >
                                     {{ $per_page_option }}
                                 </option>
@@ -403,6 +408,7 @@
                             ? $fLWCmpSettings['cmp_wrapper_classes']
                             : 'col-auto'
                     }}"
+                    wire:key="footerLWComponents_{{ $loop->index }}_{{ $this->id }}"
                     wire:ignore
                 >
                     @livewire(
