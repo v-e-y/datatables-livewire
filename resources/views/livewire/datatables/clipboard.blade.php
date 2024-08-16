@@ -4,17 +4,13 @@
     @if (isset($cropped) && $cropped)
         data-bs-toggle="tooltip" 
         data-bs-placement="bottom" 
-        title="{{ $data }}"
+        title="{{ isset($data) ? $data : '' }}"
     @endif
-    wire:key="clipboard_{{ Str::random(4) }}"
+    wire:key="clipboard_{{ random_int(1, 999) }}_{{ $this->id }}"
 >
-    <span>
-        @if (isset($cropped) && $cropped)
-            {{ Str::limit($data, $cropped) }}
-        @else
-            {{ $data }}
-        @endif
-    </span>
+    @if ($data)
+        <span>{{ isset($cropped) ? Str::limit($data, $cropped) : $data }}</span>
+    @endif
     <a 
         type="button"  
         class="position-absolute top-50 end-0 translate-middle-y opacity-50"
