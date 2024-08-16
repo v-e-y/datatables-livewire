@@ -132,7 +132,7 @@
 
                     @if (count($userHeaderHTMLComponents))
                         @foreach ($userHeaderHTMLComponents as $headerComponent)
-                            <div class="col-auto" wire:key="userHeaderHTMLComponents_{{ Str::random(4) }}">
+                            <div class="col-auto" wire:key="userHeaderHTMLComponents_{{ $loop->index }}_{{ $this->id }}">
                                 {!! $headerComponent !!}
                             </div>
                         @endforeach
@@ -140,7 +140,7 @@
 
                     @if (count($headerLWComponents))
                         @foreach ($headerLWComponents as $component => $componentProps)
-                            <div class="col-auto" wire:ignore>
+                            <div class="col-auto" wire:key="headerLWComponents_{{ $loop->index }}_{{ $this->id }}" wire:ignore>
                                 @livewire($component, $componentProps, key('headerLWComponents_' . $loop->index))
                             </div>
                         @endforeach
@@ -200,21 +200,18 @@
             </div>
         @endif
 
-        <div 
-            wire:loading.class="opacity-50" 
-            class="shadow-lg w-100 overflow-auto"
-        >
-            <div>
-                <div class="w-100 d-table mw-100 align-middle">
+        <div wire:loading.class="opacity-50" class="shadow-lg table-responsive">
+            <table class="table align-middle">
+                <thead>
                     @unless($this->hideHeader)
-                        <div class="d-table-row">
+                        <tr>
                             @foreach($this->columns as $index => $column)
                                 @if($hideable === 'inline')
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
                                     @unless($column['hidden'])
-                                        <div 
-                                            class="position-relative d-table-cell h-12 overflow-hidden align-top"
+                                        <th
+                                            class="position-relative h-12 overflow-hidden align-top p-0"
                                             wire:key="header_checkbox_{{ $index }}_{{ $this->id }}"
                                         >
                                             <div 
@@ -224,32 +221,36 @@
                                                     {{ count($visibleSelected) }}
                                                 </span>
                                             </div>
-                                        </div>
+                                        </th>
                                     @endunless
                                 @else
                                     @include('datatables::header-no-hide', ['column' => $column, 'sort' => $sort])
                                 @endif
                             @endforeach
-                        </div>
+                        </tr>
                     @endunless
-                    <div class="d-table-row bg-light bg-gradient">
+                </thead>
+                <tbody>
+                    <tr class="bg-light bg-gradient">
                         @foreach($this->columns as $index => $column)
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
-                                    <div class="d-table-cell p-2 w-5 overflow-hidden align-top bg-light bg-gradient"></div>
+                                    <td class="p-2 w-5 overflow-hidden align-top bg-light bg-gradient"></td>
                                 @endif
                             @elseif($column['type'] === 'checkbox')
-                                @include('datatables::filters.checkbox')
+                                <td wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}">
+                                    @include('datatables::filters.checkbox')
+                                </td>
                             @elseif($column['type'] === 'label')
-                                <div 
-                                    class="d-table-cell p-2 overflow-hidden align-top"
+                                <td 
+                                    class="p-2 overflow-hidden align-top"
                                     wire:key="header_cell_{{ Str::slug($column['label'], '_') }}_{{ $index }}_{{ $this->id }}"
                                 >
                                     {{ $column['label'] ?? '' }}
-                                </div>
+                                </td>
                             @else
-                                <div 
-                                    class="d-table-cell p-2 overflow-hidden align-top"
+                                <td 
+                                    class="p-2 overflow-hidden align-top"
                                     wire:key="header_cell_{{ Str::slug($column['name'], '_') }}_{{ $index }}_{{ $this->id }}"
                                 >
                                     @isset($column['filterable'])
@@ -263,49 +264,63 @@
                                             </div>
                                         @endif
                                     @endisset
-                                </div>
+                                </td>
                             @endif
                         @endforeach
-                    </div>
+                    </tr>
                     @foreach($this->results as $rowIndex => $row)
-                        <div 
-                            class="d-table-row {{ $this->rowClasses($row, $loop) }}"
-                            wire:key="row_{{ $loop->index }}_{{ Str::random(3) }}_{{ $this->id }}"
-                        >
+                        <tr class="{{ $this->rowClasses($row, $loop) }}" wire:key="row_{{ $loop->index }}_{{ $this->id }}">
                             @foreach($this->columns as $column)
-                                @if($column['hidden'])
-                                    @if($hideable === 'inline')
+                                <td wire:key="row_{{ $loop->parent->index }}_cell_{{ $loop->index }}_{{ $this->id }}" class="{{$column['hidden'] ? 'd-none' : ''}}">
+                                    @if($column['hidden'])
+                                        @if($hideable === 'inline')
+                                            <div class="@unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"></div>
+                                        @endif
+                                    @elseif($column['type'] === 'checkbox')
+                                        @include('datatables::checkbox', ['value' => $row->checkbox_attribute])
+                                    @elseif($column['type'] === 'label')
+                                        @include('datatables::label')
+                                    @else
                                         <div 
-                                            class="d-table-cell w-5 @unless($column['wrappable']) whitespace-nowrap truncate @endunless overflow-hidden align-top"
-                                            wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
-                                        ></div>
+                                            class="
+                                                @unless($column['wrappable']) whitespace-nowrap truncate @endunless 
+                                                @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif 
+                                                {{ $this->cellClasses($row, $column) }}"
+                                        >
+                                            {!! $row->{$column['name']} !!}
+                                        </div>
                                     @endif
-                                @elseif($column['type'] === 'checkbox')
-                                    @include('datatables::checkbox', ['value' => $row->checkbox_attribute])
-                                @elseif($column['type'] === 'label')
-                                    @include('datatables::label')
-                                @else
-                                    <div 
-                                        class="d-table-cell @unless($column['wrappable']) whitespace-nowrap truncate @endunless @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif {{ $this->cellClasses($row, $column) }}"
-                                        wire:key="row_{{ $rowIndex }}_cell_{{ $loop->index }}_{{ $this->id }}"
-                                    >
-                                        {!! $row->{$column['name']} !!}
-                                    </div>
-                                @endif
+                                </td>
                             @endforeach
-                        </div>
+                        </tr>
+                        @if (isset($row->id) && $collapsedRow === (string) $row->id)
+                            <tr wire:key="row_{{ $rowIndex }}_entity_is{{ $row->id }}_collapse_{{ $this->id }}">
+                                <td colspan="{{ count($this->columns) }}">
+                                    <div class="{{ $collapsedRowCmpWrapperClasses }}" wire:ignore>
+                                        @livewire(
+                                            $collapsedRowLWComponent, 
+                                            $collapsedRowLWProps,
+                                            key('collapsedRowCmpWrapperClasses' . $row->id)
+                                        )
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
-
-                    @if ($this->hasSummaryRow())
-                        <div class="d-table-row p-1">
+                    @if($this->results->isEmpty())
+                        <tr colspan="{{ count($this->columns) }}">
+                            <td class="text-center" colspan="{{ count($this->columns) }}">{{ __("There's Nothing to show at the moment") }}</td>
+                        </tr>
+                    @endif
+                </tbody>
+                @if ($this->hasSummaryRow())
+                    <tfoot>
+                        <tr>
                             @foreach($this->columns as $column)
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
-                                        <div 
+                                        <td 
                                             class="
-                                                d-table-cell 
-                                                px-6 
-                                                py-2 
                                                 @unless ($column['wrappable']) 
                                                     whitespace-nowrap truncate 
                                                 @endunless 
@@ -321,21 +336,16 @@
                                             wire:key="summary_cell_{{ $loop->index }}_{{ $this->id }}"
                                         >
                                             {!! $this->summarize($column['name']) !!}
-                                        </div>
+                                        </td>
                                     @else
-                                        <div class="d-table-cell"></div>
+                                        <td></td>
                                     @endif
                                 @endunless
                             @endforeach
-                        </div>
-                    @endif
-                </div>
-            </div>
-            @if($this->results->isEmpty())
-                <p class="p-3 text-lg text-center">
-                    {{ __("There's Nothing to show at the moment") }}
-                </p>
-            @endif
+                        </tr>
+                    </tfoot>
+                @endif
+            </table>
         </div>
 
         @unless($this->hidePagination)

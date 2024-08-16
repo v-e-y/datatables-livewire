@@ -80,6 +80,6 @@ return [
             'odd' => 'divide-x',
             'selected' => 'divide-x',
         ],
-        'cell' => 'text-nowrap px-2 py-2',
+        'cell' => 'text-nowrap',
     ],
 ];

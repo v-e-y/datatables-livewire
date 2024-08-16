@@ -1,6 +1,6 @@
-<div 
+<th 
     wire:click.prefetch="toggle('{{ $index }}')"
-    class="@if($column['hidden']) position-relative bg-transparent d-table-cell h-12 w-3 bg-light bg-gradient overflow-none align-top group @else d-none @endif"
+    class="@if($column['hidden']) position-relative bg-transparent h-12 w-3 p-0 bg-light bg-gradient overflow-none align-top group @else d-none @endif"
     style="min-width:12px; max-width:12px"
     wire:key="header_{{ $index }}_{{ Str::slug($column['label'], '_') }}_{{ $this->id }}"
 >
@@ -16,9 +16,9 @@
     >
         <path stroke-miterlimit="10" d="M313.66 206.75H.5V1.49l157.65 204.9L313.66 1.49v205.26z" />
     </svg>
-</div>
-<div 
-    class="@if($column['hidden']) d-none @else position-relative h-12 overflow-hidden align-top d-flex d-table-cell @endif" 
+</th>
+<th 
+    class="@if($column['hidden']) d-none @else position-relative h-12 overflow-hidden align-top d-flex @endif" 
     @include('datatables::style-width')
 >
     @if($column['sortable'])
@@ -56,4 +56,4 @@
             <x-icons.arrow-circle-left class="h-3 w-3 text-gray-300 " />
         </button>
     @endif
-</div>
+</th>
