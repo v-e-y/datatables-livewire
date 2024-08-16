@@ -303,8 +303,8 @@
                                 <td colspan="{{ count($this->columns) }}">
                                     <div class="{{ $collapsedRowCmpWrapperClasses }}" wire:ignore>
                                         @livewire(
-                                            $collapsedRowLWComponent, 
-                                            $collapsedRowLWProps,
+                                            $this->collapsedRowLWComponent, 
+                                            $this->collapsedRowLWProps,
                                             key('collapsedRowCmpWrapperClasses' . $row->id)
                                         )
                                     </div>
