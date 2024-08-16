@@ -293,7 +293,7 @@
                                 </td>
                             @endforeach
                         </tr>
-                        @if (isset($row->id) && $collapsedRow === (string) $row->id)
+                        @if (isset($row->id) && ($collapsedRow === (string) $row->id && $collapsedRowLWComponent))
                             <tr wire:key="row_{{ $rowIndex }}_entity_is{{ $row->id }}_collapse_{{ $this->id }}">
                                 <td colspan="{{ count($this->columns) }}">
                                     <div class="{{ $collapsedRowCmpWrapperClasses }}" wire:ignore>
