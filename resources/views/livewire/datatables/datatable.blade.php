@@ -201,7 +201,7 @@
                 @endforeach
             </div>
         @endif
-
+        @includeIf($beforeTableBodySlot)
         <div wire:loading.class="opacity-50" class="shadow-lg table-responsive">
             <table class="table align-middle">
                 <thead>

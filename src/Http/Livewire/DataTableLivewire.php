@@ -63,6 +63,7 @@ class DataTableLivewire extends Component
     public $params;
     public $selected = [];
     public $beforeTableSlot;
+    public string $beforeTableBodySlot = '';
     public $buttonsSlot;
     public $afterTableSlot;
     public $complex;
