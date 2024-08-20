@@ -1,9 +1,6 @@
 <div x-data="{ show: false }" class="d-flex flex-column align-items-center">
     <div class="d-flex flex-column align-items-center position-relative">
-        <button 
-            x-on:click="show = !show" 
-            class="btn btn-sm btn-info"
-        >
+        <button x-on:click="show = !show" class="btn btn-sm btn-info">
             <div class="d-flex align-items-center h-5">
                 {{ __('Show / Hide Columns')}}
             </div>
@@ -16,6 +13,7 @@
         >
             <div class="d-flex flex-column w-100">
                 @foreach($this->columns as $index => $column)
+                    @continue($column['hiddenAtAll'])
                     @if ($column['hideable'] !== false)
                         <div wire:key="hide_column_{{ $index }}_{{ $this->id }}">
                             <div 
