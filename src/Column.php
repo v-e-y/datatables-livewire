@@ -28,6 +28,7 @@ class Column
     public $defaultSort;
     public $callback;
     public $hidden;
+    public bool $hiddenAtAll = false;
     public $scope;
     public $scopeFilter;
     public $params = [];

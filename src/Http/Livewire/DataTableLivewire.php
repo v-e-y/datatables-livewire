@@ -145,6 +145,7 @@ class DataTableLivewire extends Component
     protected $viewColumns = [
         'index',
         'hidden',
+        'hiddenAtAll',
         'label',
         'htmlLabel',
         'tooltip',

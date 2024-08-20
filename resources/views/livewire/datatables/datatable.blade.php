@@ -189,6 +189,7 @@
         @if($hideable === 'buttons')
             <div class="p-2 grid grid-cols-8 gap-2">
                 @foreach($this->columns as $index => $column)
+                    @continue($column['hiddenAtAll'])
                     @if ($column['hideable'])
                         <button 
                             wire:click.prefetch="toggle('{{ $index }}')" 
@@ -208,6 +209,7 @@
                     @unless($this->hideHeader)
                         <tr>
                             @foreach($this->columns as $index => $column)
+                                @continue($column['hiddenAtAll'])
                                 @if($hideable === 'inline')
                                     @include('datatables::header-inline-hide', ['column' => $column, 'sort' => $sort])
                                 @elseif($column['type'] === 'checkbox')
@@ -235,6 +237,7 @@
                 <tbody>
                     <tr class="bg-light bg-gradient">
                         @foreach($this->columns as $index => $column)
+                            @continue($column['hiddenAtAll'])
                             @if($column['hidden'])
                                 @if($hideable === 'inline')
                                     <td 
@@ -276,6 +279,7 @@
                     @foreach($this->results as $rowIndex => $row)
                         <tr class="{{ $this->rowClasses($row, $loop) }}" wire:key="row_{{ $loop->index }}_{{ $this->id }}">
                             @foreach($this->columns as $column)
+                                @continue($column['hiddenAtAll'])
                                 <td wire:key="row_{{ $loop->parent->index }}_cell_{{ $loop->index }}_{{ $this->id }}" class="{{$column['hidden'] ? 'd-none' : ''}}">
                                     @if($column['hidden'])
                                         @if($hideable === 'inline')
@@ -290,7 +294,8 @@
                                             class="
                                                 @unless($column['wrappable']) whitespace-nowrap truncate @endunless 
                                                 @if($column['contentAlign'] === 'right') text-end @elseif($column['contentAlign'] === 'center') text-center @else text-start @endif 
-                                                {{ $this->cellClasses($row, $column) }}"
+                                                {{ $this->cellClasses($row, $column) }}
+                                            "
                                         >
                                             {!! $row->{$column['name']} !!}
                                         </div>
@@ -305,7 +310,7 @@
                                         @livewire(
                                             $this->collapsedRowLWComponent, 
                                             $this->collapsedRowLWProps,
-                                            key('collapsedRowCmpWrapperClasses' . $row->id)
+                                            key('collapsedRowCmpWrapperClasses' . $row->id . '_' . $this->id)
                                         )
                                     </div>
                                 </td>
@@ -322,6 +327,7 @@
                     <tfoot>
                         <tr>
                             @foreach($this->columns as $column)
+                                @continue($column['hiddenAtAll'])
                                 @unless($column['hidden'])
                                     @if ($column['summary'])
                                         <td 
