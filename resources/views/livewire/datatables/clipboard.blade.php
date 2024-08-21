@@ -6,7 +6,7 @@
         data-bs-placement="bottom" 
         title="{{ isset($data) ? $data : '' }}"
     @endif
-    wire:key="clipboard_{{ random_int(1, 999) }}_{{ $this->id }}"
+    wire:key="clipboard_{{ Str::random(4) }}_{{ $this->id }}"
 >
     @if (isset($data))
         <span>{{ isset($cropped) ? Str::limit($data, $cropped) : $data }}</span>
