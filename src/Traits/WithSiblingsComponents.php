@@ -9,7 +9,8 @@ trait WithSiblingsComponents {
     /** 
      * @var array<array<string>> $beforeCmpLWComponents 
      * @example [
-     *      'lw_cmp_name' => [
+     *      [
+     *         'cmp_name' => string
      *         'cmp_props' => [], // optional
      *         'cmp_wrapper_classes' => 'col-auto', // optional
      *     ],
@@ -20,14 +21,25 @@ trait WithSiblingsComponents {
     /** @var array<string> $userHeaderHTMLComponents */
     public array $userHeaderHTMLComponents = [];
 
-    /** @var array<array<string>> $headerLWComponents */
-    public array $headerLWComponents = [];
+    /**
+     * Header (header & buttons line) right side
+     * @var array<array<string, mixed> $footerLWComponents
+     * @example [
+     *      [
+     *         'cmp_name' => string
+     *         'cmp_props' => [], // optional
+     *         'cmp_wrapper_classes' => 'col-auto', // optional
+     *     ],
+     * ]
+     */
+    public array $headerLWComponents = []; 
 
     /**
      * Add footer Livewire components
      * @var array<array<string, mixed> $footerLWComponents
      * @example [
-     *      'lw_cmp_name' => [
+     *      [
+     *         'cmp_name' => 'string',
      *         'cmp_props' => [], // optional
      *         'cmp_wrapper_classes' => 'col-auto', // optional
      *     ],
@@ -45,7 +57,8 @@ trait WithSiblingsComponents {
      * After search Livewire components
      * @var array<array<string, mixed> $afterSearchLWComponents
      * @example [
-     *      'lw_cmp_name' => [
+     *      [
+     *         'cmp_name' => 'string',
      *         'cmp_props' => [], // optional
      *         'cmp_wrapper_classes' => 'col-auto', // optional
      *     ],
