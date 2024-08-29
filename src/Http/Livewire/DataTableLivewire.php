@@ -102,6 +102,12 @@ class DataTableLivewire extends Component
     public $massActionOption;
 
     /**
+     * Is select all is on in checkbox column
+     * @var boolean
+     */
+    public bool $isOnToggleSelectAll = true;
+
+    /**
      * @var array List your groups and the corresponding label (or translation) here.
      *            The label can be a i18n placeholder like 'app.my_string' and it will be automatically translated via __().
      *
