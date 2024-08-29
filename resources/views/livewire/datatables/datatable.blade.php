@@ -1,31 +1,26 @@
-<div 
-    id="data_table_livewire"
-    class="{{ $cmpWrapperClasses }}"
->
+<div id="data_table_livewire" class="{{ $cmpWrapperClasses }}">
     @if (! empty($this->beforeCmpLWComponents))
         <div class="row g-1 align-items-center mb-10">
-            @foreach ($this->beforeCmpLWComponents as $bcLWCmpName => $bcWCmpSettings)
+            @foreach ($this->beforeCmpLWComponents as $bcLWCmp)
                 <div 
                     class="{{ 
-                        isset($bcWCmpSettings['cmp_wrapper_classes'])
-                            ? $bcWCmpSettings['cmp_wrapper_classes']
+                        isset($bcLWCmp['cmp_wrapper_classes'])
+                            ? $bcLWCmp['cmp_wrapper_classes']
                             : 'col-auto'
                     }}"
                     wire:key="beforeCmpLWComponents_{{ $loop->index }}_{{ $this->id }}"
                     wire:ignore
                 >
                     @livewire(
-                        $bcLWCmpName,
-                        isset($bcWCmpSettings['cmp_props']) ? $bcWCmpSettings['cmp_props'] : [],
+                        $bcLWCmp['cmp_name'],
+                        isset($bcLWCmp['cmp_props']) ? $bcLWCmp['cmp_props'] : [],
                         key('beforeCmpLWComponents_' . $loop->index)
                     )
                 </div>
             @endforeach
         </div>
     @endif
-    @isset($title)
-        <h1 class="h2 mb-5">{{ $title }}</h1>
-    @endisset
+    @isset($title)<h1 class="h2 mb-5">{{ $title }}</h1>@endisset
     @includeIf($beforeTableSlot)
     <div class="position-relative">
         <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin position-absolute top-50 start-50 translate-middle" />
@@ -59,19 +54,15 @@
                             @endforeach
                         @endif
                         @if (! empty($this->afterSearchLWComponents))
-                            @foreach ($this->afterSearchLWComponents as $asLWCmpName => $asWCmpSettings)
+                            @foreach ($this->afterSearchLWComponents as $asLWCmp)
                                 <div 
-                                    class="{{ 
-                                        isset($asWCmpSettings['cmp_wrapper_classes'])
-                                            ? $asWCmpSettings['cmp_wrapper_classes']
-                                            : 'col-auto'
-                                    }}"
+                                    class="{{ isset($asLWCmp['cmp_wrapper_classes']) ? $asLWCmp['cmp_wrapper_classes'] : 'col-auto' }}"
                                     wire:key="afterSearchLWComponents_{{ $loop->index }}_{{ $this->id }}"
                                     wire:ignore
                                 >
                                     @livewire(
-                                        $asLWCmpName,
-                                        isset($asWCmpSettings['cmp_props']) ? $asWCmpSettings['cmp_props'] : [],
+                                        $asLWCmp['cmp_name'],
+                                        isset($asLWCmp['cmp_props']) ? $asLWCmp['cmp_props'] : [],
                                         key('afterSearchLWComponents_' . $loop->index)
                                     )
                                 </div>
@@ -141,9 +132,17 @@
                     @endif
 
                     @if (count($headerLWComponents))
-                        @foreach ($headerLWComponents as $component => $componentProps)
-                            <div class="col-auto" wire:key="headerLWComponents_{{ $loop->index }}_{{ $this->id }}" wire:ignore>
-                                @livewire($component, $componentProps, key('headerLWComponents_' . $loop->index))
+                        @foreach ($headerLWComponents as $hLwCmp)
+                            <div 
+                                class="{{ isset($hLwCmp['cmp_wrapper_classes']) ? $hLwCmp['cmp_wrapper_classes'] : 'col-auto' }}" 
+                                wire:key="headerLWComponents_{{ $loop->index }}_{{ $this->id }}" 
+                                wire:ignore
+                            >
+                                @livewire(
+                                    $hLwCmp['cmp_name'], 
+                                    isset($hLwCmp['cmp_props']) ? $hLwCmp['cmp_props'] : [],
+                                    key('headerLWComponents_' . $loop->index)
+                                )
                             </div>
                         @endforeach
                     @endif
@@ -154,10 +153,7 @@
                             x-data="{ init() {window.livewire.on('startDownload', link => window.open(link, '_blank'))} }" 
                             x-init="init"
                         >
-                            <button 
-                                wire:click="export" 
-                                class="btn btn-sm btn-info"
-                            >
+                            <button wire:click="export" class="btn btn-sm btn-info">
                                 <span>{{ __('Export') }}</span>
                                 <x-icons.excel />
                             </button>
@@ -407,19 +403,15 @@
 
     @if (count($footerLWComponents))
         <div class="row g-1 align-items-center">
-            @foreach ($footerLWComponents as $fLWCmpName => $fLWCmpSettings)
+            @foreach ($footerLWComponents as $fLwCmp)
                 <div 
-                    class="{{ 
-                        isset($fLWCmpSettings['cmp_wrapper_classes'])
-                            ? $fLWCmpSettings['cmp_wrapper_classes']
-                            : 'col-auto'
-                    }}"
+                    class="{{ isset($fLwCmp['cmp_wrapper_classes']) ? $fLwCmp['cmp_wrapper_classes'] : 'col-auto' }}"
                     wire:key="footerLWComponents_{{ $loop->index }}_{{ $this->id }}"
                     wire:ignore
                 >
                     @livewire(
-                        $fLWCmpName,
-                        isset($fLWCmpSettings['cmp_props']) ? $fLWCmpSettings['cmp_props'] : [],
+                        $fLwCmp['cmp_name'],
+                        isset($fLwCmp['cmp_props']) ? $fLwCmp['cmp_props'] : [],
                         key('footerLWComponents_' . $loop->index)
                     )
                 </div>
