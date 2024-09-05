@@ -25,11 +25,11 @@
     <div class="position-relative">
         <x-icons.cog wire:loading class="text-gray-400 h-9 w-9 animate-spin position-absolute top-50 start-50 translate-middle" />
         <div class="row align-items-center justify-content-between mb-10">
-            <div class="col-12 col-md-4 align-items-center">
+            <div class="col-12 col-md-5 align-items-center">
                 @if($this->searchableColumns()->count())
                     <div class="row g-1 align-items-center">
-                        <div class="col-12 col-md-6"> 
-                            <div class="input-group input-group-sm w-100">
+                        <div class="col-12 col-md"> 
+                            <div class="position-relative w-100">
                                 <input 
                                     wire:model.debounce.500ms="search" 
                                     class="form-control form-control-sm" 
@@ -40,8 +40,11 @@
                                     id="search"
                                 />
                                 @if ($this->search)
-                                    <button wire:click="$set('search', null)" class="btn btn-sm btn-danger">
-                                        <x-icons.x-circle class="w-5 h-5 " />
+                                    <button 
+                                        class="btn btn-link btn-sm end-0 me-2 position-absolute text-danger top-50 translate-middle-y"
+                                        wire:click="$set('search', null)"
+                                    >
+                                        <x-icons.x-circle class="w-5 h-5" />
                                     </button>
                                 @endif
                             </div>
@@ -71,7 +74,7 @@
                     </div>
                 @endif
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-7">
                 <div class="row g-1 justify-content-end align-items-center">
                     @if($this->activeFilters)
                         <div class="col-auto">
