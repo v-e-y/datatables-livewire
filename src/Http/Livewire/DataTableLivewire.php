@@ -431,12 +431,15 @@ class DataTableLivewire extends Component
         ];
     }
 
+    /**
+     * @param boolean $withAlias
+     * @param boolean $export
+     */
     public function getSelectStatements($withAlias = false, $export = false)
     {
         return $this->processedColumns->columns
-            ->reject(function ($column) use ($export) {
-                return $column->scope || $column->type === 'label' || ($export && $column->preventExport);
-            })->map(function ($column) {
+            ->reject(fn($column) => $column->scope || $column->type === 'label' || ($export && $column->preventExport))
+            ->map(function ($column) {
                 if ($column->select) {
                     return $column;
                 }
@@ -454,32 +457,37 @@ class DataTableLivewire extends Component
                 }
 
                 return $column;
-            })->when($withAlias, function ($columns) {
-                return $columns->map(function ($column) {
-                    if (! $column->select) {
-                        return null;
-                    }
-                    if ($column->select instanceof Expression) {
-                        $sep_string = config('database.default') === 'pgsql' ? '"' : '`';
+            })->when(
+                $withAlias, 
+                function ($columns) {
+                    return $columns->map(function ($column) {
+                        if (! $column->select) return null;
 
-                        return new Expression($column->select->getValue() . ' AS ' . $sep_string . $column->name . $sep_string);
-                    }
+                        if ($column->select instanceof Expression) {
+                            $sep_string = config('database.default') === 'pgsql' ? '"' : '`';
 
-                    if (is_array($column->select)) {
-                        $selects = $column->select;
-                        $first = array_shift($selects) . ' AS ' . $column->name;
-                        $others = array_map(function ($select) {
-                            return $select . ' AS ' . $select;
-                        }, $selects);
+                            return new Expression(sprintf(
+                                '%s AS %s%s%s', 
+                                $column->select->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar()), 
+                                $sep_string, 
+                                $column->name, 
+                                $sep_string
+                            ));
+                        }
 
-                        return array_merge([$first], $others);
-                    }
+                        if (is_array($column->select)) {
+                            $selects = $column->select;
+                            $first = array_shift($selects) . ' AS ' . $column->name;
+                            $others = array_map(fn($select) => $select . ' AS ' . $select, $selects);
 
-                    return $column->select . ' AS ' . $column->name;
-                });
-            }, function ($columns) {
-                return $columns->map->select;
-            });
+                            return array_merge([$first], $others);
+                        }
+
+                        return $column->select . ' AS ' . $column->name;
+                    });
+                }, 
+                fn($columns) => $columns->map->select
+            );
     }
 
     protected function resolveColumnName($column, $additional = null)
