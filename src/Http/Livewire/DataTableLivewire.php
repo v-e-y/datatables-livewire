@@ -739,9 +739,7 @@ class DataTableLivewire extends Component
 
     public function defaultSort()
     {
-        $columnIndex = collect($this->freshColumns)->search(function ($column) {
-            return is_string($column['defaultSort']);
-        });
+        $columnIndex = collect($this->freshColumns)->search(fn($column) => is_string($column['defaultSort']));
 
         return is_numeric($columnIndex) ? [
             'key' => $columnIndex,
@@ -767,7 +765,10 @@ class DataTableLivewire extends Component
                 break;
 
             case $column['select']:
-                return Str::before($column['select'], ' AS ');
+                return Str::before(
+                    $column['select']->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar()),
+                    ' AS '
+                );
                 break;
 
             default:
@@ -1543,7 +1544,12 @@ class DataTableLivewire extends Component
                         } else {
                             $query->orWhere(function ($query) use ($index, $value) {
                                 foreach ($this->getColumnFilterStatement($index) as $column) {
-                                    $column = is_array($column) ? $column[0] : $column;
+                                    if (is_array($column)) {
+                                        $column = is_array($column) ? $column[0] : $column;
+                                    } elseif ($column instanceof \Illuminate\Database\Query\Expression) {
+                                        $column = $column->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar());
+                                    }
+
                                     $query->orWhereRaw('LOWER(' . $this->tablePrefix . $column . ') like ?', [mb_strtolower("%$value%")]);
                                 }
                             });
