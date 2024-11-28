@@ -765,10 +765,10 @@ class DataTableLivewire extends Component
                 break;
 
             case $column['select']:
-                return Str::before(
-                    $column['select']->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar()),
-                    ' AS '
-                );
+                $expression = $column['select'] instanceof \Illuminate\Database\Query\Expression
+                    ? $column['select']->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar())
+                    : $column['select'];
+                return Str::before($expression, ' AS ');
                 break;
 
             default:
@@ -1545,7 +1545,7 @@ class DataTableLivewire extends Component
                             $query->orWhere(function ($query) use ($index, $value) {
                                 foreach ($this->getColumnFilterStatement($index) as $column) {
                                     if (is_array($column)) {
-                                        $column = is_array($column) ? $column[0] : $column;
+                                        $column = $column[0];
                                     } elseif ($column instanceof \Illuminate\Database\Query\Expression) {
                                         $column = $column->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar());
                                     }
