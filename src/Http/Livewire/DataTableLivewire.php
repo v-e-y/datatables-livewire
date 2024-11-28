@@ -346,11 +346,9 @@ class DataTableLivewire extends Component
 
     public function getViewColumns()
     {
-        return collect($this->freshColumns)->map(function ($column) {
-            return collect($column)
-                ->only($this->viewColumns)
-                ->toArray();
-        })->toArray();
+        return collect($this->freshColumns)->map(
+            fn($column) => collect($column)->only($this->viewColumns)->toArray()
+        )->toArray();
     }
 
     public function getComplexColumnsProperty()
@@ -408,9 +406,8 @@ class DataTableLivewire extends Component
             // SQLite dialect.
             return $selects->count() > 1
                 ? new Expression('(' .
-                collect($selects)->map(function ($select) {
-                    return 'COALESCE(' . $this->tablePrefix . $select . ', \'\')';
-                })->join(" || '" . static::SEPARATOR . "' || ") . ')')
+                collect($selects)->map(fn($select) => 'COALESCE(' . $this->tablePrefix . $select . ', \'\')')
+                    ->join(" || '" . static::SEPARATOR . "' || ") . ')')
                 : $selects->first();
         } else {
             // Default to MySql dialect.
@@ -549,9 +546,7 @@ class DataTableLivewire extends Component
 
     public function getSessionStoredSort()
     {
-        if (! $this->persistSort) {
-            return;
-        }
+        if (! $this->persistSort) return;
 
         $this->sort = session()->get($this->sessionStorageKey() . '_sort', $this->sort);
         $this->direction = session()->get($this->sessionStorageKey() . '_direction', $this->direction);
@@ -559,9 +554,7 @@ class DataTableLivewire extends Component
 
     public function getSessionStoredPerPage()
     {
-        if (! $this->persistPerPage) {
-            return;
-        }
+        if (! $this->persistPerPage) return;
 
         $fromSession = session()->get($this->sessionStorageKey() . $this->name . '_perpage', $this->perPage);
         
@@ -570,9 +563,7 @@ class DataTableLivewire extends Component
 
     public function setSessionStoredSort()
     {
-        if (! $this->persistSort) {
-            return;
-        }
+        if (! $this->persistSort) return;
 
         session()->put([
             $this->sessionStorageKey() . '_sort' => $this->sort,
@@ -582,9 +573,7 @@ class DataTableLivewire extends Component
 
     public function setSessionStoredFilters()
     {
-        if (! $this->persistFilters) {
-            return;
-        }
+        if (! $this->persistFilters) return;
 
         session()->put([
             $this->sessionStorageKey() . '_filter' => [
@@ -602,9 +591,7 @@ class DataTableLivewire extends Component
 
     public function setSessionStoredHidden()
     {
-        if (! $this->persistHiddenColumns) {
-            return;
-        }
+        if (! $this->persistHiddenColumns) return;
 
         $hidden = collect($this->columns)->filter->hidden->keys()->toArray();
 
@@ -613,9 +600,7 @@ class DataTableLivewire extends Component
 
     public function initialiseSearch()
     {
-        if (! $this->persistSearch) {
-            return;
-        }
+        if (! $this->persistSearch) return;
 
         $this->search = session()->get($this->sessionStorageKey() . '_search', $this->search);
     }
@@ -624,9 +609,8 @@ class DataTableLivewire extends Component
     {
         $this->sort = $this->defaultSort()
         ? $this->defaultSort()['key']
-        : collect($this->freshColumns)->reject(function ($column) {
-            return in_array($column['type'], Column::UNSORTABLE_TYPES) || $column['hidden'];
-        })->keys()->first();
+        : collect($this->freshColumns)->reject(fn($column) => in_array($column['type'], Column::UNSORTABLE_TYPES) || $column['hidden'])
+            ->keys()->first();
 
         $this->direction = $this->defaultSort() && $this->defaultSort()['direction'] === 'asc';
         $this->getSessionStoredSort();
@@ -634,9 +618,7 @@ class DataTableLivewire extends Component
 
     public function initialiseHiddenColumns()
     {
-        if (! $this->persistHiddenColumns) {
-            return;
-        }
+        if (! $this->persistHiddenColumns) return;
 
         if (session()->has($this->sessionStorageKey() . '_hidden_columns')) {
             $this->columns = collect($this->columns)->map(function ($column, $index) {
@@ -1173,18 +1155,14 @@ class DataTableLivewire extends Component
 
     public function addScopeSelectFilter($query, $index, $value)
     {
-        if (! isset($this->freshColumns[$index]['scopeFilter'])) {
-            return;
-        }
+        if (! isset($this->freshColumns[$index]['scopeFilter'])) return;
 
         return $query->{$this->freshColumns[$index]['scopeFilter']}($value);
     }
 
     public function addScopeNumberFilter($query, $index, $value)
     {
-        if (! isset($this->freshColumns[$index]['scopeFilter'])) {
-            return;
-        }
+        if (! isset($this->freshColumns[$index]['scopeFilter'])) return;
 
         return $query->{$this->freshColumns[$index]['scopeFilter']}($value);
     }
@@ -1230,9 +1208,7 @@ class DataTableLivewire extends Component
 
     public function scopeColumns()
     {
-        return collect($this->freshColumns)->filter(function ($column, $key) {
-            return isset($column['scope']);
-        });
+        return collect($this->freshColumns)->filter(fn($column, $key) => isset($column['scope']));
     }
 
     public function getHeaderProperty()
@@ -1299,9 +1275,8 @@ class DataTableLivewire extends Component
 
     public function columnIsAggregateRelation($column)
     {
-        if (! $this->columnIsRelation($column)) {
-            return;
-        }
+        if (! $this->columnIsRelation($column)) return;
+
         $relation = $this->builder()->getRelation(Str::before($column['name'], '.'));
 
         return $relation instanceof HasManyThrough || $relation instanceof HasMany || $relation instanceof belongsToMany;
@@ -1355,9 +1330,7 @@ class DataTableLivewire extends Component
 
     public function addComplexQuery()
     {
-        if (! $this->complexQuery) {
-            return $this;
-        }
+        if (! $this->complexQuery) return $this;
 
         $this->query->where(function ($query) {
             $this->processNested($this->complexQuery, $query);
@@ -1428,9 +1401,7 @@ class DataTableLivewire extends Component
                     }
                 }, null, null, $logic);
             } else {
-                $query->where(function ($q) use ($rule) {
-                    $this->processNested($rule['content'], $q, $rule['logic']);
-                }, null, null, $logic);
+                $query->where(fn($q) => $this->processNested($rule['content'], $q, $rule['logic']), null, null, $logic);
             }
         });
 
@@ -1439,27 +1410,35 @@ class DataTableLivewire extends Component
 
     public function addGlobalSearch()
     {
-        if (! $this->search) {
-            return $this;
-        }
+        if (! $this->search) return $this;
 
         $this->query->where(function ($query) {
             foreach (explode(' ', $this->search) as $search) {
-                $query->where(function ($query) use ($search) {
-                    $this->searchableColumns()->each(function ($column, $i) use ($query, $search) {
-                        $query->orWhere(function ($query) use ($i, $search) {
-                            foreach ($this->getColumnFilterStatement($i) as $column) {
-                                $query->when(is_array($column), function ($query) use ($search, $column) {
-                                    foreach ($column as $col) {
-                                        $query->orWhereRaw('LOWER(' . (Str::contains(mb_strtolower($column), 'concat') ? '' : $this->tablePrefix) . $col . ') like ?', '%' . mb_strtolower($search) . '%');
+                $query->where(
+                    function ($query) use ($search) {
+                        $this->searchableColumns()->each(
+                            function ($column, $i) use ($query, $search) {
+                                $query->orWhere(function ($query) use ($i, $search) {
+                                    foreach ($this->getColumnFilterStatement($i) as $column) {
+                                        $query->when(
+                                            is_array($column), 
+                                            function ($query) use ($search, $column) {
+                                                foreach ($column as $col) {
+                                                    $query->orWhereRaw('LOWER(' . (Str::contains(mb_strtolower($column), 'concat') ? '' : $this->tablePrefix) . $col . ') like ?', '%' . mb_strtolower($search) . '%');
+                                                }
+                                            }, 
+                                            function ($query) use ($search, $column) {
+                                                if ($column instanceof \Illuminate\Database\Query\Expression) {
+                                                    $column = $column->getValue(DB::connection($this->connection ? $this->connection : null)->getQueryGrammar());
+                                                }
+                                                $query->orWhereRaw('LOWER(' . (Str::contains(mb_strtolower($column), 'concat') ? '' : $this->tablePrefix) . $column . ') like ?', '%' . mb_strtolower($search) . '%');
+                                            }
+                                        );
                                     }
-                                }, function ($query) use ($search, $column) {
-                                    $query->orWhereRaw('LOWER(' . (Str::contains(mb_strtolower($column), 'concat') ? '' : $this->tablePrefix) . $column . ') like ?', '%' . mb_strtolower($search) . '%');
-                                });
-                            }
+                            });
                         });
-                    });
-                });
+                    }
+                );
             }
         });
 
@@ -1473,18 +1452,14 @@ class DataTableLivewire extends Component
 
     public function addScopeColumns()
     {
-        $this->scopeColumns()->each(function ($column) {
-            $this->query->{$column['scope']}($column['label']);
-        });
+        $this->scopeColumns()->each(fn($column) => $this->query->{$column['scope']}($column['label']));
 
         return $this;
     }
 
     public function addSelectFilters()
     {
-        if (count($this->activeSelectFilters) < 1) {
-            return $this;
-        }
+        if (count($this->activeSelectFilters) < 1) return $this;
 
         $this->query->where(function ($query) {
             foreach ($this->activeSelectFilters as $index => $activeSelectFilter) {
@@ -1523,9 +1498,8 @@ class DataTableLivewire extends Component
 
     public function addBooleanFilters()
     {
-        if (count($this->activeBooleanFilters) < 1) {
-            return $this;
-        }
+        if (count($this->activeBooleanFilters) < 1) return $this;
+
         $this->query->where(function ($query) {
             foreach ($this->activeBooleanFilters as $index => $value) {
                 if ($this->getColumnFilterStatement($index) === 'scope') {
@@ -1558,9 +1532,7 @@ class DataTableLivewire extends Component
 
     public function addTextFilters()
     {
-        if (! count($this->activeTextFilters)) {
-            return $this;
-        }
+        if (! count($this->activeTextFilters)) return $this;
 
         $this->query->where(function ($query) {
             foreach ($this->activeTextFilters as $index => $activeTextFilter) {
@@ -1586,9 +1558,8 @@ class DataTableLivewire extends Component
 
     public function addNumberFilters()
     {
-        if (! count($this->activeNumberFilters)) {
-            return $this;
-        }
+        if (! count($this->activeNumberFilters)) return $this;
+
         $this->query->where(function ($query) {
             foreach ($this->activeNumberFilters as $index => $filter) {
                 if ($this->columnIsAggregateRelation($this->freshColumns[$index])) {
@@ -1615,9 +1586,7 @@ class DataTableLivewire extends Component
 
     public function addDateRangeFilter()
     {
-        if (! count($this->activeDateFilters)) {
-            return $this;
-        }
+        if (! count($this->activeDateFilters)) return $this;
 
         $this->query->where(function ($query) {
             foreach ($this->activeDateFilters as $index => $filter) {
@@ -1636,9 +1605,7 @@ class DataTableLivewire extends Component
 
     public function addDatetimeRangeFilter()
     {
-        if (! count($this->activeDatetimeFilters)) {
-            return $this;
-        }
+        if (! count($this->activeDatetimeFilters)) return $this;
 
         $this->query->where(function ($query) {
             foreach ($this->activeDatetimeFilters as $index => $filter) {
@@ -1657,9 +1624,7 @@ class DataTableLivewire extends Component
 
     public function addTimeRangeFilter()
     {
-        if (! count($this->activeTimeFilters)) {
-            return $this;
-        }
+        if (! count($this->activeTimeFilters)) return $this;
 
         $this->query->where(function ($query) {
             foreach ($this->activeTimeFilters as $index => $filter) {
@@ -1705,25 +1670,22 @@ class DataTableLivewire extends Component
 
     public function getCallbacksProperty()
     {
-        return collect($this->freshColumns)->filter->callback->mapWithKeys(function ($column) {
-            return [$column['name'] => $column['callback']];
-        });
+        return collect($this->freshColumns)->filter->callback->mapWithKeys(
+            fn($column) => [$column['name'] => $column['callback']]
+        );
     }
 
     public function getExportCallbacksProperty()
     {
-        return collect($this->freshColumns)->filter->exportCallback->mapWithKeys(function ($column) {
-            return [$column['name'] => $column['exportCallback']];
-        });
+        return collect($this->freshColumns)->filter->exportCallback->mapWithKeys(
+            fn($column) => [$column['name'] => $column['exportCallback']]
+        );
     }
 
     public function getEditablesProperty()
     {
-        return collect($this->freshColumns)->filter(function ($column) {
-            return $column['type'] === 'editable';
-        })->mapWithKeys(function ($column) {
-            return [$column['name'] => true];
-        });
+        return collect($this->freshColumns)->filter(fn($column) => $column['type'] === 'editable')
+            ->mapWithKeys(fn($column) => [$column['name'] => true]);
     }
 
     public function mapCallbacks($paginatedCollection, $export = false)
@@ -1774,11 +1736,9 @@ class DataTableLivewire extends Component
      */
     public function highlightStringWithCurrentSearchTerm(string $originalString)
     {
-        if (! $this->search) {
-            return $originalString;
-        } else {
-            return static::highlightString($originalString, $this->search);
-        }
+        return (! $this->search) 
+            ? $originalString 
+            : static::highlightString($originalString, $this->search);
     }
 
     /* Utility function for applying highlighting to given string */
@@ -1876,9 +1836,7 @@ class DataTableLivewire extends Component
 
     public function checkboxQuery()
     {
-        return $this->query->reorder()->get()->map(function ($row) {
-            return (string) $row->checkbox_attribute;
-        });
+        return $this->query->reorder()->get()->map(fn($row) => (string) $row->checkbox_attribute);
     }
 
     public function toggleSelectAll()
@@ -1982,32 +1940,21 @@ class DataTableLivewire extends Component
 
     public function getMassActionsOptionsProperty()
     {
-        return collect($this->actions)->groupBy(function ($item) {
-            return $item['group'];
-        }, true);
+        return collect($this->actions)->groupBy(fn($item) => $item['group'], true);
     }
 
     public function massActionOptionHandler()
     {
-        if (! $this->massActionOption) {
-            return;
-        }
+        if (! $this->massActionOption) return;
 
         $option = $this->massActionOption;
-
-        $action = collect($this->massActions)->filter(function ($item) use ($option) {
-            return $item->value === $option;
-        })->shift();
-
+        $action = collect($this->massActions)->filter(fn($item) => $item->value === $option)->shift();
         $collection = collect($action);
 
         if ($collection->get('isExport')) {
             $datatableExport = new DataTableExport($this->getExportResultsSet());
-
             $datatableExport->setFileName($collection->get('fileName'));
-
             $datatableExport->setStyles($collection->get('styles'));
-
             $datatableExport->setColumnWidths($collection->get('widths'));
 
             return $datatableExport->download();
@@ -2015,7 +1962,6 @@ class DataTableLivewire extends Component
 
         if (! count($this->selected)) {
             $this->massActionOption = null;
-
             return;
         }
 
