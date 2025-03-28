@@ -25,10 +25,15 @@ trait WithCollapseRowCmp
 
     /**
      * @param string $id Entity ID
+     * @param string $crLwCmp Component path/name
      * @return void
      */
-    public function setCollapsedRow(string $id): void
-    {   
+    public function setCollapsedRow(string $id, string $crLwCmp): void
+    {
+        if (!empty($crLwCmp)) {
+            $this->collapsedRowLWComponent = $crLwCmp;
+        }
+
         $this->collapsedRow = $id === $this->collapsedRow ? '' : $id;
     }
 
